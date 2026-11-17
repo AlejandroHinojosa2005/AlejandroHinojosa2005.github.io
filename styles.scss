@@ -8,6 +8,13 @@ $muted: #9E9A93;
 $rule: #DAD6CE;
 $lavender: #8B83BF;
 
+// Earth tones the home-page block cycles through, along with the lavender
+$clay: #8A6A4F;
+$ochre: #C47F4E;
+$olive: #74845A;
+$slate: #5F7C91;
+$brick: #A9533F;
+
 $body-bg: $paper;
 $body-color: $text;
 $font-family-sans-serif: "Cousine", "Liberation Mono", Menlo, Consolas, monospace;
@@ -166,9 +173,24 @@ main ul:not(.navbar-nav):not(.listing-categories) > li::before {
   margin-left: 0.06em;
   vertical-align: -0.03em;
   background: $lavender;
-  animation: blink 1.2s steps(1) infinite;
+  animation: blink-colors 7.2s steps(1, end) infinite;
 }
-@keyframes blink { 50% { opacity: 0; } }
+// Each blink brings the block back in the next color: lavender, brown, orange, green, blue, red
+@keyframes blink-colors {
+  0%      { background: $lavender; opacity: 1; }
+  8.333%  { opacity: 0; }
+  16.667% { background: $clay;     opacity: 1; }
+  25%     { opacity: 0; }
+  33.333% { background: $ochre;    opacity: 1; }
+  41.667% { opacity: 0; }
+  50%     { background: $olive;    opacity: 1; }
+  58.333% { opacity: 0; }
+  66.667% { background: $slate;    opacity: 1; }
+  75%     { opacity: 0; }
+  83.333% { background: $brick;    opacity: 1; }
+  91.667% { opacity: 0; }
+  100%    { background: $lavender; opacity: 1; }
+}
 @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
 
 .tagline {
