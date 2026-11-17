@@ -59,7 +59,7 @@ a:hover, a:focus-visible { color: $lavender; text-decoration-color: $lavender; }
 
 ::selection { background: rgba($lavender, 0.3); }
 
-// The lavender block: used after the name, page titles and the navbar brand
+// The block after each page title
 @mixin block-cursor($w: 0.46em, $h: 0.8em, $drop: -0.02em) {
   content: "";
   display: inline-block;
@@ -86,7 +86,6 @@ a:hover, a:focus-visible { color: $lavender; text-decoration-color: $lavender; }
   letter-spacing: -0.01em;
   color: $ink;
 }
-.navbar-title::after { @include block-cursor(0.42em, 0.92em, -0.14em); }
 .navbar .nav-link {
   color: $muted !important;
   font-size: 0.92rem;
@@ -105,7 +104,6 @@ a:hover, a:focus-visible { color: $lavender; text-decoration-color: $lavender; }
     content: "AH";
     font-size: 1.05rem;
   }
-  .navbar-title::after { width: 0.45rem; height: 1rem; vertical-align: -0.15rem; }
   .navbar .nav-link { padding-left: 0.45rem !important; padding-right: 0.45rem !important; }
 }
 
@@ -117,6 +115,10 @@ h1.title {
   line-height: 1.1;
 }
 h1.title::after { @include block-cursor(); }
+// Each section has its own color: research olive, writing brown, about lavender
+.page-research h1.title::after { background: $olive; }
+.page-writing h1.title::after { background: $clay; }
+.page-about h1.title::after { background: $lavender; }
 .quarto-title .subtitle, .description { color: $muted; }
 
 h2 {

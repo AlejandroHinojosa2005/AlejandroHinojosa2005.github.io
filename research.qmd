@@ -1,4 +1,5 @@
 ---
+body-classes: page-research
 title: "Research"
 description: "Computational models of how people learn from wins and losses."
 ---

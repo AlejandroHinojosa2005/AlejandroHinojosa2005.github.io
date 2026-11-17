@@ -1,4 +1,5 @@
 ---
+body-classes: page-writing
 title: "Writing"
 listing:
   contents: writing
