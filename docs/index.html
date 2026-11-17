@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4ff2887b572e399d81cd4e725fe25607.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-06414205e476f76ceb0f949527f1ba77.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f89bb4c2b1381e3c2f0e231039578d38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -121,6 +121,19 @@ Then save, click Render, and commit and push.
 <p>I’m a senior in <strong>psychology</strong> at <strong><span class="baylor">Baylor</span> <span class="baylor-u">University</span></strong>, applying to PhD programs in <strong>computational psychiatry</strong>. I build mathematical models of how people learn from wins and losses, and I test them against the choices people actually make.</p>
 <p>I also write essays on <strong>philosophy</strong> and <strong>literature</strong>, and I wrote a book of philosophical fiction, <strong><em>The Young Man’s Game</em></strong>. Its first two chapters will be posted here.</p>
 </div>
+<!-- The shapes: a small composition that slides into place when it comes into view. -->
+<div class="compo" aria-hidden="true"><span class="sq"></span><span class="rect"></span><span class="circ"></span><span class="tri"></span></div>
+<script>
+(function () {
+  var c = document.currentScript.previousElementSibling;
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  c.classList.add("pre");
+  var io = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) { requestAnimationFrame(function () { c.classList.add("in"); }); io.disconnect(); }
+  }, { threshold: 0.5 });
+  io.observe(c);
+})();
+</script>
 <section id="now" class="level2">
 <h2 data-anchor-id="now">Now</h2>
 <ul>
@@ -137,10 +150,10 @@ Then save, click Render, and commit and push.
 
 </main> <!-- /main -->
 <script>
-// Browser-tab icon in the color of the section: research olive, about purple, everything else brown
+// Browser-tab icon in the section's color and shape: research olive rectangle, writing brown circle, about purple triangle, home brown rectangle
 (function () {
   var b = document.body.classList;
-  var c = b.contains("page-research") ? "olive" : b.contains("page-about") ? "lavender" : "clay";
+  var c = b.contains("page-research") ? "olive" : b.contains("page-about") ? "lavender" : b.contains("page-writing") ? "writing" : "clay";
   var l = document.querySelector('link[rel="icon"]');
   if (l) l.setAttribute("href", l.getAttribute("href").replace(/favicon[^\/]*\.svg$/, "favicon-" + c + ".svg"));
 })();

@@ -29,6 +29,22 @@ I'm a senior in **psychology** at **Baylor University**, applying to PhD program
 I also write essays on **philosophy** and **literature**, and I wrote a book of philosophical fiction, ***The Young Man's Game***. Its first two chapters will be posted here.
 :::
 
+<!-- The shapes: a small composition that slides into place when it comes into view. -->
+```{=html}
+<div class="compo" aria-hidden="true"><span class="sq"></span><span class="rect"></span><span class="circ"></span><span class="tri"></span></div>
+<script>
+(function () {
+  var c = document.currentScript.previousElementSibling;
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  c.classList.add("pre");
+  var io = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) { requestAnimationFrame(function () { c.classList.add("in"); }); io.disconnect(); }
+  }, { threshold: 0.5 });
+  io.observe(c);
+})();
+</script>
+```
+
 ## Now
 
 - [**Finishing** a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. [More on the research →](research.qmd)]{.acc-research}

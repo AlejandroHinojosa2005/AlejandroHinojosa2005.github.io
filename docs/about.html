@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4ff2887b572e399d81cd4e725fe25607.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-06414205e476f76ceb0f949527f1ba77.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f89bb4c2b1381e3c2f0e231039578d38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -145,10 +145,10 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <script>
-// Browser-tab icon in the color of the section: research olive, about purple, everything else brown
+// Browser-tab icon in the section's color and shape: research olive rectangle, writing brown circle, about purple triangle, home brown rectangle
 (function () {
   var b = document.body.classList;
-  var c = b.contains("page-research") ? "olive" : b.contains("page-about") ? "lavender" : "clay";
+  var c = b.contains("page-research") ? "olive" : b.contains("page-about") ? "lavender" : b.contains("page-writing") ? "writing" : "clay";
   var l = document.querySelector('link[rel="icon"]');
   if (l) l.setAttribute("href", l.getAttribute("href").replace(/favicon[^\/]*\.svg$/, "favicon-" + c + ".svg"));
 })();

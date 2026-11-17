@@ -118,6 +118,17 @@ a:hover, a:focus-visible { color: var(--accent); text-decoration-color: var(--ac
 .navbar .nav-link[href$="writing.html"] { --accent: #{$clay}; }
 .navbar .nav-link[href$="about.html"] { --accent: #{$lavender}; }
 .navbar .nav-link:hover { color: var(--accent) !important; }
+.navbar .menu-text::before {
+  content: "";
+  display: inline-block;
+  width: 0.4em;
+  height: 0.62em;
+  margin-right: 0.5em;
+  background: var(--accent);
+  vertical-align: 0;
+}
+.navbar .nav-link[href$="writing.html"] .menu-text::before { width: 0.56em; height: 0.56em; border-radius: 50%; }
+.navbar .nav-link[href$="about.html"] .menu-text::before { width: 0.64em; height: 0.56em; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 .navbar .nav-link.active {
   color: $ink !important;
   font-weight: 700;
@@ -150,6 +161,9 @@ h1.title::after {
   animation: blink 1.2s steps(1) infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
+// Each section has a shape as well as a color: research a rectangle, writing a circle, about a triangle
+.page-writing h1.title::after { width: 0.72em; height: 0.72em; border-radius: 50%; vertical-align: 0; }
+.page-about h1.title::after { width: 0.82em; height: 0.72em; clip-path: polygon(50% 0, 100% 100%, 0 100%); vertical-align: 0; }
 @media (prefers-reduced-motion: reduce) { h1.title::after { animation: none; } }
 .quarto-title .subtitle, .description { color: $muted; }
 
@@ -186,6 +200,11 @@ main ul:not(.navbar-nav):not(.listing-categories) > li::before {
   background: var(--accent);
 }
 
+.page-writing main ul:not(.navbar-nav):not(.listing-categories) > li::before,
+li:has(> .acc-writing)::before { border-radius: 50%; }
+.page-about main ul:not(.navbar-nav):not(.listing-categories) > li::before,
+li:has(> .acc-about)::before { width: 0.56em; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
 // Home page
 .hero {
   text-align: center;
@@ -209,21 +228,21 @@ main ul:not(.navbar-nav):not(.listing-categories) > li::before {
   background: $lavender;
   animation: blink-colors 7.2s steps(1, end) infinite;
 }
-// Each blink brings the block back in the next color: lavender, brown, orange, green, blue, red
+// Each blink brings the block back in the next color and shape: rectangle, circle, triangle, twice over
 @keyframes blink-colors {
-  0%      { background: $lavender; opacity: 1; }
+  0%      { background: $lavender; opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
   8.333%  { opacity: 0; }
-  16.667% { background: $clay;     opacity: 1; }
+  16.667% { background: $clay;     opacity: 1; width: 0.8em; border-radius: 50%; clip-path: none; }
   25%     { opacity: 0; }
-  33.333% { background: $ochre;    opacity: 1; }
+  33.333% { background: $ochre;    opacity: 1; width: 0.9em; border-radius: 0;   clip-path: polygon(50% 0, 100% 100%, 0 100%); }
   41.667% { opacity: 0; }
-  50%     { background: $olive;    opacity: 1; }
+  50%     { background: $olive;    opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
   58.333% { opacity: 0; }
-  66.667% { background: $slate;    opacity: 1; }
+  66.667% { background: $slate;    opacity: 1; width: 0.8em; border-radius: 50%; clip-path: none; }
   75%     { opacity: 0; }
-  83.333% { background: $brick;    opacity: 1; }
+  83.333% { background: $brick;    opacity: 1; width: 0.9em; border-radius: 0;   clip-path: polygon(50% 0, 100% 100%, 0 100%); }
   91.667% { opacity: 0; }
-  100%    { background: $lavender; opacity: 1; }
+  100%    { background: $lavender; opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
 }
 @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
 
@@ -344,6 +363,54 @@ div.quarto-post .metadata a { text-decoration: none; }
   font-size: 0.75rem !important;
 }
 .quarto-listing-category-title, .quarto-listing-category .category { color: $muted; }
+
+// The three section shapes (research olive rectangle, writing brown circle, about purple triangle): dividers and footer mark
+$shapes-mark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 11'%3E%3Crect x='2' y='0' width='7' height='11' fill='%2374845A'/%3E%3Ccircle cx='30' cy='5.5' r='5' fill='%238A6A4F'/%3E%3Cpolygon points='54,0.5 60,10.5 48,10.5' fill='%238B83BF'/%3E%3C/svg%3E";
+
+// Divider between sections: square, circle, triangle
+section.level2 ~ section.level2::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 11px;
+  margin: 3.4rem auto 0;
+  background: url($shapes-mark) no-repeat center / contain;
+}
+section.level2 ~ section.level2 > h2 { margin-top: 2.2rem; }
+
+// The same mark, smaller, above the footer
+.nav-footer-center::before {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 8px;
+  margin: 0 auto 0.7rem;
+  background: url($shapes-mark) no-repeat center / contain;
+}
+
+// Home page composition: the section shapes (olive rectangle, brown circle, purple triangle) and an ochre square,
+// resting on a line, overlapping where their colors mix
+.compo { position: relative; width: 250px; height: 140px; margin: 3.2rem auto 0.5rem; }
+.compo::after { content: ""; position: absolute; left: -40px; right: -40px; bottom: 0; height: 2px; background: $ink; opacity: 0.18; }
+.compo span { position: absolute; bottom: 0; mix-blend-mode: multiply; }
+.compo .sq { left: 0; width: 26px; height: 26px; background: $ochre; }
+.compo .rect { left: 58px; width: 46px; height: 132px; background: $olive; }
+.compo .circ { left: 84px; width: 98px; height: 98px; border-radius: 50%; background: $clay; }
+.compo .tri { left: 150px; width: 100px; height: 88px; background: $lavender; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+// Slide-in: the script in index.qmd adds "pre" (shapes waiting out of place), then "in" once the
+// composition is on screen. Without the script, or with reduce motion turned on, the shapes just sit still.
+.compo.pre span, .compo.pre::after {
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.6s ease;
+}
+.compo.pre span { opacity: 0; }
+.compo.pre .rect { transform: translateY(36px); }
+.compo.pre .circ { transform: translateX(-70px); transition-delay: 0.15s; }
+.compo.pre .tri  { transform: translateX(60px); transition-delay: 0.3s; }
+.compo.pre .sq   { transform: translateY(-48px); transition-delay: 0.45s; }
+.compo.pre::after { transform: scaleX(0); }
+.compo.pre.in span { opacity: 1; transform: none; }
+.compo.pre.in::after { transform: scaleX(1); }
 
 // Footer
 .nav-footer { border-top: 0 !important; color: $muted; font-size: 0.8rem; letter-spacing: 0.03em; }
