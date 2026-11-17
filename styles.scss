@@ -256,11 +256,19 @@ li:has(> .acc-about)::before { width: 0.56em; clip-path: polygon(50% 0, 100% 100
 }
 @media (prefers-reduced-motion: reduce) { .cursor::before { animation: none; } }
 
+// "A Website", set like the "A Novel" under a book's title
+.genre {
+  font-style: italic;
+  color: $muted;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  margin: 1rem 0 0;
+}
 .tagline {
   color: $muted;
   font-size: 1.22rem;
   letter-spacing: 0.03em;
-  margin: 2.4rem 0 0.6rem;
+  margin: 2.1rem 0 0.6rem;
 }
 .topics {
   color: $muted;

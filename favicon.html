@@ -1,9 +1,0 @@
-<script>
-// Browser-tab icon in the section's color and shape: research olive rectangle, writing brown circle, about purple triangle, home brown rectangle
-(function () {
-  var b = document.body.classList;
-  var c = b.contains("page-research") ? "olive" : b.contains("page-about") ? "lavender" : b.contains("page-writing") ? "writing" : "clay";
-  var l = document.querySelector('link[rel="icon"]');
-  if (l) l.setAttribute("href", l.getAttribute("href").replace(/favicon[^\/]*\.svg$/, "favicon-" + c + ".svg"));
-})();
-</script>

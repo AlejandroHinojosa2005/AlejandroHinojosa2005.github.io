@@ -4,12 +4,21 @@ project:
   resources:
     - fonts/
     - favicon-*.svg
+    - favicon-*.png
+    - favicon.ico
+    - apple-touch-icon.png
+    - og-image.png
 
 website:
   title: "Alejandro Hinojosa"
   site-url: https://alejandrohinojosa2005.github.io
   description: "Computational models of decision-making, essays, and The Young Man's Game (Philosophical Fiction)."
-  favicon: favicon.svg
+  # Link previews (texts, social media): the picture and summary shown when the link is shared
+  image: https://alejandrohinojosa2005.github.io/og-image.png
+  image-alt: "Alejandro Hinojosa, A Website: a psychology student who models how people decide"
+  open-graph: true
+  twitter-card:
+    card-style: summary_large_image
   search: false
   navbar:
     title: "Alejandro Hinojosa"
@@ -35,4 +44,3 @@ format:
     anchor-sections: false
     link-external-newwindow: true
     html-math-method: plain
-    include-after-body: favicon.html

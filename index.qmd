@@ -1,4 +1,5 @@
 ---
+include-in-header: _head-home.html
 pagetitle: "Alejandro Hinojosa"
 body-classes: page-home
 ---
@@ -18,8 +19,9 @@ Then save, click Render, and commit and push.
 ```{=html}
 <section class="hero">
   <h1 class="name">Alejandro Hinojosa<span class="cursor" aria-hidden="true"></span></h1>
+  <p class="genre">A Website</p>
   <p class="tagline">a <strong>psychology</strong> student who <strong>models</strong> how people <strong>decide</strong></p>
-  <p class="topics"><span class="t"><strong>computational</strong> psychiatry</span> <span class="dot">·</span> <span class="t"><strong>essays</strong></span> <span class="dot">·</span> <span class="t"><strong><em>The Young Man’s Game</em></strong></span></p>
+  <p class="topics"><span class="t"><strong>computational psychiatry</strong></span> <span class="dot">·</span> <span class="t"><strong>essays</strong></span> <span class="dot">·</span> <span class="t"><strong><em>The Young Man’s Game</em></strong></span></p>
 </section>
 ```
 

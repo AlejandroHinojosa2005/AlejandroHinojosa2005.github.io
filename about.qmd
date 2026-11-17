@@ -1,4 +1,5 @@
 ---
+include-in-header: _head-about.html
 body-classes: page-about
 title: "About"
 ---
