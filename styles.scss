@@ -54,7 +54,7 @@ body { --accent: #{$lavender}; --accent-soft: #{rgba($lavender, 0.55)}; --accent
 .page-research, .acc-research, li:has(> .acc-research) {
   --accent: #{$olive}; --accent-soft: #{rgba($olive, 0.55)}; --accent-sel: #{rgba($olive, 0.28)};
 }
-.page-writing, .acc-writing, li:has(> .acc-writing) {
+.page-writing, .page-home, .acc-writing, li:has(> .acc-writing) {
   --accent: #{$clay}; --accent-soft: #{rgba($clay, 0.55)}; --accent-sel: #{rgba($clay, 0.28)};
 }
 .page-about, .acc-about, li:has(> .acc-about) {
@@ -271,7 +271,8 @@ main ul:not(.navbar-nav):not(.listing-categories) > li::before {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba($ink, 0.42);
+  background: var(--accent);
+  opacity: 0.6;
   transform: translate(-50%, -50%);
 }
 .strip .one {

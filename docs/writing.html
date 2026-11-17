@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4ff2887b572e399d81cd4e725fe25607.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ebb9f880f8a8122c55b700647799e027.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-06414205e476f76ceb0f949527f1ba77.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -60,7 +60,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-essays .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-essays'] = new List('listing-essays', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -149,12 +149,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Essays on <strong>philosophy</strong> and <strong>literature</strong>, and notes on <strong>the singularity</strong>.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<p>Essays, and the first two chapters of my book, <strong><em>The Young Man’s Game</em></strong>.</p>
+<section id="the-young-mans-game" class="level2">
+<h2 data-anchor-id="the-young-mans-game">The Young Man’s Game</h2>
+<div class="status">
+<p>philosophical fiction · first two chapters coming soon</p>
+</div>
+<!-- Add a sentence or two here about what the book is about. -->
+<p><strong><em>The Young Man’s Game</em></strong> is a book of philosophical fiction I wrote. Its first two chapters will be posted here, free to read.</p>
+</section>
+<section id="essays" class="level2">
+<h2 data-anchor-id="essays">Essays</h2>
+<div id="listing-essays" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
 <div class="quarto-post image-right" data-index="0" data-categories="cGhpbG9zb3BoeQ==" data-listing-date-sort="1794873600000" data-listing-file-modified-sort="1794944553548" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="83">
 <div class="body">
@@ -180,7 +186,22 @@ November 17, 2026
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+// Browser-tab icon in the color of the section: research olive, about purple, everything else brown
+(function () {
+  var b = document.body.classList;
+  var c = b.contains("page-research") ? "olive" : b.contains("page-about") ? "lavender" : "clay";
+  var l = document.querySelector('link[rel="icon"]');
+  if (l) l.setAttribute("href", l.getAttribute("href").replace(/favicon[^\/]*\.svg$/, "favicon-" + c + ".svg"));
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const isCodeAnnotation = (el) => {

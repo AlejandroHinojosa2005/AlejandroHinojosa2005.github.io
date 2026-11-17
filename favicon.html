@@ -1,0 +1,9 @@
+<script>
+// Browser-tab icon in the color of the section: research olive, about purple, everything else brown
+(function () {
+  var b = document.body.classList;
+  var c = b.contains("page-research") ? "olive" : b.contains("page-about") ? "lavender" : "clay";
+  var l = document.querySelector('link[rel="icon"]');
+  if (l) l.setAttribute("href", l.getAttribute("href").replace(/favicon[^\/]*\.svg$/, "favicon-" + c + ".svg"));
+})();
+</script>

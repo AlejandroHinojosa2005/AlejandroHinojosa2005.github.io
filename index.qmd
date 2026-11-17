@@ -1,5 +1,6 @@
 ---
 pagetitle: "Alejandro Hinojosa"
+body-classes: page-home
 ---
 
 <!--
@@ -18,21 +19,21 @@ Then save, click Render, and commit and push.
 <section class="hero">
   <h1 class="name">Alejandro Hinojosa<span class="cursor" aria-hidden="true"></span></h1>
   <p class="tagline">a <strong>psychology</strong> student who <strong>models</strong> how people <strong>decide</strong></p>
-  <p class="topics"><span class="t"><strong>computational</strong> psychiatry</span> <span class="dot">·</span> <span class="t"><strong>philosophy</strong> essays</span> <span class="dot">·</span> <span class="t"><strong>singularity</strong> notes</span></p>
+  <p class="topics"><span class="t"><strong>computational</strong> psychiatry</span> <span class="dot">·</span> <span class="t"><strong>essays</strong></span> <span class="dot">·</span> <span class="t"><strong><em>The Young Man’s Game</em></strong></span></p>
 </section>
 ```
 
 ::: lede
 I'm a senior in **psychology** at **Baylor University**, applying to PhD programs in **computational psychiatry**. I build mathematical models of how people learn from wins and losses, and I test them against the choices people actually make.
 
-I also write about **philosophy**, **literature**, and what a world with **superhuman AI** might ask of us. This site collects all of it.
+I also write essays on **philosophy** and **literature**, and I wrote a book of philosophical fiction, ***The Young Man's Game***. Its first two chapters will be posted here.
 :::
 
 ## Now
 
 - [**Finishing** a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. [More on the research →](research.qmd)]{.acc-research}
 - [**Testing**, with a preregistered plan, whether people switch between learning strategies partway through the task.]{.acc-research}
-- [**Writing** essays on philosophy and the singularity. [Read them →](writing.qmd)]{.acc-writing}
+- [**Writing** essays, and posting the first two chapters of ***The Young Man's Game***. [Read →](writing.qmd)]{.acc-writing}
 
 ::: closing
 That's the work, and the questions behind it.

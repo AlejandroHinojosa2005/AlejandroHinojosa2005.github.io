@@ -2,6 +2,7 @@
 body-classes: page-writing
 title: "Writing"
 listing:
+  id: essays
   contents: writing
   sort: "date desc"
   type: default
@@ -10,4 +11,18 @@ listing:
   date-format: "MMMM D, YYYY"
 ---
 
-Essays on **philosophy** and **literature**, and notes on **the singularity**.
+Essays, and the first two chapters of my book, ***The Young Man's Game***.
+
+## The Young Man's Game
+
+::: status
+philosophical fiction · first two chapters coming soon
+:::
+
+<!-- Add a sentence or two here about what the book is about. -->
+***The Young Man's Game*** is a book of philosophical fiction I wrote. Its first two chapters will be posted here, free to read.
+
+## Essays
+
+::: {#essays}
+:::

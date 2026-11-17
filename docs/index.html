@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4ff2887b572e399d81cd4e725fe25607.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ebb9f880f8a8122c55b700647799e027.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-06414205e476f76ceb0f949527f1ba77.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -60,7 +60,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="fonts.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed page-home fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -115,18 +115,18 @@ Then save, click Render, and commit and push.
 <section class="hero">
   <h1 class="name">Alejandro Hinojosa<span class="cursor" aria-hidden="true"></span></h1>
   <p class="tagline">a <strong>psychology</strong> student who <strong>models</strong> how people <strong>decide</strong></p>
-  <p class="topics"><span class="t"><strong>computational</strong> psychiatry</span> <span class="dot">·</span> <span class="t"><strong>philosophy</strong> essays</span> <span class="dot">·</span> <span class="t"><strong>singularity</strong> notes</span></p>
+  <p class="topics"><span class="t"><strong>computational</strong> psychiatry</span> <span class="dot">·</span> <span class="t"><strong>essays</strong></span> <span class="dot">·</span> <span class="t"><strong><em>The Young Man’s Game</em></strong></span></p>
 </section>
 <div class="lede">
 <p>I’m a senior in <strong>psychology</strong> at <strong><span class="baylor">Baylor</span> <span class="baylor-u">University</span></strong>, applying to PhD programs in <strong>computational psychiatry</strong>. I build mathematical models of how people learn from wins and losses, and I test them against the choices people actually make.</p>
-<p>I also write about <strong>philosophy</strong>, <strong>literature</strong>, and what a world with <strong>superhuman AI</strong> might ask of us. This site collects all of it.</p>
+<p>I also write essays on <strong>philosophy</strong> and <strong>literature</strong>, and I wrote a book of philosophical fiction, <strong><em>The Young Man’s Game</em></strong>. Its first two chapters will be posted here.</p>
 </div>
 <section id="now" class="level2">
 <h2 data-anchor-id="now">Now</h2>
 <ul>
 <li><span class="acc-research"><strong>Finishing</strong> a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. <a href="./research.html">More on the research →</a></span></li>
 <li><span class="acc-research"><strong>Testing</strong>, with a preregistered plan, whether people switch between learning strategies partway through the task.</span></li>
-<li><span class="acc-writing"><strong>Writing</strong> essays on philosophy and the singularity. <a href="./writing.html">Read them →</a></span></li>
+<li><span class="acc-writing"><strong>Writing</strong> essays, and posting the first two chapters of <strong><em>The Young Man’s Game</em></strong>. <a href="./writing.html">Read →</a></span></li>
 </ul>
 <div class="closing">
 <p>That’s the work, and the questions behind it.</p>
@@ -136,6 +136,15 @@ Then save, click Render, and commit and push.
 </section>
 
 </main> <!-- /main -->
+<script>
+// Browser-tab icon in the color of the section: research olive, about purple, everything else brown
+(function () {
+  var b = document.body.classList;
+  var c = b.contains("page-research") ? "olive" : b.contains("page-about") ? "lavender" : "clay";
+  var l = document.querySelector('link[rel="icon"]');
+  if (l) l.setAttribute("href", l.getAttribute("href").replace(/favicon[^\/]*\.svg$/, "favicon-" + c + ".svg"));
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const isCodeAnnotation = (el) => {

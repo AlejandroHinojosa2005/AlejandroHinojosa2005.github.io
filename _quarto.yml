@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - fonts/
+    - favicon-*.svg
 
 website:
   title: "Alejandro Hinojosa"
@@ -34,3 +35,4 @@ format:
     anchor-sections: false
     link-external-newwindow: true
     html-math-method: plain
+    include-after-body: favicon.html
