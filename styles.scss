@@ -405,18 +405,19 @@ section.level2 ~ section.level2 > h2 { margin-top: 2.2rem; }
 .compo .sq { left: 0; width: 26px; height: 26px; background: $ochre; }
 .compo .rect { left: 58px; width: 46px; height: 132px; background: $olive; }
 .compo .circ { left: 84px; width: 98px; height: 98px; border-radius: 50%; background: $clay; }
-.compo .tri { left: 150px; width: 100px; height: 88px; background: $lavender; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.compo .tri { left: 150px; width: 100px; height: 88px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 88' preserveAspectRatio='none'%3E%3Cpolygon points='50,0 100,88 0,88' fill='%238B83BF'/%3E%3C/svg%3E") no-repeat center / 100% 100%; }
 
 // Slide-in: the script in index.qmd adds "pre" (shapes waiting out of place), then "in" once the
 // composition is on screen. Without the script, or with reduce motion turned on, the shapes just sit still.
 .compo.pre span, .compo.pre::after {
-  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.6s ease;
+  transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.6s ease;
 }
 .compo.pre span { opacity: 0; }
 .compo.pre .rect { transform: translateY(36px); }
-.compo.pre .circ { transform: translateX(-70px); transition-delay: 0.15s; }
-.compo.pre .tri  { transform: translateX(60px); transition-delay: 0.3s; }
-.compo.pre .sq   { transform: translateY(-48px); transition-delay: 0.45s; }
+.compo.pre .circ { transform: translateX(-70px); transition-delay: 0.35s; }
+.compo.pre .tri  { transform: translateX(60px); transition-delay: 0.7s; }
+.compo.pre .sq   { transform: translateY(-48px); transition-delay: 1.05s; }
 .compo.pre::after { transform: scaleX(0); }
 .compo.pre.in span { opacity: 1; transform: none; }
 .compo.pre.in::after { transform: scaleX(1); }
