@@ -1,0 +1,22 @@
+---
+title: "About"
+---
+
+I'm **Alejandro Hinojosa**, a senior in the Department of Psychology and Neuroscience at **Baylor University**. I'm interested in how people learn from what happens to them, and in how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.
+
+My research so far is an independent project: implementing reinforcement-learning models of the Iowa Gambling Task, testing extensions with predictions written in advance, and running the analyses on Baylor's Kodiak computing cluster. I also work in a research lab at Baylor.
+
+Outside research, I read a lot of **philosophy** and **literature**, and I write about both.
+
+## Interests
+
+- Computational psychiatry and reinforcement learning
+- Decision-making under uncertainty
+- Philosophy of mind, literature, and the future of AI
+
+## Contact
+
+- Email: [alejandro_hinojosa1@baylor.edu](mailto:alejandro_hinojosa1@baylor.edu)
+- GitHub: [AlejandroHinojosa2005](https://github.com/AlejandroHinojosa2005)
+- ORCID: [0009-0001-1919-8294](https://orcid.org/0009-0001-1919-8294)
+- CV: coming soon

@@ -1,0 +1,35 @@
+---
+title: "Research"
+description: "Computational models of how people learn from wins and losses."
+---
+
+## Reinforcement-learning models of the Iowa Gambling Task
+
+::: status
+preprint in preparation · [code and full write-up on GitHub](https://github.com/AlejandroHinojosa2005/IGT-Modeling)
+:::
+
+The **Iowa Gambling Task** asks people to draw cards from four decks. Two decks pay well at first but lose money over time, and two pay less but come out ahead. The task is widely used to study decision-making, including in addiction and other clinical conditions. **Computational models** split each person's choices into the processes behind them: how quickly they learn from wins and from losses, how strongly they stick with a deck, and how much they explore.
+
+I implemented three standard models and fit them to **162 healthy adults**, then tested a series of extensions, writing my predictions down before each analysis. The one that held up best restores **outcome curvature** to the ORL model: the felt size of a win or a loss grows more slowly than its dollar amount. **ORL + α** predicted held-out choices best of eight models, and on a second sample of **70 people**, all five predictions written in advance were met.
+
+{{< include _alpha_fig.qmd >}}
+
+No single model described everyone well, though. Different people were predicted best by different models, which led to the next project.
+
+## Mixing and switching between models
+
+::: status
+in progress · preregistered on OSF
+:::
+
+If people differ in which model fits them, each person might be a **blend** of strategies, or might **switch** strategies partway through the task. In exploratory analyses, a weighted mix of eight models predicted choices better than any one model, and a model that lets strategies switch over the session did better still. I'm now testing whether this holds in **440 new participants**, and whether data simulated with no switching at all would produce the same result.
+
+## Next
+
+- **Tiny recurrent neural networks**, as a benchmark for how much predictable structure the models miss.
+- **An EEG study** of whose prediction errors the brain tracks after feedback: one model's, or a blend.
+
+## Data
+
+All analyses use the open "many labs" Iowa Gambling Task data pool ([Steingroever et al., 2015](https://osf.io/8t7rm)).

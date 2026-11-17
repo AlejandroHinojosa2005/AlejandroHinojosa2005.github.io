@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "writing/sample-essay.html",
+    "href": "writing/sample-essay.html",
+    "title": "Sample essay (replace me)",
+    "section": "",
+    "text": "This is a placeholder. To add an essay, copy this file into the writing folder, give it a new name (for example on-free-will.qmd), change the title, description, date and categories at the top, and write the essay below the second --- line.\nUse bold for the words you want to stand out, the way the home page does. Categories can be anything; philosophy, literature and singularity would match the home page.\n\nA block quote looks like this, for passages you want to set apart."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m Alejandro Hinojosa, a senior in the Department of Psychology and Neuroscience at Baylor University. I’m interested in how people learn from what happens to them, and in how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.\nMy research so far is an independent project: implementing reinforcement-learning models of the Iowa Gambling Task, testing extensions with predictions written in advance, and running the analyses on Baylor’s Kodiak computing cluster. I also work in a research lab at Baylor.\nOutside research, I read a lot of philosophy and literature, and I write about both."
+  },
+  {
+    "objectID": "about.html#interests",
+    "href": "about.html#interests",
+    "title": "About",
+    "section": "Interests",
+    "text": "Interests\n\nComputational psychiatry and reinforcement learning\nDecision-making under uncertainty\nPhilosophy of mind, literature, and the future of AI"
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "About",
+    "section": "Contact",
+    "text": "Contact\n\nEmail: alejandro_hinojosa1@baylor.edu\nGitHub: AlejandroHinojosa2005\nORCID: 0009-0001-1919-8294\nCV: coming soon"
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "preprint in preparation · code and full write-up on GitHub\n\nThe Iowa Gambling Task asks people to draw cards from four decks. Two decks pay well at first but lose money over time, and two pay less but come out ahead. The task is widely used to study decision-making, including in addiction and other clinical conditions. Computational models split each person’s choices into the processes behind them: how quickly they learn from wins and from losses, how strongly they stick with a deck, and how much they explore.\nI implemented three standard models and fit them to 162 healthy adults, then tested a series of extensions, writing my predictions down before each analysis. The one that held up best restores outcome curvature to the ORL model: the felt size of a win or a loss grows more slowly than its dollar amount. ORL + α predicted held-out choices best of eight models, and on a second sample of 70 people, all five predictions written in advance were met.\n\n\nfirst sample · N = 16281% below 1 · median 0.30\n\n\n\nheld-out sample · N = 7089% below 1 · median 0.32\n\n\n00.5α = 11.52\nEach dot is one person's α in ORL + α. At α = 1 (lavender line), a win or loss counts in proportion to its size; below 1, large outcomes count for less than their size. About a quarter to a third of people sit at the lower limit, where only whether an outcome was a gain or a loss matters.\n\nNo single model described everyone well, though. Different people were predicted best by different models, which led to the next project."
+  },
+  {
+    "objectID": "research.html#reinforcement-learning-models-of-the-iowa-gambling-task",
+    "href": "research.html#reinforcement-learning-models-of-the-iowa-gambling-task",
+    "title": "Research",
+    "section": "",
+    "text": "preprint in preparation · code and full write-up on GitHub\n\nThe Iowa Gambling Task asks people to draw cards from four decks. Two decks pay well at first but lose money over time, and two pay less but come out ahead. The task is widely used to study decision-making, including in addiction and other clinical conditions. Computational models split each person’s choices into the processes behind them: how quickly they learn from wins and from losses, how strongly they stick with a deck, and how much they explore.\nI implemented three standard models and fit them to 162 healthy adults, then tested a series of extensions, writing my predictions down before each analysis. The one that held up best restores outcome curvature to the ORL model: the felt size of a win or a loss grows more slowly than its dollar amount. ORL + α predicted held-out choices best of eight models, and on a second sample of 70 people, all five predictions written in advance were met.\n\n\nfirst sample · N = 16281% below 1 · median 0.30\n\n\n\nheld-out sample · N = 7089% below 1 · median 0.32\n\n\n00.5α = 11.52\nEach dot is one person's α in ORL + α. At α = 1 (lavender line), a win or loss counts in proportion to its size; below 1, large outcomes count for less than their size. About a quarter to a third of people sit at the lower limit, where only whether an outcome was a gain or a loss matters.\n\nNo single model described everyone well, though. Different people were predicted best by different models, which led to the next project."
+  },
+  {
+    "objectID": "research.html#mixing-and-switching-between-models",
+    "href": "research.html#mixing-and-switching-between-models",
+    "title": "Research",
+    "section": "Mixing and switching between models",
+    "text": "Mixing and switching between models\n\nin progress · preregistered on OSF\n\nIf people differ in which model fits them, each person might be a blend of strategies, or might switch strategies partway through the task. In exploratory analyses, a weighted mix of eight models predicted choices better than any one model, and a model that lets strategies switch over the session did better still. I’m now testing whether this holds in 440 new participants, and whether data simulated with no switching at all would produce the same result."
+  },
+  {
+    "objectID": "research.html#next",
+    "href": "research.html#next",
+    "title": "Research",
+    "section": "Next",
+    "text": "Next\n\nTiny recurrent neural networks, as a benchmark for how much predictable structure the models miss.\nAn EEG study of whose prediction errors the brain tracks after feedback: one model’s, or a blend."
+  },
+  {
+    "objectID": "research.html#data",
+    "href": "research.html#data",
+    "title": "Research",
+    "section": "Data",
+    "text": "Data\nAll analyses use the open “many labs” Iowa Gambling Task data pool (Steingroever et al., 2015)."
+  },
+  {
+    "objectID": "writing.html",
+    "href": "writing.html",
+    "title": "Writing",
+    "section": "",
+    "text": "Essays on philosophy and literature, and notes on the singularity.\n\n\n\n\n\n\n\n\n\nSample essay (replace me)\n\n\n\nphilosophy\n\n\n\nA placeholder so you can see how essays look. Delete this file once your first real essay is in.\n\n\n\n\n\nNovember 17, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Alejandro Hinojosa",
+    "section": "",
+    "text": "a psychology student who models how people decide\n  computational psychiatry · philosophy essays · singularity notes"
+  },
+  {
+    "objectID": "index.html#now",
+    "href": "index.html#now",
+    "title": "Alejandro Hinojosa",
+    "section": "Now",
+    "text": "Now\n\nFinishing a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. More on the research →\nTesting, with a preregistered plan, whether people switch between learning strategies partway through the task.\nWriting essays on philosophy and the singularity. Read them →\n\n\nThat’s the work, and the questions behind it."
+  }
+]

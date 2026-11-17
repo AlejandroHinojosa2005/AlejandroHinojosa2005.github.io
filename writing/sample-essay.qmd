@@ -1,0 +1,12 @@
+---
+title: "Sample essay (replace me)"
+description: "A placeholder so you can see how essays look. Delete this file once your first real essay is in."
+date: 2026-11-17
+categories: [philosophy]
+---
+
+This is a placeholder. To add an essay, copy this file into the `writing` folder, give it a new name (for example `on-free-will.qmd`), change the title, description, date and categories at the top, and write the essay below the second `---` line.
+
+Use **bold** for the words you want to stand out, the way the home page does. Categories can be anything; `philosophy`, `literature` and `singularity` would match the home page.
+
+> A block quote looks like this, for passages you want to set apart.

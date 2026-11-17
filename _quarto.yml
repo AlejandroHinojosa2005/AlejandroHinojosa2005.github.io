@@ -1,0 +1,33 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - fonts/
+
+website:
+  title: "Alejandro Hinojosa"
+  site-url: https://alejandrohinojosa2005.github.io
+  description: "Computational models of decision-making, philosophy essays, and notes on the singularity."
+  favicon: favicon.svg
+  search: false
+  navbar:
+    title: "Alejandro Hinojosa"
+    collapse: false
+    right:
+      - href: research.qmd
+        text: research
+      - href: writing.qmd
+        text: writing
+      - href: about.qmd
+        text: about
+  page-footer:
+    center: "Alejandro Hinojosa · 2026"
+
+format:
+  html:
+    theme: styles.scss
+    css: fonts.css
+    toc: false
+    anchor-sections: false
+    link-external-newwindow: true
+    html-math-method: plain

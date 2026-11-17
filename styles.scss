@@ -1,0 +1,274 @@
+/*-- scss:defaults --*/
+
+// Palette, after the Bend page: warm paper, charcoal ink, soft gray, one lavender accent
+$paper: #EFEDE8;
+$ink: #33312E;
+$text: #57534E;
+$muted: #9E9A93;
+$rule: #DAD6CE;
+$lavender: #8B83BF;
+
+$body-bg: $paper;
+$body-color: $text;
+$font-family-sans-serif: "Cousine", "Liberation Mono", Menlo, Consolas, monospace;
+$font-family-monospace: "Cousine", "Liberation Mono", Menlo, Consolas, monospace;
+$headings-font-family: "Arimo", "Liberation Sans", "Helvetica Neue", Arial, sans-serif;
+$headings-font-weight: 700;
+$headings-color: $ink;
+$link-color: $ink;
+$line-height-base: 1.85;
+$navbar-bg: $paper;
+$navbar-fg: $muted;
+$navbar-hl: $ink;
+$footer-bg: $paper;
+$footer-fg: $muted;
+$border-color: $rule;
+$code-color: $ink;
+$code-bg: rgba($ink, 0.06);
+
+/*-- scss:rules --*/
+
+html { font-size: 16.5px; }
+@media (max-width: 575.98px) { html { font-size: 15px; } }
+
+body {
+  background: $paper;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
+}
+
+strong, b { color: $ink; font-weight: 700; }
+em { color: $ink; }
+
+a {
+  color: $ink;
+  text-decoration: underline;
+  text-decoration-color: rgba($lavender, 0.55);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+a:hover, a:focus-visible { color: $lavender; text-decoration-color: $lavender; }
+
+::selection { background: rgba($lavender, 0.3); }
+
+// The lavender block: used after the name, page titles and the navbar brand
+@mixin block-cursor($w: 0.46em, $h: 0.8em, $drop: -0.02em) {
+  content: "";
+  display: inline-block;
+  width: $w;
+  height: $h;
+  margin-left: 0.08em;
+  vertical-align: $drop;
+  background: $lavender;
+}
+
+// Navbar: quiet, no bar, lowercase mono links
+.navbar {
+  background: $paper !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding-top: 1.1rem;
+  padding-bottom: 0.4rem;
+}
+.navbar-brand { text-decoration: none; }
+.navbar-title {
+  font-family: $headings-font-family;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: $ink;
+}
+.navbar-title::after { @include block-cursor(0.42em, 0.92em, -0.14em); }
+.navbar .nav-link {
+  color: $muted !important;
+  font-size: 0.92rem;
+  text-decoration: none;
+  padding-left: 0.7rem !important;
+  padding-right: 0.7rem !important;
+}
+.navbar .nav-link:hover { color: $ink !important; }
+.navbar .nav-link.active { color: $ink !important; font-weight: 700; }
+.navbar .menu-text { letter-spacing: 0.02em; }
+
+// On phones the navbar shows initials so the three links fit on one line
+@media (max-width: 575.98px) {
+  .navbar-title { font-size: 0; }
+  .navbar-title::before {
+    content: "AH";
+    font-size: 1.05rem;
+  }
+  .navbar-title::after { width: 0.45rem; height: 1rem; vertical-align: -0.15rem; }
+  .navbar .nav-link { padding-left: 0.45rem !important; padding-right: 0.45rem !important; }
+}
+
+// Page titles
+#title-block-header { margin-top: 2.6rem; margin-bottom: 2rem; }
+h1.title {
+  font-size: clamp(2.3rem, 6vw, 3.4rem);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+h1.title::after { @include block-cursor(); }
+.quarto-title .subtitle, .description { color: $muted; }
+
+h2 {
+  font-size: 1.45rem;
+  letter-spacing: -0.015em;
+  margin-top: 3.2rem;
+  margin-bottom: 0.4rem;
+  border: 0;
+  padding: 0;
+}
+h3 { font-size: 1.15rem; margin-top: 2rem; }
+
+.status {
+  color: $muted;
+  font-size: 0.86rem;
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+// Lists: small lavender squares instead of bullets
+main ul:not(.navbar-nav):not(.listing-categories) {
+  list-style: none;
+  padding-left: 1.4em;
+}
+main ul:not(.navbar-nav):not(.listing-categories) > li { position: relative; margin-bottom: 0.55rem; }
+main ul:not(.navbar-nav):not(.listing-categories) > li::before {
+  content: "";
+  position: absolute;
+  left: -1.3em;
+  top: 0.68em;
+  width: 0.48em;
+  height: 0.48em;
+  background: $lavender;
+}
+
+// Home page
+.hero {
+  text-align: center;
+  margin: 3.6rem 0 3rem;
+}
+.hero .name {
+  font-family: $headings-font-family;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #474440;
+  margin: 0;
+}
+.cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.8em;
+  margin-left: 0.06em;
+  vertical-align: -0.03em;
+  background: $lavender;
+  animation: blink 1.2s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+
+.tagline {
+  color: $muted;
+  font-size: 1.22rem;
+  letter-spacing: 0.03em;
+  margin: 2.4rem 0 0.6rem;
+}
+.topics {
+  color: $muted;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+.topics .dot { padding: 0 0.2em; }
+.topics .t { white-space: nowrap; }
+.lede p { font-size: 1.08rem; line-height: 1.95; }
+.closing {
+  text-align: center;
+  color: $muted;
+  margin: 2.8rem 0 1rem;
+  letter-spacing: 0.03em;
+}
+
+// Strip plot of alpha estimates (built from plain HTML so it scales with the page)
+.alpha-fig { margin: 2.4rem 0 2.6rem; }
+.alpha-row { margin-bottom: 1.5rem; }
+.alpha-row .label {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  font-size: 0.84rem;
+  color: $muted;
+  margin-bottom: 0.2rem;
+}
+.alpha-row .label span { white-space: nowrap; }
+.strip {
+  position: relative;
+  height: 60px;
+  border-bottom: 1px solid $rule;
+}
+.strip i {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba($ink, 0.42);
+  transform: translate(-50%, -50%);
+}
+.strip .one {
+  position: absolute;
+  top: -4px;
+  bottom: 0;
+  width: 2px;
+  background: $lavender;
+  transform: translateX(-1px);
+}
+.alpha-axis {
+  position: relative;
+  height: 1.5rem;
+  font-size: 0.78rem;
+  color: $muted;
+  margin-top: -0.9rem;
+}
+.alpha-axis span { position: absolute; transform: translateX(-50%); top: 0.25rem; }
+.alpha-axis span.one { color: $lavender; font-weight: 700; }
+.fig-note { font-size: 0.84rem; color: $muted; line-height: 1.7; margin-top: 0.6rem; }
+
+// Essays and other text pages
+code { color: $ink; background: rgba($ink, 0.06); padding: 0.08em 0.3em; border-radius: 2px; }
+blockquote, .blockquote {
+  border-left: 3px solid $lavender !important;
+  color: $text !important;
+  padding-left: 1.2rem;
+  margin: 1.6rem 0;
+}
+.quarto-title-meta-heading { color: $muted !important; font-size: 0.72rem !important; letter-spacing: 0.08em; }
+.quarto-title-meta-contents { color: $text; }
+
+// Writing listing: date above title, one entry per row
+.quarto-listing { margin-top: 1rem; }
+div.quarto-post, div.quarto-post.image-right { display: flex !important; flex-direction: column !important; gap: 0.15rem; }
+div.quarto-post .metadata { order: -1; flex-basis: auto !important; }
+div.quarto-post .body { flex-basis: auto !important; min-width: 0; }
+div.quarto-post .listing-title { margin: 0.1rem 0 0.3rem; }
+div.quarto-post .listing-title a { color: $ink; text-decoration: none; }
+div.quarto-post .listing-title a:hover { color: $lavender; }
+div.quarto-post .listing-description a { color: $text; text-decoration: none; }
+div.quarto-post .metadata a { text-decoration: none; }
+.quarto-post { border-bottom: 1px solid $rule !important; padding: 1.1rem 0 !important; }
+.quarto-post .listing-title { font-family: $headings-font-family; font-weight: 700; color: $ink; font-size: 1.15rem; }
+.quarto-post .listing-date, .quarto-post .listing-categories { color: $muted; font-size: 0.82rem; }
+.listing-category {
+  border: 1px solid $rule !important;
+  border-radius: 0 !important;
+  color: $muted !important;
+  font-size: 0.75rem !important;
+}
+.quarto-listing-category-title, .quarto-listing-category .category { color: $muted; }
+
+// Footer
+.nav-footer { border-top: 0 !important; color: $muted; font-size: 0.8rem; letter-spacing: 0.03em; }
+.nav-footer a { color: $muted; }

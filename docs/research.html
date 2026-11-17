@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Computational models of how people learn from wins and losses.">
+
+<title>Research – Alejandro Hinojosa</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href="./favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-4ff2887b572e399d81cd4e725fe25607.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-be08ae0aa55f81a6ddad7037cb5aa2bd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="fonts.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Alejandro Hinojosa</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./research.html" aria-current="page"> 
+<span class="menu-text">research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./writing.html"> 
+<span class="menu-text">writing</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">about</span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Research</h1>
+</div>
+
+<div>
+  <div class="description">
+    Computational models of how people learn from wins and losses.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="reinforcement-learning-models-of-the-iowa-gambling-task" class="level2">
+<h2 data-anchor-id="reinforcement-learning-models-of-the-iowa-gambling-task">Reinforcement-learning models of the Iowa Gambling Task</h2>
+<div class="status">
+<p>preprint in preparation · <a href="https://github.com/AlejandroHinojosa2005/IGT-Modeling">code and full write-up on GitHub</a></p>
+</div>
+<p>The <strong>Iowa Gambling Task</strong> asks people to draw cards from four decks. Two decks pay well at first but lose money over time, and two pay less but come out ahead. The task is widely used to study decision-making, including in addiction and other clinical conditions. <strong>Computational models</strong> split each person’s choices into the processes behind them: how quickly they learn from wins and from losses, how strongly they stick with a deck, and how much they explore.</p>
+<p>I implemented three standard models and fit them to <strong>162 healthy adults</strong>, then tested a series of extensions, writing my predictions down before each analysis. The one that held up best restores <strong>outcome curvature</strong> to the ORL model: the felt size of a win or a loss grows more slowly than its dollar amount. <strong>ORL + α</strong> predicted held-out choices best of eight models, and on a second sample of <strong>70 people</strong>, all five predictions written in advance were met.</p>
+<figure class="alpha-fig figure" aria-label="Dot plot of each participant's alpha estimate in two samples; most fall below 1.">
+<div class="alpha-row">
+<div class="label"><span>first sample · N = 162</span><span><strong>81%</strong> below 1 · median 0.30</span></div>
+<div class="strip"><span class="one" style="left:50%"></span><i style="left:61.07%;top:38.0%"></i><i style="left:0.50%;top:26.3%"></i><i style="left:44.64%;top:60.3%"></i><i style="left:44.60%;top:20.9%"></i><i style="left:0.50%;top:52.4%"></i><i style="left:47.76%;top:40.9%"></i><i style="left:0.50%;top:19.9%"></i><i style="left:70.43%;top:50.5%"></i><i style="left:0.50%;top:18.5%"></i><i style="left:21.99%;top:45.5%"></i><i style="left:45.14%;top:20.8%"></i><i style="left:0.50%;top:22.2%"></i><i style="left:0.50%;top:44.9%"></i><i style="left:0.50%;top:72.2%"></i><i style="left:80.27%;top:24.4%"></i><i style="left:0.50%;top:31.2%"></i><i style="left:86.53%;top:58.7%"></i><i style="left:0.50%;top:80.4%"></i><i style="left:60.08%;top:55.2%"></i><i style="left:12.76%;top:43.0%"></i><i style="left:7.16%;top:82.4%"></i><i style="left:24.06%;top:19.2%"></i><i style="left:0.50%;top:74.4%"></i><i style="left:1.41%;top:35.7%"></i><i style="left:68.72%;top:25.8%"></i><i style="left:63.08%;top:24.0%"></i><i style="left:63.33%;top:37.0%"></i><i style="left:0.50%;top:71.5%"></i><i style="left:6.95%;top:28.3%"></i><i style="left:10.10%;top:55.5%"></i><i style="left:33.22%;top:59.4%"></i><i style="left:7.15%;top:41.3%"></i><i style="left:7.48%;top:53.2%"></i><i style="left:9.78%;top:20.3%"></i><i style="left:11.44%;top:20.1%"></i><i style="left:21.25%;top:30.0%"></i><i style="left:22.35%;top:62.3%"></i><i style="left:23.41%;top:45.1%"></i><i style="left:18.48%;top:37.4%"></i><i style="left:0.50%;top:55.8%"></i><i style="left:2.60%;top:46.8%"></i><i style="left:52.65%;top:36.4%"></i><i style="left:0.50%;top:70.0%"></i><i style="left:90.03%;top:63.5%"></i><i style="left:33.07%;top:32.6%"></i><i style="left:28.34%;top:55.1%"></i><i style="left:0.50%;top:51.7%"></i><i style="left:0.50%;top:75.5%"></i><i style="left:0.50%;top:65.6%"></i><i style="left:42.22%;top:35.6%"></i><i style="left:65.51%;top:82.7%"></i><i style="left:11.07%;top:24.0%"></i><i style="left:59.11%;top:44.4%"></i><i style="left:0.50%;top:67.5%"></i><i style="left:7.23%;top:26.3%"></i><i style="left:12.68%;top:49.2%"></i><i style="left:20.65%;top:18.7%"></i><i style="left:0.50%;top:61.4%"></i><i style="left:76.29%;top:68.0%"></i><i style="left:35.93%;top:55.0%"></i><i style="left:10.07%;top:75.5%"></i><i style="left:5.64%;top:37.3%"></i><i style="left:0.50%;top:63.3%"></i><i style="left:0.50%;top:56.4%"></i><i style="left:35.06%;top:55.4%"></i><i style="left:7.42%;top:47.0%"></i><i style="left:0.50%;top:73.1%"></i><i style="left:46.81%;top:80.2%"></i><i style="left:0.50%;top:48.2%"></i><i style="left:6.41%;top:61.2%"></i><i style="left:31.48%;top:20.1%"></i><i style="left:33.44%;top:63.7%"></i><i style="left:0.50%;top:60.0%"></i><i style="left:0.50%;top:83.5%"></i><i style="left:9.63%;top:71.9%"></i><i style="left:8.38%;top:35.4%"></i><i style="left:0.50%;top:42.2%"></i><i style="left:74.17%;top:61.5%"></i><i style="left:36.07%;top:17.5%"></i><i style="left:67.34%;top:47.4%"></i><i style="left:0.50%;top:27.4%"></i><i style="left:16.72%;top:24.0%"></i><i style="left:3.82%;top:20.0%"></i><i style="left:0.50%;top:68.2%"></i><i style="left:69.04%;top:24.8%"></i><i style="left:0.50%;top:32.8%"></i><i style="left:100.00%;top:42.6%"></i><i style="left:30.18%;top:75.3%"></i><i style="left:20.43%;top:21.5%"></i><i style="left:17.43%;top:46.5%"></i><i style="left:20.91%;top:53.4%"></i><i style="left:37.44%;top:76.1%"></i><i style="left:0.50%;top:71.7%"></i><i style="left:55.11%;top:74.8%"></i><i style="left:44.41%;top:34.9%"></i><i style="left:19.06%;top:44.2%"></i><i style="left:5.89%;top:40.4%"></i><i style="left:39.60%;top:76.1%"></i><i style="left:13.34%;top:81.1%"></i><i style="left:0.50%;top:26.3%"></i><i style="left:0.50%;top:28.0%"></i><i style="left:8.78%;top:31.8%"></i><i style="left:70.80%;top:31.9%"></i><i style="left:0.50%;top:49.0%"></i><i style="left:29.65%;top:56.1%"></i><i style="left:0.50%;top:33.9%"></i><i style="left:0.50%;top:16.3%"></i><i style="left:5.68%;top:44.5%"></i><i style="left:100.00%;top:41.1%"></i><i style="left:59.24%;top:54.5%"></i><i style="left:5.46%;top:80.8%"></i><i style="left:70.32%;top:63.0%"></i><i style="left:0.50%;top:51.1%"></i><i style="left:26.93%;top:58.0%"></i><i style="left:67.15%;top:62.0%"></i><i style="left:24.59%;top:19.7%"></i><i style="left:0.50%;top:77.2%"></i><i style="left:17.27%;top:69.0%"></i><i style="left:89.82%;top:75.5%"></i><i style="left:0.50%;top:70.3%"></i><i style="left:0.50%;top:42.7%"></i><i style="left:81.14%;top:43.1%"></i><i style="left:91.63%;top:23.0%"></i><i style="left:1.95%;top:59.1%"></i><i style="left:7.35%;top:20.2%"></i><i style="left:49.26%;top:20.6%"></i><i style="left:10.49%;top:30.2%"></i><i style="left:11.54%;top:27.0%"></i><i style="left:15.27%;top:39.1%"></i><i style="left:30.40%;top:19.6%"></i><i style="left:3.51%;top:16.0%"></i><i style="left:50.15%;top:26.3%"></i><i style="left:7.18%;top:22.9%"></i><i style="left:51.50%;top:40.7%"></i><i style="left:23.74%;top:17.7%"></i><i style="left:38.69%;top:75.5%"></i><i style="left:31.15%;top:57.8%"></i><i style="left:0.50%;top:26.1%"></i><i style="left:13.60%;top:33.2%"></i><i style="left:47.98%;top:39.6%"></i><i style="left:0.50%;top:40.8%"></i><i style="left:47.20%;top:24.4%"></i><i style="left:18.35%;top:73.7%"></i><i style="left:23.69%;top:83.5%"></i><i style="left:37.50%;top:47.7%"></i><i style="left:11.94%;top:48.9%"></i><i style="left:0.50%;top:21.8%"></i><i style="left:0.50%;top:22.9%"></i><i style="left:51.37%;top:39.3%"></i><i style="left:18.57%;top:34.0%"></i><i style="left:33.09%;top:72.4%"></i><i style="left:12.06%;top:27.0%"></i><i style="left:10.32%;top:17.6%"></i><i style="left:23.78%;top:80.7%"></i><i style="left:85.23%;top:51.9%"></i><i style="left:14.67%;top:26.0%"></i><i style="left:40.58%;top:52.9%"></i><i style="left:0.50%;top:17.8%"></i><i style="left:0.50%;top:51.9%"></i><i style="left:34.48%;top:82.5%"></i><i style="left:1.29%;top:74.7%"></i><i style="left:34.02%;top:63.3%"></i></div>
+</div>
+<div class="alpha-row">
+<div class="label"><span>held-out sample · N = 70</span><span><strong>89%</strong> below 1 · median 0.32</span></div>
+<div class="strip"><span class="one" style="left:50%"></span><i style="left:27.76%;top:33.8%"></i><i style="left:1.12%;top:40.9%"></i><i style="left:0.50%;top:27.4%"></i><i style="left:100.00%;top:68.5%"></i><i style="left:43.18%;top:52.2%"></i><i style="left:23.76%;top:69.0%"></i><i style="left:4.32%;top:38.4%"></i><i style="left:0.50%;top:31.2%"></i><i style="left:35.90%;top:71.2%"></i><i style="left:0.50%;top:83.0%"></i><i style="left:10.23%;top:74.0%"></i><i style="left:33.22%;top:70.8%"></i><i style="left:0.50%;top:71.6%"></i><i style="left:6.05%;top:66.3%"></i><i style="left:0.50%;top:31.4%"></i><i style="left:46.94%;top:51.2%"></i><i style="left:0.50%;top:40.2%"></i><i style="left:9.91%;top:18.0%"></i><i style="left:34.12%;top:17.9%"></i><i style="left:0.50%;top:35.0%"></i><i style="left:0.50%;top:33.6%"></i><i style="left:6.68%;top:63.1%"></i><i style="left:19.68%;top:81.0%"></i><i style="left:4.63%;top:46.4%"></i><i style="left:49.36%;top:79.7%"></i><i style="left:0.50%;top:83.2%"></i><i style="left:100.00%;top:80.9%"></i><i style="left:23.74%;top:40.8%"></i><i style="left:0.50%;top:31.0%"></i><i style="left:0.50%;top:31.4%"></i><i style="left:26.40%;top:29.4%"></i><i style="left:28.81%;top:29.9%"></i><i style="left:100.00%;top:58.4%"></i><i style="left:18.76%;top:77.2%"></i><i style="left:64.02%;top:73.1%"></i><i style="left:43.34%;top:48.6%"></i><i style="left:73.45%;top:60.4%"></i><i style="left:0.50%;top:70.4%"></i><i style="left:16.67%;top:21.8%"></i><i style="left:30.02%;top:60.9%"></i><i style="left:45.80%;top:77.9%"></i><i style="left:0.50%;top:69.2%"></i><i style="left:2.89%;top:67.0%"></i><i style="left:14.98%;top:48.5%"></i><i style="left:0.50%;top:28.1%"></i><i style="left:77.95%;top:69.7%"></i><i style="left:0.50%;top:38.6%"></i><i style="left:29.09%;top:70.5%"></i><i style="left:33.96%;top:82.1%"></i><i style="left:17.55%;top:42.9%"></i><i style="left:48.92%;top:43.3%"></i><i style="left:34.62%;top:80.4%"></i><i style="left:40.58%;top:65.3%"></i><i style="left:4.75%;top:27.6%"></i><i style="left:0.50%;top:24.6%"></i><i style="left:0.50%;top:26.3%"></i><i style="left:0.50%;top:77.5%"></i><i style="left:0.50%;top:70.8%"></i><i style="left:3.49%;top:25.9%"></i><i style="left:19.34%;top:72.2%"></i><i style="left:20.85%;top:82.7%"></i><i style="left:0.50%;top:60.7%"></i><i style="left:0.50%;top:39.8%"></i><i style="left:53.01%;top:53.3%"></i><i style="left:10.72%;top:24.9%"></i><i style="left:92.12%;top:17.0%"></i><i style="left:29.96%;top:82.0%"></i><i style="left:0.50%;top:60.2%"></i><i style="left:29.97%;top:51.8%"></i><i style="left:0.50%;top:79.5%"></i></div>
+</div>
+<div class="alpha-axis"><span style="left:0%">0</span><span style="left:25%">0.5</span><span class="one" style="left:50%">α = 1</span><span style="left:75%">1.5</span><span style="left:100%">2</span></div>
+<figcaption class="fig-note">Each dot is one person's α in ORL + α. At α = 1 (lavender line), a win or loss counts in proportion to its size; below 1, large outcomes count for less than their size. About a quarter to a third of people sit at the lower limit, where only whether an outcome was a gain or a loss matters.</figcaption>
+</figure>
+<p>No single model described everyone well, though. Different people were predicted best by different models, which led to the next project.</p>
+</section>
+<section id="mixing-and-switching-between-models" class="level2">
+<h2 data-anchor-id="mixing-and-switching-between-models">Mixing and switching between models</h2>
+<div class="status">
+<p>in progress · preregistered on OSF</p>
+</div>
+<p>If people differ in which model fits them, each person might be a <strong>blend</strong> of strategies, or might <strong>switch</strong> strategies partway through the task. In exploratory analyses, a weighted mix of eight models predicted choices better than any one model, and a model that lets strategies switch over the session did better still. I’m now testing whether this holds in <strong>440 new participants</strong>, and whether data simulated with no switching at all would produce the same result.</p>
+</section>
+<section id="next" class="level2">
+<h2 data-anchor-id="next">Next</h2>
+<ul>
+<li><strong>Tiny recurrent neural networks</strong>, as a benchmark for how much predictable structure the models miss.</li>
+<li><strong>An EEG study</strong> of whose prediction errors the brain tracks after feedback: one model’s, or a blend.</li>
+</ul>
+</section>
+<section id="data" class="level2">
+<h2 data-anchor-id="data">Data</h2>
+<p>All analyses use the open “many labs” Iowa Gambling Task data pool (<a href="https://osf.io/8t7rm">Steingroever et al., 2015</a>).</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/alejandrohinojosa2005\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Alejandro Hinojosa · 2026</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,12 @@
+---
+title: "Writing"
+listing:
+  contents: writing
+  sort: "date desc"
+  type: default
+  categories: true
+  fields: [date, title, description, categories]
+  date-format: "MMMM D, YYYY"
+---
+
+Essays on **philosophy** and **literature**, and notes on **the singularity**.
