@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4ff2887b572e399d81cd4e725fe25607.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0961de93f411507cb344ab109eaa2094.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-62fe2251ed5566768ecd44551810e1c6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -121,11 +121,23 @@ Then save, click Render, and commit and push.
 <p>I’m a senior in <strong>psychology</strong> at <strong><span class="baylor">Baylor</span> <span class="baylor-u">University</span></strong>, applying to PhD programs in <strong>computational psychiatry</strong>. I build mathematical models of how people learn from wins and losses, and I test them against the choices people actually make.</p>
 <p>I also write essays on <strong>philosophy</strong> and <strong>literature</strong>, and I wrote a book of philosophical fiction, <strong><em>The Young Man’s Game</em></strong>. Its first two chapters will be posted here.</p>
 </div>
-<!-- The shapes: a small composition that slides into place when it comes into view. -->
+<!-- The shapes: a small composition. Each visit gives them a new mix of the site's colors, and they slide into place when they come into view. -->
 <div class="compo" aria-hidden="true"><span class="sq"></span><span class="rect"></span><span class="circ"></span><span class="tri"></span></div>
 <script>
 (function () {
   var c = document.currentScript.previousElementSibling;
+
+  // A new mix of the site's colors on every visit: lavender, brown, ochre, olive, slate, brick
+  var colors = ["#8B83BF", "#8A6A4F", "#C47F4E", "#74845A", "#5F7C91", "#A9533F"];
+  for (var i = colors.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1)), t = colors[i]; colors[i] = colors[j]; colors[j] = t;
+  }
+  c.querySelector(".sq").style.background = colors[0];
+  c.querySelector(".rect").style.background = colors[1];
+  c.querySelector(".circ").style.background = colors[2];
+  c.querySelector(".tri").style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 88' preserveAspectRatio='none'%3E%3Cpolygon points='50,0 100,88 0,88' fill='" + encodeURIComponent(colors[3]) + "'/%3E%3C/svg%3E\")";
+
+  // Slide into place once on screen (skipped for people who turn on "reduce motion")
   if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   c.classList.add("pre");
   var io = new IntersectionObserver(function (entries) {

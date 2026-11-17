@@ -398,10 +398,10 @@ section.level2 ~ section.level2 > h2 { margin-top: 2.2rem; }
   background: url($shapes-mark) no-repeat center / contain;
 }
 
-// Home page composition: the section shapes (olive rectangle, brown circle, purple triangle) and an ochre square,
-// resting on a line, overlapping where their colors mix
+// Home page composition: a rectangle, circle, triangle and small square, overlapping where their colors mix.
+// The script in index.qmd gives them a new mix of the site's six colors on every visit; these are the defaults.
+//
 .compo { position: relative; width: 250px; height: 140px; margin: 3.2rem auto 0.5rem; }
-.compo::after { content: ""; position: absolute; left: -40px; right: -40px; bottom: 0; height: 2px; background: $ink; opacity: 0.18; }
 .compo span { position: absolute; bottom: 0; mix-blend-mode: multiply; }
 .compo .sq { left: 0; width: 26px; height: 26px; background: $ochre; }
 .compo .rect { left: 58px; width: 46px; height: 132px; background: $olive; }
@@ -411,7 +411,7 @@ section.level2 ~ section.level2 > h2 { margin-top: 2.2rem; }
 
 // Slide-in: the script in index.qmd adds "pre" (shapes waiting out of place), then "in" once the
 // composition is on screen. Without the script, or with reduce motion turned on, the shapes just sit still.
-.compo.pre span, .compo.pre::after {
+.compo.pre span {
   transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.6s ease;
 }
 .compo.pre span { opacity: 0; }
@@ -419,9 +419,7 @@ section.level2 ~ section.level2 > h2 { margin-top: 2.2rem; }
 .compo.pre .circ { transform: translateX(-70px); transition-delay: 0.35s; }
 .compo.pre .tri  { transform: translateX(60px); transition-delay: 0.7s; }
 .compo.pre .sq   { transform: translateY(-48px); transition-delay: 1.05s; }
-.compo.pre::after { transform: scaleX(0); }
 .compo.pre.in span { opacity: 1; transform: none; }
-.compo.pre.in::after { transform: scaleX(1); }
 
 // Footer
 .nav-footer { border-top: 0 !important; color: $muted; font-size: 0.8rem; letter-spacing: 0.03em; }

@@ -29,12 +29,24 @@ I'm a senior in **psychology** at **Baylor University**, applying to PhD program
 I also write essays on **philosophy** and **literature**, and I wrote a book of philosophical fiction, ***The Young Man's Game***. Its first two chapters will be posted here.
 :::
 
-<!-- The shapes: a small composition that slides into place when it comes into view. -->
+<!-- The shapes: a small composition. Each visit gives them a new mix of the site's colors, and they slide into place when they come into view. -->
 ```{=html}
 <div class="compo" aria-hidden="true"><span class="sq"></span><span class="rect"></span><span class="circ"></span><span class="tri"></span></div>
 <script>
 (function () {
   var c = document.currentScript.previousElementSibling;
+
+  // A new mix of the site's colors on every visit: lavender, brown, ochre, olive, slate, brick
+  var colors = ["#8B83BF", "#8A6A4F", "#C47F4E", "#74845A", "#5F7C91", "#A9533F"];
+  for (var i = colors.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1)), t = colors[i]; colors[i] = colors[j]; colors[j] = t;
+  }
+  c.querySelector(".sq").style.background = colors[0];
+  c.querySelector(".rect").style.background = colors[1];
+  c.querySelector(".circ").style.background = colors[2];
+  c.querySelector(".tri").style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 88' preserveAspectRatio='none'%3E%3Cpolygon points='50,0 100,88 0,88' fill='" + encodeURIComponent(colors[3]) + "'/%3E%3C/svg%3E\")";
+
+  // Slide into place once on screen (skipped for people who turn on "reduce motion")
   if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   c.classList.add("pre");
   var io = new IntersectionObserver(function (entries) {
