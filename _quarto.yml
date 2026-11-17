@@ -23,6 +23,9 @@ website:
   page-footer:
     center: "Alejandro Hinojosa · 2026"
 
+filters:
+  - baylor.lua
+
 format:
   html:
     theme: styles.scss

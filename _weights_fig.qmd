@@ -1,0 +1,13 @@
+```{=html}
+<figure class="weights" aria-label="Bar chart of the weight each model gets in the shared stacking mix.">
+<div class="wrow"><span class="wlabel">VSE-split</span><span class="wtrack"><span class="wbar" style="width:88.8%"></span></span><span class="wval">.22</span></div>
+<div class="wrow"><span class="wlabel">ORL + α</span><span class="wtrack"><span class="wbar" style="width:84.4%"></span></span><span class="wval">.21</span></div>
+<div class="wrow"><span class="wlabel">ORL + split + α</span><span class="wtrack"><span class="wbar" style="width:76.4%"></span></span><span class="wval">.19</span></div>
+<div class="wrow"><span class="wlabel">EEF</span><span class="wtrack"><span class="wbar" style="width:52.8%"></span></span><span class="wval">.13</span></div>
+<div class="wrow"><span class="wlabel">ORL + split</span><span class="wtrack"><span class="wbar" style="width:47.6%"></span></span><span class="wval">.12</span></div>
+<div class="wrow"><span class="wlabel">VSE</span><span class="wtrack"><span class="wbar" style="width:20.4%"></span></span><span class="wval">.05</span></div>
+<div class="wrow"><span class="wlabel">win-stay/lose-shift</span><span class="wtrack"><span class="wbar" style="width:19.6%"></span></span><span class="wval">.05</span></div>
+<div class="wrow"><span class="wlabel">ORL</span><span class="wtrack"><span class="wbar" style="width:9.6%"></span></span><span class="wval">.02</span></div>
+<figcaption class="fig-note">Weight each model gets in the shared mix (the weights add up to 1). "Split" means separate perseverance after wins and after losses. VSE-split gets the most weight despite one of the worst scores on its own: it gets right the choices the other models miss. ORL itself gets almost none once its extensions are in the mix.</figcaption>
+</figure>
+```

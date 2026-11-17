@@ -2,6 +2,18 @@
 pagetitle: "Alejandro Hinojosa"
 ---
 
+<!--
+HOW TO EDIT THIS PAGE (open it in Source mode, not Visual)
+1. Name, tagline and topic line: the HTML block just below.
+   Change the words between the tags. <strong>word</strong> makes a word bold.
+2. The two paragraphs under "::: lede": plain text, just type. **word** makes it bold.
+3. The "Now" list: each item sits inside [ ... ]{.acc-research} or [ ... ]{.acc-writing}.
+   That gives its square and link the color of the section it points to
+   (research olive, writing brown, about purple: .acc-about).
+4. The last line under "::: closing" is the gray sign-off.
+Then save, click Render, and commit and push.
+-->
+
 ```{=html}
 <section class="hero">
   <h1 class="name">Alejandro Hinojosa<span class="cursor" aria-hidden="true"></span></h1>
@@ -18,9 +30,9 @@ I also write about **philosophy**, **literature**, and what a world with **super
 
 ## Now
 
-- **Finishing** a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. [More on the research →](research.qmd)
-- **Testing**, with a preregistered plan, whether people switch between learning strategies partway through the task.
-- **Writing** essays on philosophy and the singularity. [Read them →](writing.qmd)
+- [**Finishing** a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. [More on the research →](research.qmd)]{.acc-research}
+- [**Testing**, with a preregistered plan, whether people switch between learning strategies partway through the task.]{.acc-research}
+- [**Writing** essays on philosophy and the singularity. [Read them →](writing.qmd)]{.acc-writing}
 
 ::: closing
 That's the work, and the questions behind it.

@@ -18,13 +18,29 @@ I implemented three standard models and fit them to **162 healthy adults**, then
 
 No single model described everyone well, though. Different people were predicted best by different models, which led to the next project.
 
-## Mixing and switching between models
+## Mixing models: stacking
 
 ::: status
-in progress · preregistered on OSF
+exploratory · first sample of 162 · confirmatory test in progress
 :::
 
-If people differ in which model fits them, each person might be a **blend** of strategies, or might **switch** strategies partway through the task. In exploratory analyses, a weighted mix of eight models predicted choices better than any one model, and a model that lets strategies switch over the session did better still. I'm now testing whether this holds in **440 new participants**, and whether data simulated with no switching at all would produce the same result.
+Picking one winning model throws away what the others get right. **Stacking** ([Yao et al., 2018](https://doi.org/10.1214/17-BA1091)) keeps all of them: each choice gets a probability from a weighted average of the eight models' predictions, with the weights chosen to predict held-out choices as well as possible. When one model is badly wrong about a choice, the others catch it.
+
+One shared mix predicted held-out choices better than the best single model, ORL + α, for **124 of 162** people (*z* = 7.3). On average it gave the choice a person actually made about **4% more probability**.
+
+{{< include _weights_fig.qmd >}}
+
+People also differ in their mix. Giving each person their own weights, pulled 70% of the way toward the shared mix, predicted better still (*z* = 4.3). The differences are real, but 100 choices are too few to pin down anyone's mix exactly.
+
+## Switching between strategies
+
+::: status
+exploratory · confirmatory test in progress
+:::
+
+A fixed mix assumes a person's blend stays the same all session. A **switching** model lets one strategy be "in charge" of a run of choices before another takes over. It beat the fixed mix (*z* = 5.3), and it lost that edge when each person's choices were shuffled, so the gain depends on the order of the choices. The best fit redrew the strategy in charge about once every **19 trials**.
+
+Whether people really switch is the open question. I'm now testing it, with a preregistered plan, in **440 new participants** from the same data pool, and on data simulated with no switching at all, to see whether the method finds "switching" where there is none.
 
 ## Next
 

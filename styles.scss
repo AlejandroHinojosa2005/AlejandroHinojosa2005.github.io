@@ -15,6 +15,10 @@ $olive: #74845A;
 $slate: #5F7C91;
 $brick: #A9533F;
 
+// Baylor's official green and gold
+$baylor-green: #154734;
+$baylor-gold: #FFB81C;
+
 $body-bg: $paper;
 $body-color: $text;
 $font-family-sans-serif: "Cousine", "Liberation Mono", Menlo, Consolas, monospace;
@@ -44,20 +48,37 @@ body {
   letter-spacing: 0.01em;
 }
 
+// Accent color. Each section has its own: research olive, writing brown, about lavender.
+// On the home page, each bullet and link takes the color of the section it points to.
+body { --accent: #{$lavender}; --accent-soft: #{rgba($lavender, 0.55)}; --accent-sel: #{rgba($lavender, 0.28)}; }
+.page-research, .acc-research, li:has(> .acc-research) {
+  --accent: #{$olive}; --accent-soft: #{rgba($olive, 0.55)}; --accent-sel: #{rgba($olive, 0.28)};
+}
+.page-writing, .acc-writing, li:has(> .acc-writing) {
+  --accent: #{$clay}; --accent-soft: #{rgba($clay, 0.55)}; --accent-sel: #{rgba($clay, 0.28)};
+}
+.page-about, .acc-about, li:has(> .acc-about) {
+  --accent: #{$lavender}; --accent-soft: #{rgba($lavender, 0.55)}; --accent-sel: #{rgba($lavender, 0.28)};
+}
+
 strong, b { color: $ink; font-weight: 700; }
+
+// Baylor in Baylor green; the "University" after it in Baylor gold
+.baylor { color: $baylor-green; }
+.baylor-u { color: $baylor-gold; }
 em { color: $ink; }
 
 a {
   color: $ink;
   text-decoration: underline;
-  text-decoration-color: rgba($lavender, 0.55);
+  text-decoration-color: var(--accent-soft);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 0.22em;
   transition: color 0.15s ease, text-decoration-color 0.15s ease;
 }
-a:hover, a:focus-visible { color: $lavender; text-decoration-color: $lavender; }
+a:hover, a:focus-visible { color: var(--accent); text-decoration-color: var(--accent); }
 
-::selection { background: rgba($lavender, 0.3); }
+::selection { background: var(--accent-sel); }
 
 // The block after each page title
 @mixin block-cursor($w: 0.46em, $h: 0.8em, $drop: -0.02em) {
@@ -67,7 +88,7 @@ a:hover, a:focus-visible { color: $lavender; text-decoration-color: $lavender; }
   height: $h;
   margin-left: 0.08em;
   vertical-align: $drop;
-  background: $lavender;
+  background: var(--accent);
 }
 
 // Navbar: quiet, no bar, lowercase mono links
@@ -93,8 +114,18 @@ a:hover, a:focus-visible { color: $lavender; text-decoration-color: $lavender; }
   padding-left: 0.7rem !important;
   padding-right: 0.7rem !important;
 }
-.navbar .nav-link:hover { color: $ink !important; }
-.navbar .nav-link.active { color: $ink !important; font-weight: 700; }
+.navbar .nav-link[href$="research.html"] { --accent: #{$olive}; }
+.navbar .nav-link[href$="writing.html"] { --accent: #{$clay}; }
+.navbar .nav-link[href$="about.html"] { --accent: #{$lavender}; }
+.navbar .nav-link:hover { color: var(--accent) !important; }
+.navbar .nav-link.active {
+  color: $ink !important;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
 .navbar .menu-text { letter-spacing: 0.02em; }
 
 // On phones the navbar shows initials so the three links fit on one line
@@ -114,11 +145,12 @@ h1.title {
   letter-spacing: -0.025em;
   line-height: 1.1;
 }
-h1.title::after { @include block-cursor(); }
-// Each section has its own color: research olive, writing brown, about lavender
-.page-research h1.title::after { background: $olive; }
-.page-writing h1.title::after { background: $clay; }
-.page-about h1.title::after { background: $lavender; }
+h1.title::after {
+  @include block-cursor();
+  animation: blink 1.2s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { h1.title::after { animation: none; } }
 .quarto-title .subtitle, .description { color: $muted; }
 
 h2 {
@@ -138,7 +170,7 @@ h3 { font-size: 1.15rem; margin-top: 2rem; }
   letter-spacing: 0.02em;
 }
 
-// Lists: small lavender squares instead of bullets
+// Lists: small squares in the section's color instead of bullets
 main ul:not(.navbar-nav):not(.listing-categories) {
   list-style: none;
   padding-left: 1.4em;
@@ -151,7 +183,7 @@ main ul:not(.navbar-nav):not(.listing-categories) > li::before {
   top: 0.68em;
   width: 0.48em;
   height: 0.48em;
-  background: $lavender;
+  background: var(--accent);
 }
 
 // Home page
@@ -247,7 +279,7 @@ main ul:not(.navbar-nav):not(.listing-categories) > li::before {
   top: -4px;
   bottom: 0;
   width: 2px;
-  background: $lavender;
+  background: var(--accent);
   transform: translateX(-1px);
 }
 .alpha-axis {
@@ -258,13 +290,32 @@ main ul:not(.navbar-nav):not(.listing-categories) > li::before {
   margin-top: -0.9rem;
 }
 .alpha-axis span { position: absolute; transform: translateX(-50%); top: 0.25rem; }
-.alpha-axis span.one { color: $lavender; font-weight: 700; }
+.alpha-axis span.one { color: var(--accent); font-weight: 700; }
 .fig-note { font-size: 0.84rem; color: $muted; line-height: 1.7; margin-top: 0.6rem; }
+
+// Bar chart of the stacking weights
+.weights { margin: 2.2rem 0 2.4rem; }
+.wrow {
+  display: grid;
+  grid-template-columns: 12.5em 1fr 2.6em;
+  align-items: center;
+  column-gap: 0.9rem;
+  margin: 0.45rem 0;
+  font-size: 0.86rem;
+}
+.wlabel { color: $text; text-align: right; white-space: nowrap; }
+.wtrack { height: 15px; }
+.wbar { display: block; height: 100%; background: var(--accent); }
+.wval { color: $muted; }
+@media (max-width: 575.98px) {
+  .wrow { grid-template-columns: 1fr 2.6em; row-gap: 0.15rem; margin: 0.7rem 0; }
+  .wlabel { grid-column: 1 / -1; text-align: left; }
+}
 
 // Essays and other text pages
 code { color: $ink; background: rgba($ink, 0.06); padding: 0.08em 0.3em; border-radius: 2px; }
 blockquote, .blockquote {
-  border-left: 3px solid $lavender !important;
+  border-left: 3px solid var(--accent) !important;
   color: $text !important;
   padding-left: 1.2rem;
   margin: 1.6rem 0;
@@ -279,7 +330,7 @@ div.quarto-post .metadata { order: -1; flex-basis: auto !important; }
 div.quarto-post .body { flex-basis: auto !important; min-width: 0; }
 div.quarto-post .listing-title { margin: 0.1rem 0 0.3rem; }
 div.quarto-post .listing-title a { color: $ink; text-decoration: none; }
-div.quarto-post .listing-title a:hover { color: $lavender; }
+div.quarto-post .listing-title a:hover { color: var(--accent); }
 div.quarto-post .listing-description a { color: $text; text-decoration: none; }
 div.quarto-post .metadata a { text-decoration: none; }
 .quarto-post { border-bottom: 1px solid $rule !important; padding: 1.1rem 0 !important; }
