@@ -219,12 +219,21 @@ li:has(> .acc-about)::before { width: 0.56em; clip-path: polygon(50% 0, 100% 100
   color: #474440;
   margin: 0;
 }
+// The block takes up no width, so the name stays centered while the shape changes beside it
 .cursor {
   display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0.8em;
+  vertical-align: -0.03em;
+}
+.cursor::before {
+  content: "";
+  position: absolute;
+  left: 0.06em;
+  bottom: 0;
   width: 0.5em;
   height: 0.8em;
-  margin-left: 0.06em;
-  vertical-align: -0.03em;
   background: $lavender;
   animation: blink-colors 7.2s steps(1, end) infinite;
 }
@@ -244,7 +253,7 @@ li:has(> .acc-about)::before { width: 0.56em; clip-path: polygon(50% 0, 100% 100
   91.667% { opacity: 0; }
   100%    { background: $lavender; opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
 }
-@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .cursor::before { animation: none; } }
 
 .tagline {
   color: $muted;
