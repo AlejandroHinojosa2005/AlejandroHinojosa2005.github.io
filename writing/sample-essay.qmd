@@ -1,6 +1,6 @@
 ---
 title: "Sample essay (replace me)"
-description: "A placeholder so you can see how essays look. Delete this file once your first real essay is in."
+description: "A placeholder. Delete this file once first real essay is in."
 date: 2026-11-17
 categories: [philosophy]
 ---

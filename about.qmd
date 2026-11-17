@@ -3,11 +3,15 @@ body-classes: page-about
 title: "About"
 ---
 
-I'm **Alejandro Hinojosa**, a senior in the Department of Psychology and Neuroscience at **Baylor University**. I'm interested in how people learn from what happens to them, and in how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.
+I'm **Alejandro Hinojosa**, a senior in the Department of Psychology at **Baylor University**. This website was built with the intent of documenting my intelectual interests. Thse include, **Computations psychiatry**, **Philosophy of Mind**, **Systems Theory**, **Classic Literature**, **History**, **Archatectural Styles**, **Horology** and more.
 
-My research so far is an independent project: implementing reinforcement-learning models of the Iowa Gambling Task, testing extensions with predictions written in advance, and running the analyses on Baylor's Kodiak computing cluster. I also work in a research lab at Baylor.
+I'm interested in the algorythoms peopls use for learning. This incumpases how people learn from what happens to them, and in how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.
 
-Outside research, I read a lot of **philosophy** and **literature**, and I write about both.
+My research so far is an independent project: implementing reinforcement-learning models of the Iowa Gambling Task, testing extensions with predictions written in advance, and running the analyses on Baylor's Kodiak computing cluster. I also work in a research lab at Baylor under Dr. Wade Rowatt.
+
+I am applying to **Graduate Schools** this psychal 
+
+This website will grow over time as I develop a sense for how I want to express myself.
 
 ## Interests
 
@@ -21,3 +25,4 @@ Outside research, I read a lot of **philosophy** and **literature**, and I write
 - GitHub: [AlejandroHinojosa2005](https://github.com/AlejandroHinojosa2005)
 - ORCID: [0009-0001-1919-8294](https://orcid.org/0009-0001-1919-8294)
 - CV: coming soon
+- Pre-Print: coming soon

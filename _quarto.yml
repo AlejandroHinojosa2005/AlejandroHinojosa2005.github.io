@@ -7,7 +7,7 @@ project:
 website:
   title: "Alejandro Hinojosa"
   site-url: https://alejandrohinojosa2005.github.io
-  description: "Computational models of decision-making, philosophy essays, and notes on the singularity."
+  description: "Computational models of decision-making, essays, and The Young Man's Game (Philosophical Fiction)."
   favicon: favicon.svg
   search: false
   navbar:
