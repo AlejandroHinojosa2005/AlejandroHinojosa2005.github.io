@@ -11,7 +11,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "I’m Alejandro Hinojosa, a senior in the Department of Psychology and Neuroscience at Baylor University. I’m interested in how people learn from what happens to them, and in how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.\nMy research so far is an independent project: implementing reinforcement-learning models of the Iowa Gambling Task, testing extensions with predictions written in advance, and running the analyses on Baylor’s Kodiak computing cluster. I also work in a research lab at Baylor.\nOutside research, I read a lot of philosophy and literature, and I write about both."
+    "text": "I’m Alejandro Hinojosa, a senior in the Department of Psychology at Baylor University. This website was built with the intent of documenting my intellectual interests. These include Computational Psychiatry, Philosophy of Mind, Systems Theory, Classic Literature, History, Architectural Styles, Horology, and more.\nI’m interested in the algorithms people use for learning. This encompasses how people learn from what happens to them, and how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.\nMy research so far is an independent project: implementing reinforcement-learning models of the Iowa Gambling Task, testing extensions with predictions written in advance, and running the analyses on Baylor’s Kodiak computing cluster. I also work in a research lab at Baylor under Dr. Wade Rowatt.\nI am applying to graduate schools this cycle.\nThis website will grow over time as I develop a sense for how I want to express myself."
   },
   {
     "objectID": "about.html#interests",
@@ -25,7 +25,7 @@
     "href": "about.html#contact",
     "title": "About",
     "section": "Contact",
-    "text": "Contact\n\nEmail: alejandro_hinojosa1@baylor.edu\nGitHub: AlejandroHinojosa2005\nORCID: 0009-0001-1919-8294\nCV: coming soon"
+    "text": "Contact\n\nEmail: alejandro_hinojosa1@baylor.edu\nGitHub: AlejandroHinojosa2005\nORCID: 0009-0001-1919-8294\nCV: coming soon\nPre-Print: coming soon"
   },
   {
     "objectID": "research.html",
@@ -74,7 +74,7 @@
     "href": "writing.html",
     "title": "Writing",
     "section": "",
-    "text": "Essays on philosophy and literature, and notes on the singularity.\n\n\n\n\n\n\n\n\n\nSample essay (replace me)\n\n\n\nphilosophy\n\n\n\nA placeholder so you can see how essays look. Delete this file once your first real essay is in.\n\n\n\n\n\nNovember 17, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Essays on philosophy and literature, and notes on the singularity.\n\n\n\n\n\n\n\n\n\nSample essay (replace me)\n\n\n\nphilosophy\n\n\n\nA placeholder. Delete this file once first real essay is in.\n\n\n\n\n\nNovember 17, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",

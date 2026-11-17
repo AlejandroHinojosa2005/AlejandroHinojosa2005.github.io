@@ -3,13 +3,13 @@ body-classes: page-about
 title: "About"
 ---
 
-I'm **Alejandro Hinojosa**, a senior in the Department of Psychology at **Baylor University**. This website was built with the intent of documenting my intelectual interests. Thse include, **Computations psychiatry**, **Philosophy of Mind**, **Systems Theory**, **Classic Literature**, **History**, **Archatectural Styles**, **Horology** and more.
+I'm **Alejandro Hinojosa**, a senior in the Department of Psychology at **Baylor University**. This website was built with the intent of documenting my intellectual interests. These include **Computational Psychiatry**, **Philosophy of Mind**, **Systems Theory**, **Classic Literature**, **History**, **Architectural Styles**, **Horology**, and more.
 
-I'm interested in the algorythoms peopls use for learning. This incumpases how people learn from what happens to them, and in how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.
+I'm interested in the algorithms people use for learning. This encompasses how people learn from what happens to them, and how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.
 
 My research so far is an independent project: implementing reinforcement-learning models of the Iowa Gambling Task, testing extensions with predictions written in advance, and running the analyses on Baylor's Kodiak computing cluster. I also work in a research lab at Baylor under Dr. Wade Rowatt.
 
-I am applying to **Graduate Schools** this psychal 
+I am applying to **graduate schools** this cycle.
 
 This website will grow over time as I develop a sense for how I want to express myself.
 
