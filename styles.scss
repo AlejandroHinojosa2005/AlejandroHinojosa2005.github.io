@@ -49,7 +49,7 @@ body {
   letter-spacing: 0.01em;
 }
 
-// Accent color. Each section has its own: research olive, writing brown, about lavender.
+// Accent color. Each section has its own: research olive, writing brown, recommendations slate, about lavender.
 // On the home page, each bullet and link takes the color of the section it points to.
 body { --accent: #{$lavender}; --accent-soft: #{rgba($lavender, 0.55)}; --accent-sel: #{rgba($lavender, 0.28)}; }
 .page-research, .acc-research, li:has(> .acc-research) {
@@ -57,6 +57,9 @@ body { --accent: #{$lavender}; --accent-soft: #{rgba($lavender, 0.55)}; --accent
 }
 .page-writing, .page-home, .acc-writing, li:has(> .acc-writing) {
   --accent: #{$clay}; --accent-soft: #{rgba($clay, 0.55)}; --accent-sel: #{rgba($clay, 0.28)};
+}
+.page-recs, .acc-recs, li:has(> .acc-recs) {
+  --accent: #{$slate}; --accent-soft: #{rgba($slate, 0.55)}; --accent-sel: #{rgba($slate, 0.28)};
 }
 .page-about, .acc-about, li:has(> .acc-about) {
   --accent: #{$lavender}; --accent-soft: #{rgba($lavender, 0.55)}; --accent-sel: #{rgba($lavender, 0.28)};
@@ -117,6 +120,7 @@ a:hover, a:focus-visible { color: var(--accent); text-decoration-color: var(--ac
 }
 .navbar .nav-link[href$="research.html"] { --accent: #{$olive}; }
 .navbar .nav-link[href$="writing.html"] { --accent: #{$clay}; }
+.navbar .nav-link[href$="recommendations.html"] { --accent: #{$slate}; }
 .navbar .nav-link[href$="about.html"] { --accent: #{$lavender}; }
 .navbar .nav-link:hover { color: var(--accent) !important; }
 .navbar .menu-text::before {
@@ -129,6 +133,7 @@ a:hover, a:focus-visible { color: var(--accent); text-decoration-color: var(--ac
   vertical-align: 0;
 }
 .navbar .nav-link[href$="writing.html"] .menu-text::before { width: 0.56em; height: 0.56em; border-radius: 50%; }
+.navbar .nav-link[href$="recommendations.html"] .menu-text::before { width: 0.64em; height: 0.64em; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); vertical-align: -0.04em; }
 .navbar .nav-link[href$="about.html"] .menu-text::before { width: 0.64em; height: 0.56em; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 .navbar .nav-link.active {
   color: $ink !important;
@@ -147,8 +152,20 @@ a:hover, a:focus-visible { color: var(--accent); text-decoration-color: var(--ac
     content: "AH";
     font-size: 1.05rem;
   }
-  .navbar .nav-link { padding-left: 0.45rem !important; padding-right: 0.45rem !important; }
+  .navbar-brand { flex-shrink: 0; margin-right: 0.4rem; }
+  .navbar .nav-link { font-size: 0.84rem; padding-left: 0.22rem !important; padding-right: 0.22rem !important; }
+  .navbar .menu-text::before { margin-right: 0.28em; }
+  // "recommendations" is too long for a phone's menu bar; there it reads "recs"
+  .navbar .nav-link[href$="recommendations.html"] .menu-text { font-size: 0; }
+  .navbar .nav-link[href$="recommendations.html"] .menu-text::before { width: 0.55rem; height: 0.55rem; margin-right: 0.28rem; }
+  .navbar .nav-link[href$="recommendations.html"] .menu-text::after { content: "recs"; font-size: 0.84rem; }
+  .navbar .nav-link[href$="recommendations.html"] .menu-text::before { width: 0.5rem; height: 0.5rem; }
+  h1.title { font-size: 2rem; }
+  .page-recs h1.title { font-size: 1.7rem; }
 }
+.navbar .nav-link { white-space: nowrap; }
+// On the narrowest phones the menu drops its shape markers so everything fits
+@media (max-width: 370px) { .navbar .menu-text::before { display: none; } }
 
 // Page titles
 #title-block-header { margin-top: 2.6rem; margin-bottom: 2rem; }
@@ -162,8 +179,10 @@ h1.title::after {
   animation: blink 1.2s steps(1) infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
-// Each section has a shape as well as a color: research a rectangle, writing a circle, about a triangle
+// Each section has a shape as well as a color: research a rectangle, writing a circle, recommendations a diamond,
+// about a triangle
 .page-writing h1.title::after { width: 0.72em; height: 0.72em; border-radius: 50%; vertical-align: 0; }
+.page-recs h1.title::after { width: 0.8em; height: 0.8em; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); vertical-align: -0.02em; }
 .page-about h1.title::after { width: 0.82em; height: 0.72em; clip-path: polygon(50% 0, 100% 100%, 0 100%); vertical-align: 0; }
 @media (prefers-reduced-motion: reduce) { h1.title::after { animation: none; } }
 .quarto-title .subtitle, .description { color: $muted; }
@@ -203,6 +222,8 @@ main ul:not(.navbar-nav):not(.listing-categories) > li::before {
 
 .page-writing main ul:not(.navbar-nav):not(.listing-categories) > li::before,
 li:has(> .acc-writing)::before { border-radius: 50%; }
+.page-recs main ul:not(.navbar-nav):not(.listing-categories) > li::before,
+li:has(> .acc-recs)::before { width: 0.58em; height: 0.58em; top: 0.62em; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
 .page-about main ul:not(.navbar-nav):not(.listing-categories) > li::before,
 li:has(> .acc-about)::before { width: 0.56em; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 
@@ -268,7 +289,9 @@ li:has(> .acc-about)::before { width: 0.56em; clip-path: polygon(50% 0, 100% 100
   color: $muted;
   font-size: 1.22rem;
   letter-spacing: 0.03em;
+  line-height: 1.75;
   margin: 2.1rem 0 0.6rem;
+  text-wrap: balance;
 }
 .topics {
   color: $muted;
@@ -382,14 +405,15 @@ div.quarto-post .metadata a { text-decoration: none; }
 }
 .quarto-listing-category-title, .quarto-listing-category .category { color: $muted; }
 
-// The three section shapes (research olive rectangle, writing brown circle, about purple triangle): dividers and footer mark
-$shapes-mark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 11'%3E%3Crect x='2' y='0' width='7' height='11' fill='%2374845A'/%3E%3Ccircle cx='30' cy='5.5' r='5' fill='%238A6A4F'/%3E%3Cpolygon points='54,0.5 60,10.5 48,10.5' fill='%238B83BF'/%3E%3C/svg%3E";
+// The four section shapes (research olive rectangle, writing brown circle, recommendations slate diamond,
+// about purple triangle): dividers and footer mark
+$shapes-mark: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 11'%3E%3Crect x='2' y='0' width='7' height='11' fill='%2374845A'/%3E%3Ccircle cx='29.5' cy='5.5' r='5' fill='%238A6A4F'/%3E%3Cpolygon points='53.5,0 59,5.5 53.5,11 48,5.5' fill='%235F7C91'/%3E%3Cpolygon points='78,0.5 84,10.5 72,10.5' fill='%238B83BF'/%3E%3C/svg%3E";
 
-// Divider between sections: square, circle, triangle
+// Divider between sections: the four section shapes
 section.level2 ~ section.level2::before {
   content: "";
   display: block;
-  width: 60px;
+  width: 84px;
   height: 11px;
   margin: 3.4rem auto 0;
   background: url($shapes-mark) no-repeat center / contain;
@@ -400,7 +424,7 @@ section.level2 ~ section.level2 > h2 { margin-top: 2.2rem; }
 .nav-footer-center::before {
   content: "";
   display: block;
-  width: 42px;
+  width: 59px;
   height: 8px;
   margin: 0 auto 0.7rem;
   background: url($shapes-mark) no-repeat center / contain;

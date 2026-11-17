@@ -28,6 +28,34 @@
     "text": "Contact\n\nEmail: alejandro_hinojosa1@baylor.edu\nGitHub: AlejandroHinojosa2005\nORCID: 0009-0001-1919-8294\nCV: coming soon\nPre-Print: coming soon"
   },
   {
+    "objectID": "recommendations.html",
+    "href": "recommendations.html",
+    "title": "Recommendations",
+    "section": "",
+    "text": "first picks coming soon"
+  },
+  {
+    "objectID": "recommendations.html#books",
+    "href": "recommendations.html#books",
+    "title": "Recommendations",
+    "section": "",
+    "text": "first picks coming soon"
+  },
+  {
+    "objectID": "recommendations.html#movies",
+    "href": "recommendations.html#movies",
+    "title": "Recommendations",
+    "section": "Movies",
+    "text": "Movies\n\nfirst picks coming soon"
+  },
+  {
+    "objectID": "recommendations.html#travel",
+    "href": "recommendations.html#travel",
+    "title": "Recommendations",
+    "section": "Travel",
+    "text": "Travel\n\nfirst picks coming soon"
+  },
+  {
     "objectID": "research.html",
     "href": "research.html",
     "title": "Research",
@@ -95,13 +123,13 @@
     "href": "index.html",
     "title": "Alejandro Hinojosa",
     "section": "",
-    "text": "A Website\n  a psychology student who models how people decide\n  computational psychiatry · essays · The Young Man’s Game"
+    "text": "A Website\n  a curious mind in search of truth.come explore what I’ve found so far\n  computational psychiatry · essays · The Young Man’s Game"
   },
   {
     "objectID": "index.html#now",
     "href": "index.html#now",
     "title": "Alejandro Hinojosa",
     "section": "Now",
-    "text": "Now\n\nFinishing a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. More on the research →\nTesting, with a preregistered plan, whether people switch between learning strategies partway through the task.\nWriting essays, and posting the first two chapters of The Young Man’s Game. Read →\n\n\nThat’s the work, and the questions behind it."
+    "text": "Now\n\nFinishing a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. More on the research →\nTesting, with a preregistered plan, whether people switch between learning strategies partway through the task.\nWriting essays, and posting the first two chapters of The Young Man’s Game. Read →\n\n\nThat’s all for now."
   }
 ]

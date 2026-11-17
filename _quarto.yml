@@ -15,7 +15,7 @@ website:
   description: "Computational models of decision-making, essays, and The Young Man's Game (Philosophical Fiction)."
   # Link previews (texts, social media): the picture and summary shown when the link is shared
   image: https://alejandrohinojosa2005.github.io/og-image.png
-  image-alt: "Alejandro Hinojosa, A Website: a psychology student who models how people decide"
+  image-alt: "Alejandro Hinojosa, A Website: a curious mind in search of truth"
   open-graph: true
   twitter-card:
     card-style: summary_large_image
@@ -28,6 +28,8 @@ website:
         text: research
       - href: writing.qmd
         text: writing
+      - href: recommendations.qmd
+        text: recommendations
       - href: about.qmd
         text: about
   page-footer:
