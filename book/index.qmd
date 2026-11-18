@@ -1,0 +1,28 @@
+---
+title: "The Young Man's Game"
+---
+
+***The Young Man's Game*** is a book of philosophical/upmarket fiction I wrote. The manuscript numbers roughly 93,000 words. It’s targeted to a young and inquisitive audience interested in the questions of God, morality and especially meaning.
+
+The title denotes the fact that it’s in youth when we first ask ourselves the big questions. I call this “The Modern Plight.” Not because it’s a new phenomenon, but because we no longer have the luxury of a one-size-fits-all answer. Science allowed us to test whether the local showman of divination sticks predicted better than chance. It wasn’t trying to take out myths from us, that’s just the price you pay for truth. But I’m not concerned with converting anybody, rather, what does one do in light of this? Where do they derive their meaning from now?
+
+I wanted to explore a question I don’t see being asked enough in normative discourse. That being, if maybe it’s better, at least on a societal level, to live under a comforting lie than a cold and callous truth. The reader is invited to step into and inhabit the world of the characters. With my ultimate goal being to help others navigate and decide for themselves the answers right for them.
+
+We follow a young kid named Rob and his friends: Andie, Jake, and Carson.
+It’s divided in two parts, Dawn and Day, each with 6 chapters. As well as an epilogue, Dusk. Each separated with a time jump so that we can see how the kids’ philosophies evolve, and inevitably clash.
+
+It starts the book on the day of Rob and Andie’s senior district track meet. Running is where Rob derives meaning. But, when the race doesn’t go the way he’d hoped, that has to change. We see all the boys face the prospect of leaving the cocoon that is high school. Rob finds himself suspended in amber, but when he gets into a perspective-changing car crash on Prom night, everything changes.
+We pick up 16 years later when a death close to all forces a high school reunion. The friends are reintroduced to one another and slowly find that the group that left school all those years ago is no more.
+
+Its first chapter will be posted here, free to read.
+
+## Chapters
+
+<!-- When Chapter I is ready: save it as book/chapter-1.qmd (title: "Chapter I"), then replace the line below with
+- [Chapter I](chapter-1.qmd)
+-->
+::: status
+Chapter I · coming soon
+:::
+
+[← All writing](../writing.qmd)

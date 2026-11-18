@@ -6,22 +6,33 @@ listing:
   id: essays
   contents: writing
   sort: "date desc"
-  type: default
-  categories: true
-  fields: [date, title, description, categories]
-  date-format: "MMMM D, YYYY"
+  template: _essay-index.ejs
+  date-format: "MMM YYYY"
 ---
 
-Essays, and the first two chapters of my book, ***The Young Man's Game***.
+Essays, and the first chapter of my book, ***The Young Man's Game***.
 
-## The Young Man's Game
+<!--
+THE BOOK: the block below links to the book's own page (book/index.qmd), where its description and chapters live.
+When Chapter I is ready, change "coming soon" to a link: <a href="book/chapter-1.html">read</a>
 
-::: status
-philosophical fiction · first two chapters coming soon
-:::
-
-<!-- Add a sentence or two here about what the book is about. -->
-***The Young Man's Game*** is a book of philosophical fiction I wrote. Its first two chapters will be posted here, free to read.
+THE ESSAYS: the list is built automatically from the files in the writing folder, newest first.
+Each essay's first category picks its topic and dot color (colors are set in _essay-index.ejs).
+To keep an unfinished essay off the site, add  draft: true  to the top of its file.
+-->
+```{=html}
+<section class="book" aria-label="The Young Man’s Game">
+  <a class="cover" href="book/index.html" aria-hidden="true" tabindex="-1"><span class="sq"></span><span class="rect"></span><span class="circ"></span><span class="tri"></span></a>
+  <div class="binfo">
+    <div class="kicker">a book · philosophical fiction</div>
+    <h2><a href="book/index.html">The Young Man’s Game</a></h2>
+    <ol class="chapters">
+      <li><span>Chapter I</span><i aria-hidden="true"></i><span class="soon">coming soon</span></li>
+    </ol>
+    <a class="more" href="book/index.html">About the book →</a>
+  </div>
+</section>
+```
 
 ## Essays
 

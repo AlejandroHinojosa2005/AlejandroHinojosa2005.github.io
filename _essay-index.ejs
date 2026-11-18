@@ -1,0 +1,74 @@
+<%
+// Essay index for the Writing page: one line per essay, newest first, grouped by year,
+// with topic filters. Built automatically from the files in the writing folder.
+
+// Topic colors. Add a line for a new topic (lowercase). Topics not listed get a color from the palette.
+const topicColors = {
+  "philosophy of mind": "#8A6A4F",
+  "literature": "#C47F4E",
+  "systems theory": "#5F7C91",
+  "history": "#A9533F",
+  "architecture": "#74845A",
+  "horology": "#8B83BF"
+};
+const palette = ["#8A6A4F", "#C47F4E", "#5F7C91", "#A9533F", "#74845A", "#8B83BF"];
+const key = c => String(c).trim().toLowerCase();
+const slug = c => key(c).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const colorOf = c => {
+  const k = key(c);
+  if (topicColors[k]) return topicColors[k];
+  let h = 0; for (const ch of k) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return palette[h % palette.length];
+};
+const topics = [];
+for (const item of items) for (const c of (item.categories || [])) if (!topics.some(t => key(t) === key(c))) topics.push(c);
+let year = null;
+%>
+<% if (topics.length > 1) { %>
+<nav class="topics" aria-label="Show essays by topic">
+  <a href="?topic=all" data-topic="all" class="on">all</a>
+<% for (const t of topics) { %>
+  <a href="?topic=<%= slug(t) %>" data-topic="<%= slug(t) %>"><span class="dot" style="background:<%= colorOf(t) %>"></span><%= key(t) %></a>
+<% } %>
+</nav>
+<% } %>
+<div class="essay-index">
+<% for (const item of items) {
+     const y = String(item.date || "").slice(-4);
+     const cats = item.categories || [];
+     if (y !== year) { year = y; %>
+  <div class="yr" data-year="<%= y %>"><%= y %></div>
+<%   } %>
+  <a class="row" href="<%- item.path %>" data-topics="<%= cats.map(slug).join(' ') %>" data-year="<%= y %>">
+    <span class="dot" style="background:<%= cats.length ? colorOf(cats[0]) : '#9E9A93' %>"></span>
+    <span class="t"><%= item.title %></span>
+    <i aria-hidden="true"></i>
+    <span class="d"><%= item.date %></span>
+  </a>
+<% } %>
+<% if (!items.length) { %>
+  <p class="status">first essays coming soon</p>
+<% } %>
+</div>
+<script>
+// Topic filters: a topic shows only its essays; "all" shows everything. The choice is kept in the address (?topic=...).
+(function () {
+  var nav = document.querySelector(".topics");
+  if (!nav) return;
+  var rows = document.querySelectorAll(".essay-index .row"), years = document.querySelectorAll(".essay-index .yr");
+  function show(t) {
+    nav.querySelectorAll("a").forEach(function (a) { a.classList.toggle("on", a.dataset.topic === t); });
+    rows.forEach(function (r) { r.hidden = !(t === "all" || r.dataset.topics.split(" ").indexOf(t) >= 0); });
+    years.forEach(function (y) {
+      y.hidden = !Array.prototype.some.call(rows, function (r) { return !r.hidden && r.dataset.year === y.dataset.year; });
+    });
+  }
+  nav.addEventListener("click", function (e) {
+    var a = e.target.closest("a"); if (!a) return;
+    e.preventDefault(); show(a.dataset.topic);
+    history.replaceState(null, "", a.dataset.topic === "all" ? location.pathname : "?topic=" + a.dataset.topic);
+  });
+  var h = new URLSearchParams(location.search).get("topic");
+  if (h && nav.querySelector('[data-topic="' + h + '"]')) show(h);
+})();
+</script>
