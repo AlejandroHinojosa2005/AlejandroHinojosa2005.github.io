@@ -257,23 +257,36 @@ li:has(> .acc-about)::before { width: 0.56em; clip-path: polygon(50% 0, 100% 100
   width: 0.5em;
   height: 0.8em;
   background: $lavender;
-  animation: blink-colors 7.2s steps(1, end) infinite;
+  animation: blink-colors 14.4s steps(1, end) infinite;
 }
-// Each blink brings the block back in the next color and shape: rectangle, circle, triangle, twice over
+// Each blink brings the block back in the next color and shape: rectangle, circle, triangle, diamond.
+// Twelve steps, so every shape takes a turn in two different colors.
 @keyframes blink-colors {
-  0%      { background: $lavender; opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
-  8.333%  { opacity: 0; }
-  16.667% { background: $clay;     opacity: 1; width: 0.8em; border-radius: 50%; clip-path: none; }
-  25%     { opacity: 0; }
-  33.333% { background: $ochre;    opacity: 1; width: 0.9em; border-radius: 0;   clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-  41.667% { opacity: 0; }
-  50%     { background: $olive;    opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
-  58.333% { opacity: 0; }
-  66.667% { background: $slate;    opacity: 1; width: 0.8em; border-radius: 50%; clip-path: none; }
-  75%     { opacity: 0; }
-  83.333% { background: $brick;    opacity: 1; width: 0.9em; border-radius: 0;   clip-path: polygon(50% 0, 100% 100%, 0 100%); }
-  91.667% { opacity: 0; }
-  100%    { background: $lavender; opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
+  0.000%   { background: $lavender; opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
+  4.167%   { opacity: 0; }
+  8.333%   { background: $clay;    opacity: 1; width: 0.8em; border-radius: 50%; clip-path: none; }
+  12.500%  { opacity: 0; }
+  16.667%  { background: $ochre;   opacity: 1; width: 0.9em; border-radius: 0;   clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  20.833%  { opacity: 0; }
+  25.000%  { background: $olive;   opacity: 1; width: 0.8em; border-radius: 0;   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+  29.167%  { opacity: 0; }
+  33.333%  { background: $slate;   opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
+  37.500%  { opacity: 0; }
+  41.667%  { background: $brick;   opacity: 1; width: 0.8em; border-radius: 50%; clip-path: none; }
+  45.833%  { opacity: 0; }
+  50.000%  { background: $lavender; opacity: 1; width: 0.9em; border-radius: 0;   clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  54.167%  { opacity: 0; }
+  58.333%  { background: $clay;    opacity: 1; width: 0.8em; border-radius: 0;   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+  62.500%  { opacity: 0; }
+  66.667%  { background: $ochre;   opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
+  70.833%  { opacity: 0; }
+  75.000%  { background: $olive;   opacity: 1; width: 0.8em; border-radius: 50%; clip-path: none; }
+  79.167%  { opacity: 0; }
+  83.333%  { background: $slate;   opacity: 1; width: 0.9em; border-radius: 0;   clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  87.500%  { opacity: 0; }
+  91.667%  { background: $brick;   opacity: 1; width: 0.8em; border-radius: 0;   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+  95.833%  { opacity: 0; }
+  100%     { background: $lavender; opacity: 1; width: 0.5em; border-radius: 0;   clip-path: none; }
 }
 @media (prefers-reduced-motion: reduce) { .cursor::before { animation: none; } }
 
@@ -386,8 +399,9 @@ blockquote, .blockquote {
 
 // Writing page: the book block (cover, chapters) and the essay index with topic filters
 .book { display: flex; gap: 2rem; align-items: flex-end; margin: 1.6rem 0 2.6rem; padding-bottom: 2.2rem; border-bottom: 1px solid $rule; }
-.book .cover { position: relative; flex: none; width: 150px; height: 200px; background: #E6E3DC; overflow: hidden; display: block; }
-.book .cover span { position: absolute; bottom: 8px; mix-blend-mode: multiply; display: block; }
+.book .cover { position: relative; flex: none; width: 150px; height: 200px; background: #FFFFFF; border-radius: 14px;
+  box-shadow: 0 1px 2px rgba($ink, 0.05), 0 10px 28px rgba($ink, 0.07); overflow: hidden; display: block; }
+.book .cover span { position: absolute; bottom: 12px; mix-blend-mode: multiply; display: block; }
 .book .cover .sq { left: 8px; width: 15px; height: 15px; background: $slate; }
 .book .cover .rect { left: 33px; width: 26px; height: 66px; background: $lavender; }
 .book .cover .circ { left: 49px; width: 55px; height: 55px; border-radius: 50%; background: $brick; }
@@ -404,11 +418,7 @@ blockquote, .blockquote {
 .book h2 { margin: 0.3rem 0 0.8rem; font-size: 1.7rem; }
 .book h2 a { color: $ink; text-decoration: none; }
 .book h2 a:hover { color: var(--accent); }
-.book ol.chapters { list-style: none; padding: 0; margin: 0 0 0.9rem; }
-.book ol.chapters li { display: flex; align-items: baseline; gap: 0.6rem; margin: 0.3rem 0; }
-.book ol.chapters li::before { display: none; }
-.book ol.chapters i, .essay-index .row i { flex: 1; border-bottom: 1px dotted $muted; transform: translateY(-0.3em); }
-.book .soon { color: $muted; font-size: 0.85rem; }
+.essay-index .row i { flex: 1; border-bottom: 1px dotted $muted; transform: translateY(-0.3em); }
 .book .more { font-size: 0.85rem; }
 
 .topics { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-size: 0.82rem; margin: 0.2rem 0 1.2rem; }
@@ -507,6 +517,89 @@ section.level2 ~ section.level2 > h2 { margin-top: 2.2rem; }
 .compo.pre .tri  { transform: translateX(60px); transition-delay: 0.7s; }
 .compo.pre .sq   { transform: translateY(-48px); transition-delay: 1.05s; }
 .compo.pre.in span { opacity: 1; transform: none; }
+
+// Link previews (the script is in _peek.html): a white card with the linked page's shape art, title and first lines
+.peek {
+  position: fixed; z-index: 2000; width: 300px; pointer-events: none;
+  background: #FFFFFF; border-radius: 14px; overflow: hidden;
+  box-shadow: 0 1px 2px rgba($ink, 0.06), 0 14px 36px rgba($ink, 0.12);
+  opacity: 0; visibility: hidden; transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+}
+.peek.on { opacity: 1; visibility: visible; transition: opacity 0.22s ease; }
+.peek-art { background: $paper; height: 96px; padding: 12px 0 0; }
+.peek-art svg { display: block; width: 100%; height: 84px; }
+.peek-body { padding: 0.75rem 1rem 0.95rem; }
+.peek-label { color: var(--peek); font-size: 0.7rem; letter-spacing: 0.08em; }
+.peek-title { font-family: $headings-font-family; font-weight: 700; color: $ink; font-size: 1.02rem; line-height: 1.3; margin: 0.15rem 0 0.35rem; }
+.peek-text { color: $text; font-size: 0.78rem; line-height: 1.6; }
+@media (prefers-reduced-motion: reduce) { .peek, .peek.on { transition: none; } }
+
+// The book's chapter list (built by _chapters.ejs), on the Writing page and the book's page
+ol.chapters { list-style: none; padding: 0; margin: 0 0 0.9rem; }
+ol.chapters li { display: flex; align-items: baseline; gap: 0.6rem; margin: 0.3rem 0; }
+main ol.chapters li::before { display: none; }
+ol.chapters i { flex: 1; border-bottom: 1px dotted $muted; transform: translateY(-0.3em); min-width: 1.5rem; }
+ol.chapters a { color: $ink; text-decoration: none; }
+ol.chapters a:hover { color: var(--accent); }
+ol.chapters .soon { color: $muted; font-size: 0.85rem; }
+.book #chapters, .book .quarto-listing { margin: 0; }
+
+// Research page: a simulated player of the task (igt.js). Decks A and B warm, C and D cool.
+.igt-play { margin: 2.2rem 0 2.6rem; }
+.igt-head { font-family: $headings-font-family; font-weight: 700; color: $ink; font-size: 1.12rem; line-height: 1.35; letter-spacing: -0.01em; margin-bottom: 1rem; }
+.igt-head .m { color: var(--accent); }
+.igt-head .live { font-family: $font-family-sans-serif; font-weight: 400; font-size: 0.74rem; letter-spacing: 0.06em; color: $muted; margin-left: 0.5rem; white-space: nowrap; }
+.igt-head .live::before { content: ""; display: inline-block; width: 0.5em; height: 0.5em; border-radius: 50%; background: var(--accent); margin-right: 0.4em; vertical-align: 0.05em; animation: igt-live 1.6s ease-in-out infinite alternate; }
+@keyframes igt-live { to { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) { .igt-head .live::before { animation: none; } }
+.igt-grid { display: grid; grid-template-columns: repeat(20, 1fr); gap: 7px; max-width: 600px; }
+.igt-grid .c { position: relative; aspect-ratio: 1; }
+.igt-grid .c::before { content: ""; position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; margin: -1.5px 0 0 -1.5px; border-radius: 50%; background: $rule; }
+.igt-grid .c:has(.s)::before { display: none; }
+.igt-grid .s { position: absolute; inset: 0; animation: igt-in 0.4s ease; }
+@keyframes igt-in { from { opacity: 0; } }
+.igt-play .s.k0 { background: $brick; } .igt-play .s.k1 { background: $ochre; }
+.igt-play .s.k2 { background: $olive; } .igt-play .s.k3 { background: $slate; }
+.igt-grid .s.rect { left: 22%; right: 22%; }
+.igt-grid .s.circ { inset: 6%; border-radius: 50%; }
+.igt-play .s.tri { clip-path: polygon(50% 4%, 100% 92%, 0 92%); }
+.igt-play .s.diam { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.igt-tally .s, .igt-play figcaption .s { display: inline-block; position: static; width: 0.72em; height: 0.72em; vertical-align: -0.04em; animation: none; }
+.igt-tally .s.rect, .igt-play figcaption .s.rect { width: 0.42em; }
+.igt-tally .s.circ, .igt-play figcaption .s.circ { border-radius: 50%; }
+.igt-tally { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 1.2rem; margin: 1rem 0 0.2rem; font-size: 0.82rem; color: $muted; max-width: 600px; }
+.igt-tally .d .s { margin-right: 0.4em; }
+.igt-tally b { color: $ink; }
+.igt-tally .bank { margin-left: auto; }
+.igt-tally .again { background: none; border: 0; padding: 0; font: inherit; color: $ink; text-decoration: underline; text-decoration-color: var(--accent-soft); text-underline-offset: 0.22em; cursor: pointer; }
+.igt-tally .again:hover { color: var(--accent); }
+@media (max-width: 575.98px) { .igt-grid { gap: 4px; } .igt-tally .bank { margin-left: 0; } }
+
+// Holiday art on the home page (holidays.js): it takes the place of the shapes for a few days a year
+.compo.holiday { width: 300px; height: 170px; max-width: 100%; }
+.compo.holiday svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.compo.holiday.pre svg { opacity: 0; transform: translateY(14px); transition: opacity 1.6s ease, transform 2s cubic-bezier(0.25, 1, 0.5, 1); }
+.compo.holiday.pre.in svg { opacity: 1; transform: none; }
+.compo .sway { transform-box: fill-box; transform-origin: 50% 0; animation: hol-sway 4.5s ease-in-out infinite alternate; }
+@keyframes hol-sway { from { transform: rotate(-12deg) translateY(-2px); } to { transform: rotate(12deg) translateY(3px); } }
+.compo .bob { animation: hol-bob 3.2s ease-in-out infinite alternate; }
+@keyframes hol-bob { to { transform: translateY(-7px); } }
+.compo .shadow { transform-box: fill-box; transform-origin: center; animation: hol-shadow 3.2s ease-in-out infinite alternate; }
+@keyframes hol-shadow { to { transform: scaleX(0.78); opacity: 0.6; } }
+.compo .flap { transform-box: fill-box; transform-origin: center; animation: hol-flap 0.8s ease-in-out infinite alternate; }
+@keyframes hol-flap { to { transform: scaleY(0.6); } }
+.compo .drift, .compo .pop { transform-box: fill-box; transform-origin: center; animation: hol-drift 5s ease-in-out infinite alternate; }
+@keyframes hol-drift { from { transform: translateY(-3px) rotate(-14deg); } to { transform: translateY(4px) rotate(14deg); } }
+.compo .pop { animation-name: hol-pop; animation-duration: 2.6s; }
+@keyframes hol-pop { from { opacity: 1; } to { opacity: 0.45; } }
+.lights { position: absolute; left: 0; right: 0; height: 136px; pointer-events: none; z-index: 1; overflow: hidden; }
+.lights svg { display: block; }
+.lights .twinkle { animation: hol-twinkle 3.6s ease-in-out infinite alternate; }
+@keyframes hol-twinkle { to { opacity: 0.55; } }
+body.holiday-christmas .hero { margin-top: 8rem; }
+@media (prefers-reduced-motion: reduce) {
+  .compo .sway, .compo .bob, .compo .shadow, .compo .flap, .compo .drift, .compo .pop, .lights .twinkle { animation: none; }
+}
 
 // Footer
 .nav-footer { border-top: 0 !important; color: $muted; font-size: 0.8rem; letter-spacing: 0.03em; }

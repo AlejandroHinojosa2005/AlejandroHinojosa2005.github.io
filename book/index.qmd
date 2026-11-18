@@ -1,5 +1,12 @@
 ---
 title: "The Young Man's Game"
+listing:
+  id: chapters
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  sort: "order"
+  template: ../_chapters.ejs
 ---
 
 ***The Young Man's Game*** is a book of philosophical/upmarket fiction I wrote. The manuscript numbers roughly 93,000 words. It’s targeted to a young and inquisitive audience interested in the questions of God, morality and especially meaning.
@@ -14,15 +21,13 @@ It’s divided in two parts, Dawn and Day, each with 6 chapters. As well as an e
 It starts the book on the day of Rob and Andie’s senior district track meet. Running is where Rob derives meaning. But, when the race doesn’t go the way he’d hoped, that has to change. We see all the boys face the prospect of leaving the cocoon that is high school. Rob finds himself suspended in amber, but when he gets into a perspective-changing car crash on Prom night, everything changes.
 We pick up 16 years later when a death close to all forces a high school reunion. The friends are reintroduced to one another and slowly find that the group that left school all those years ago is no more.
 
-Its first chapter will be posted here, free to read.
+Its introduction and first chapter will be posted here, free to read.
 
 ## Chapters
 
-<!-- When Chapter I is ready: save it as book/chapter-1.qmd (title: "Chapter I"), then replace the line below with
-- [Chapter I](chapter-1.qmd)
--->
-::: status
-Chapter I · coming soon
+<!-- The list below builds itself from the pages in this folder (introduction.qmd, chapter-1.qmd), in the order
+set by each page's  order:  line. A page marked  draft: true  stays off the site until you delete that line. -->
+::: {#chapters}
 :::
 
 [← All writing](../writing.qmd)

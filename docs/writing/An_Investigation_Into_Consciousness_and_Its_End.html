@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-4dcde7aeaa0fcc7cc32482bec75adff5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5542f4e100d3d46d16d5dae3374488dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c3a6c0003f60b92d99d96823b71c4b1c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -188,6 +188,122 @@ So if it is our fate to die, and there is not even a hope of understanding what 
 
 
 </main> <!-- /main -->
+<!--
+Link previews: hovering over a link to another page of this site shows a small card with that page's
+shape art, title and first lines. It reads the page itself, so new pages and essays get previews with no
+extra work. An essay's preview uses its description: line if it has one, otherwise its first paragraph.
+Only on computers with a mouse (phones have no hover), and only for links in the page text, not the menu.
+-->
+<script>
+(function () {
+  if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  var C = { olive: "#74845A", clay: "#8A6A4F", slate: "#5F7C91", lavender: "#8B83BF", ochre: "#C47F4E", brick: "#A9533F" };
+  // Each section's shape and color, and the label shown above the title
+  var SECTIONS = {
+    "page-research": { shape: "rect", color: C.olive,    label: "research" },
+    "page-writing":  { shape: "circ", color: C.clay,     label: "writing" },
+    "page-recs":     { shape: "diam", color: C.slate,    label: "recommendations" },
+    "page-about":    { shape: "tri",  color: C.lavender, label: "about" },
+    "page-home":     { shape: "rect", color: C.clay,     label: "home" }
+  };
+  var OTHERS = [C.ochre, C.slate, C.brick, C.lavender, C.olive, C.clay].map(function (c) { return c.toUpperCase(); });
+
+  // One shape as SVG, sitting on the baseline (y = 84) with its left edge at x, w wide and h tall
+  function shape(kind, x, w, h, fill) {
+    var y = 84 - h, m = ' fill="' + fill + '" style="mix-blend-mode:multiply"';
+    if (kind === "circ") return '<circle cx="' + (x + w / 2) + '" cy="' + (84 - w / 2) + '" r="' + w / 2 + '"' + m + "/>";
+    if (kind === "tri")  return '<polygon points="' + (x + w / 2) + "," + y + " " + (x + w) + ",84 " + x + ',84"' + m + "/>";
+    if (kind === "diam") return '<polygon points="' + (x + w / 2) + "," + y + " " + (x + w) + "," + (y + h / 2) + " " + (x + w / 2) + ",84 " + x + "," + (y + h / 2) + '"' + m + "/>";
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '"' + m + "/>";
+  }
+  function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); }
+
+  // The art: the four shapes, set like the home page's, with this section's shape in its color.
+  // The other three take other colors from the palette, picked by the link, so the same link always shows the same picture.
+  function art(sec, url, isBook, tint) {
+    var cols, main = (tint || sec.color).toUpperCase();
+    if (isBook) cols = { sq: C.slate, rect: C.lavender, circ: C.brick, last: C.olive };   // the book's cover
+    else {
+      var others = OTHERS.filter(function (c) { return c !== main; }), r = hash(url) % others.length;
+      others = others.slice(r).concat(others.slice(0, r));
+      var mainSlot = { rect: "rect", circ: "circ", tri: "last", diam: "last" }[sec.shape], j = 0;
+      cols = {}; ["sq", "rect", "circ", "last"].forEach(function (k) { cols[k] = k === mainSlot ? main : others[j++]; });
+    }
+    var s = 0.56, x = 150 - 125 * s, last = (sec.shape === "diam" && !isBook) ? "diam" : "tri";
+    var g = shape("rect", x, 26 * s, 26 * s, cols.sq) + shape("rect", x + 58 * s, 46 * s, 132 * s, cols.rect) +
+            shape("circ", x + 84 * s, 98 * s, 98 * s, cols.circ) + shape(last, x + 150 * s, (last === "diam" ? 88 : 100) * s, 88 * s, cols.last);
+    return '<svg viewBox="0 0 300 84" preserveAspectRatio="xMidYMax meet" aria-hidden="true">' + g + "</svg>";
+  }
+
+  function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function clip(t, n) { t = t.replace(/\s+/g, " ").trim(); return t.length > n ? t.slice(0, t.lastIndexOf(" ", n)) + " …" : t; }
+
+  var cache = {};
+  function info(url) {
+    if (!cache[url]) cache[url] = fetch(url).then(function (r) { if (!r.ok) throw 0; return r.text(); }).then(function (html) {
+      var d = new DOMParser().parseFromString(html, "text/html");
+      var key = Object.keys(SECTIONS).filter(function (k) { return d.body.classList.contains(k); })[0] || "page-home";
+      var sec = SECTIONS[key], isBook = /\/book\//.test(url), isEssay = /\/writing\//.test(url);
+      var t = d.querySelector("h1.title") || d.querySelector("h1.name");
+      var desc = d.querySelector("#title-block-header .description");
+      var p = desc || [].filter.call(d.querySelectorAll("main p"), function (e) {
+        return !e.closest("blockquote, #title-block-header, .status, .hero, .book, .quarto-title-meta") && e.textContent.trim().length > 40;
+      })[0];
+      var date = d.querySelector("#title-block-header .date");
+      var label = isBook ? "the book" : isEssay ? "essay" + (date ? " · " + date.textContent.trim() : "") : sec.label;
+      return { sec: sec, isBook: isBook, title: esc(t ? t.textContent.trim() : d.title), text: p ? esc(clip(p.textContent, 150)) : "", label: label };
+    });
+    return cache[url];
+  }
+
+  var card = document.createElement("div");
+  card.className = "peek"; card.setAttribute("aria-hidden", "true");
+  document.body.appendChild(card);
+  var timer = null, current = null;
+
+  function place(a) {
+    var r = a.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight, m = 12;
+    var left = Math.min(Math.max(m, r.left), window.innerWidth - w - m);
+    var top = r.bottom + 10;
+    if (top + h > window.innerHeight - m) top = r.top - h - 10;
+    card.style.left = left + "px"; card.style.top = Math.max(m, top) + "px";
+  }
+  function show(a, url) {
+    info(url).then(function (x) {
+      if (current !== a) return;
+      // An essay in the Writing list takes its topic's color, from the dot beside it
+      var dot = a.querySelector(".dot"), tint = dot && /#[0-9a-f]{6}/i.test(dot.getAttribute("style")) ? dot.getAttribute("style").match(/#[0-9a-f]{6}/i)[0] : null;
+      card.style.setProperty("--peek", tint || x.sec.color);
+      card.innerHTML = '<div class="peek-art">' + art(x.sec, url, x.isBook, tint) + '</div><div class="peek-body"><div class="peek-label">' + x.label +
+        '</div><div class="peek-title">' + x.title + "</div>" + (x.text ? '<div class="peek-text">' + x.text + "</div>" : "") + "</div>";
+      place(a); card.classList.add("on");
+    }).catch(function () {});
+  }
+  function hide() { clearTimeout(timer); current = null; card.classList.remove("on"); }
+
+  function target(a) {
+    if (!a || !a.closest("main") || a.closest(".topics")) return null;
+    var href = a.getAttribute("href");
+    if (!href || href.charAt(0) === "#" || /^(mailto|tel):/.test(href)) return null;
+    var u = new URL(href, location.href);
+    if (u.origin !== location.origin) return null;
+    var path = u.pathname.replace(/\/$/, "/index.html"), here = location.pathname.replace(/\/$/, "/index.html");
+    if (path === here || !/\.html$/.test(path)) return null;
+    return u.origin + path;
+  }
+  document.addEventListener("mouseover", function (e) {
+    var a = e.target.closest && e.target.closest("a"); if (!a || a === current) return;
+    var url = target(a); if (!url) return;
+    hide(); current = a; timer = setTimeout(function () { show(a, url); }, 350);
+  });
+  document.addEventListener("mouseout", function (e) {
+    var a = e.target.closest && e.target.closest("a");
+    if (a && a === current && !a.contains(e.relatedTarget)) hide();
+  });
+  window.addEventListener("scroll", hide, { passive: true });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const isCodeAnnotation = (el) => {

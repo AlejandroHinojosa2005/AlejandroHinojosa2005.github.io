@@ -28,7 +28,7 @@ Then save, click Render, and commit and push.
 ::: lede
 I'm a senior in **psychology** at **Baylor University**, applying to PhD programs in **computational psychiatry**. I build mathematical models of how people learn from wins and losses, and I test them against the choices people actually make.
 
-I also write essays on **philosophy** and **literature**, and I wrote a book of philosophical fiction, ***The Young Man's Game***. Its first two chapters will be posted here.
+I also write essays on **philosophy** and **literature**, and I wrote a book of philosophical fiction, ***The Young Man's Game***. Its introduction and first chapter will be posted here.
 :::
 
 <!-- The shapes: a small composition. Each visit gives them a new mix of the site's colors, and they slide into place when they come into view. -->
@@ -63,7 +63,7 @@ I also write essays on **philosophy** and **literature**, and I wrote a book of 
 
 - [**Finishing** a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. [More on the research →](research.qmd)]{.acc-research}
 - [**Testing**, with a preregistered plan, whether people switch between learning strategies partway through the task.]{.acc-research}
-- [**Writing** essays, and posting the first two chapters of ***The Young Man's Game***. [Read →](writing.qmd)]{.acc-writing}
+- [**Writing** essays, and posting the introduction and first chapter of ***The Young Man's Game***. [Read →](writing.qmd)]{.acc-writing}
 
 ::: closing
 That's all for now.

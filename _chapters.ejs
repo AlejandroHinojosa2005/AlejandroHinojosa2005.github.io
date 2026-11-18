@@ -1,0 +1,11 @@
+<%
+// The book's chapter list (on the Writing page and the book's page). Pages marked draft: true are left out.
+%>
+<ol class="chapters">
+<% if (items.length === 0) { %>
+  <li><span>Introduction and Chapter I</span><i aria-hidden="true"></i><span class="soon">coming soon</span></li>
+<% } %>
+<% for (const item of items) { %>
+  <li><a href="<%- item.path %>"><%= item.title %></a><i aria-hidden="true"></i><span class="soon">read</span></li>
+<% } %>
+</ol>

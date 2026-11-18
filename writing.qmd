@@ -3,18 +3,24 @@ include-in-header: _head-writing.html
 body-classes: page-writing
 title: "Writing"
 listing:
-  id: essays
-  contents: writing
-  sort: "date desc"
-  template: _essay-index.ejs
-  date-format: "MMM YYYY"
+  - id: essays
+    contents: writing
+    sort: "date desc"
+    template: _essay-index.ejs
+    date-format: "MMM YYYY"
+  - id: chapters
+    contents:
+      - "book/*.qmd"
+      - "!book/index.qmd"
+    sort: "order"
+    template: _chapters.ejs
 ---
 
-Essays, and the first chapter of my book, ***The Young Man's Game***.
+Essays, and the introduction and first chapter of my book, ***The Young Man's Game***.
 
 <!--
 THE BOOK: the block below links to the book's own page (book/index.qmd), where its description and chapters live.
-When Chapter I is ready, change "coming soon" to a link: <a href="book/chapter-1.html">read</a>
+Its chapter list fills itself in: a page in the book folder shows up there once its  draft: true  line is deleted.
 
 THE ESSAYS: the list is built automatically from the files in the writing folder, newest first.
 Each essay's first category picks its topic and dot color (colors are set in _essay-index.ejs).
@@ -26,9 +32,12 @@ To keep an unfinished essay off the site, add  draft: true  to the top of its fi
   <div class="binfo">
     <div class="kicker">a book · philosophical fiction</div>
     <h2><a href="book/index.html">The Young Man’s Game</a></h2>
-    <ol class="chapters">
-      <li><span>Chapter I</span><i aria-hidden="true"></i><span class="soon">coming soon</span></li>
-    </ol>
+```
+
+::: {#chapters}
+:::
+
+```{=html}
     <a class="more" href="book/index.html">About the book →</a>
   </div>
 </section>

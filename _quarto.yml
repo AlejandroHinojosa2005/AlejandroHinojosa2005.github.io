@@ -9,6 +9,8 @@ project:
     - apple-touch-icon.png
     - og-image.png
     - robots.txt
+    - holidays.js
+    - igt.js
 
 website:
   title: "Alejandro Hinojosa"
@@ -47,3 +49,4 @@ format:
     anchor-sections: false
     link-external-newwindow: true
     html-math-method: plain
+    include-after-body: _peek.html

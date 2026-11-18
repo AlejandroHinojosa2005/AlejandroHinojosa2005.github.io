@@ -13,6 +13,15 @@ preprint in preparation · [code and full write-up on GitHub](https://github.com
 
 The **Iowa Gambling Task** asks people to draw cards from four decks. Two decks pay well at first but lose money over time, and two pay less but come out ahead. The task is widely used to study decision-making, including in addiction and other clinical conditions. **Computational models** split each person's choices into the processes behind them: how quickly they learn from wins and from losses, how strongly they stick with a deck, and how much they explore.
 
+```{=html}
+<figure class="igt-play">
+  <div class="igt-head"><span class="m">ORL + α</span> playing the Iowa Gambling Task <span class="live">live</span></div>
+  <div class="igt-grid" aria-hidden="true"></div>
+  <div class="igt-tally" aria-live="off"></div>
+  <figcaption class="fig-note">This is <strong>ORL + α</strong>, the model this research introduces, choosing 100 cards right now in your browser, one mark per card. Decks A <i class="s rect k0"></i> and B <i class="s circ k1"></i> pay $100 a card but lose more over time; C <i class="s tri k2"></i> and D <i class="s diam k3"></i> pay $50 and come out ahead. Its settings are drawn from the middle half of those fitted to the 162 participants, so every visit brings a new player.</figcaption>
+</figure>
+```
+
 I implemented three standard models and fit them to **162 healthy adults**, then tested a series of extensions, writing my predictions down before each analysis. The one that held up best restores **outcome curvature** to the ORL model: the felt size of a win or a loss grows more slowly than its dollar amount. **ORL + α** predicted held-out choices best of eight models, and on a second sample of **70 people**, all five predictions written in advance were met.
 
 {{< include _alpha_fig.qmd >}}
