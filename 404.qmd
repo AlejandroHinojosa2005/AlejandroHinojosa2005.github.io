@@ -1,0 +1,23 @@
+---
+include-in-header: _head-404.html
+body-classes: page-home page-404
+title: "404"
+description: "This page doesn't exist, or it hasn't been written yet."
+---
+
+<!-- The page people see when they follow a link to a page that isn't here. GitHub Pages shows it automatically. -->
+
+```{=html}
+<svg class="fallen" viewBox="0 0 330 150" aria-hidden="true">
+  <rect x="64" y="96" width="132" height="44" fill="#74845A" style="mix-blend-mode:multiply"/>
+  <g class="teeter"><polygon points="84,8 176,8 130,96" fill="#8B83BF" style="mix-blend-mode:multiply"/></g>
+  <circle cx="268" cy="113" r="27" fill="#8A6A4F" style="mix-blend-mode:multiply"/>
+  <rect x="18" y="118" width="22" height="22" fill="#C47F4E" transform="rotate(-24 29 140)" style="mix-blend-mode:multiply"/>
+</svg>
+```
+
+> I have discovered that all the unhappiness of men arises from one single fact, that they cannot stay quietly in their own chamber.
+>
+> — Blaise Pascal, *Pensées*
+
+The shapes fell over looking for it. Head back to the [home page](/), or pick a section from the menu above.
