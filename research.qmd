@@ -54,8 +54,23 @@ Whether people really switch is the open question. I'm now testing it, with a pr
 
 ## Next
 
-- **Tiny recurrent neural networks**, as a benchmark for how much predictable structure the models miss.
-- **An EEG study** of whose prediction errors the brain tracks after feedback: one model's, or a blend.
+### Tiny recurrent neural networks
+
+::: status
+planned
+:::
+
+Every model here builds in a learning rule. **Tiny recurrent neural networks**, with only a few units and no rule built in, can learn people's choices directly, and they often predict those choices better than classic models do ([Ji-An, Benna & Mattar, 2025](https://doi.org/10.1038/s41586-025-09142-4)). Trained and tested on the same held-out choices as the models, they will show how much predictable structure ORL + α and the stacked mix still miss, and the strategies the networks learn can point to what is missing.
+
+### EEG: whose prediction errors does the brain track?
+
+::: status
+in preparation
+:::
+
+With about 100 choices per person, behavior alone can only say so much about which strategy someone is using. Each model also makes a **prediction error** on every trial, and the brain's response to feedback, the **reward positivity**, tracks prediction errors ([Sambrook & Goslin, 2015](https://doi.org/10.1037/bul0000006)). Testing whose prediction errors it follows, one model's or a blend, would give neural evidence on strategy that choices alone cannot.
+
+A first test can use open data: 59 people who did the task, 200 choices each, during EEG recording ([Chávez-Sánchez et al., 2026](https://doi.org/10.1038/s41597-026-06662-0)), with the analysis preregistered before the EEG is examined. A study of my own would follow, with a longer task or two sessions so that each person makes more choices.
 
 ## Data
 

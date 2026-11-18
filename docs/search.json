@@ -39,14 +39,14 @@
     "href": "recommendations.html",
     "title": "Recommendations",
     "section": "",
-    "text": "first picks coming soon"
+    "text": "in no particular order\n\n\n\n\nThe Society of Mind · Marvin Minsky, 1986\nI Am a Strange Loop · Douglas Hofstadter, 2007\nThe Beginning of Infinity · David Deutsch, 2011\n\n\n\n\n\nfirst picks coming soon\n\n\n\n\n\nfirst picks coming soon"
   },
   {
     "objectID": "recommendations.html#books",
     "href": "recommendations.html#books",
     "title": "Recommendations",
     "section": "",
-    "text": "first picks coming soon"
+    "text": "in no particular order\n\n\n\n\nThe Society of Mind · Marvin Minsky, 1986\nI Am a Strange Loop · Douglas Hofstadter, 2007\nThe Beginning of Infinity · David Deutsch, 2011\n\n\n\n\n\nfirst picks coming soon\n\n\n\n\n\nfirst picks coming soon"
   },
   {
     "objectID": "recommendations.html#movies",
@@ -95,7 +95,7 @@
     "href": "research.html#next",
     "title": "Research",
     "section": "Next",
-    "text": "Next\n\nTiny recurrent neural networks, as a benchmark for how much predictable structure the models miss.\nAn EEG study of whose prediction errors the brain tracks after feedback: one model’s, or a blend."
+    "text": "Next\n\nTiny recurrent neural networks\n\nplanned\n\nEvery model here builds in a learning rule. Tiny recurrent neural networks, with only a few units and no rule built in, can learn people’s choices directly, and they often predict those choices better than classic models do (Ji-An, Benna & Mattar, 2025). Trained and tested on the same held-out choices as the models, they will show how much predictable structure ORL + α and the stacked mix still miss, and the strategies the networks learn can point to what is missing.\n\n\nEEG: whose prediction errors does the brain track?\n\nin preparation\n\nWith about 100 choices per person, behavior alone can only say so much about which strategy someone is using. Each model also makes a prediction error on every trial, and the brain’s response to feedback, the reward positivity, tracks prediction errors (Sambrook & Goslin, 2015). Testing whose prediction errors it follows, one model’s or a blend, would give neural evidence on strategy that choices alone cannot.\nA first test can use open data: 59 people who did the task, 200 choices each, during EEG recording (Chávez-Sánchez et al., 2026), with the analysis preregistered before the EEG is examined. A study of my own would follow, with a longer task or two sessions so that each person makes more choices."
   },
   {
     "objectID": "research.html#data",
@@ -109,7 +109,7 @@
     "href": "index.html",
     "title": "Alejandro Hinojosa",
     "section": "",
-    "text": "A Website\n  a curious mind in search of truth.come explore what I’ve found so far\n  computational psychiatry · essays · The Young Man’s Game"
+    "text": "A Website\n  a curious mind in search of truth.come explore what I’ve found so far.\n  computational psychiatry · essays · The Young Man’s Game"
   },
   {
     "objectID": "index.html#now",

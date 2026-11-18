@@ -21,6 +21,24 @@ The *** around a title make it bold italic, the way book and film titles appear 
 ## Books
 
 ::: status
+in no particular order
+:::
+
+### Drop everything and read
+
+- ***The Society of Mind*** · Marvin Minsky, 1986
+- ***I Am a Strange Loop*** · Douglas Hofstadter, 2007
+- ***The Beginning of Infinity*** · David Deutsch, 2011
+
+### Fiction
+
+::: status
+first picks coming soon
+:::
+
+### Non-fiction
+
+::: status
 first picks coming soon
 :::
 

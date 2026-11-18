@@ -201,10 +201,21 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="next" class="level2">
 <h2 data-anchor-id="next">Next</h2>
-<ul>
-<li><strong>Tiny recurrent neural networks</strong>, as a benchmark for how much predictable structure the models miss.</li>
-<li><strong>An EEG study</strong> of whose prediction errors the brain tracks after feedback: one model’s, or a blend.</li>
-</ul>
+<section id="tiny-recurrent-neural-networks" class="level3">
+<h3 data-anchor-id="tiny-recurrent-neural-networks">Tiny recurrent neural networks</h3>
+<div class="status">
+<p>planned</p>
+</div>
+<p>Every model here builds in a learning rule. <strong>Tiny recurrent neural networks</strong>, with only a few units and no rule built in, can learn people’s choices directly, and they often predict those choices better than classic models do (<a href="https://doi.org/10.1038/s41586-025-09142-4">Ji-An, Benna &amp; Mattar, 2025</a>). Trained and tested on the same held-out choices as the models, they will show how much predictable structure ORL + α and the stacked mix still miss, and the strategies the networks learn can point to what is missing.</p>
+</section>
+<section id="eeg-whose-prediction-errors-does-the-brain-track" class="level3">
+<h3 data-anchor-id="eeg-whose-prediction-errors-does-the-brain-track">EEG: whose prediction errors does the brain track?</h3>
+<div class="status">
+<p>in preparation</p>
+</div>
+<p>With about 100 choices per person, behavior alone can only say so much about which strategy someone is using. Each model also makes a <strong>prediction error</strong> on every trial, and the brain’s response to feedback, the <strong>reward positivity</strong>, tracks prediction errors (<a href="https://doi.org/10.1037/bul0000006">Sambrook &amp; Goslin, 2015</a>). Testing whose prediction errors it follows, one model’s or a blend, would give neural evidence on strategy that choices alone cannot.</p>
+<p>A first test can use open data: 59 people who did the task, 200 choices each, during EEG recording (<a href="https://doi.org/10.1038/s41597-026-06662-0">Chávez-Sánchez et al., 2026</a>), with the analysis preregistered before the EEG is examined. A study of my own would follow, with a longer task or two sessions so that each person makes more choices.</p>
+</section>
 </section>
 <section id="data" class="level2">
 <h2 data-anchor-id="data">Data</h2>
