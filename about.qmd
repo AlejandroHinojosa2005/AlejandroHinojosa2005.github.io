@@ -4,6 +4,11 @@ body-classes: page-about
 title: "About"
 ---
 
+<!-- The photo: shown at its own resolution, never recompressed. To change it, replace alejandro-hinojosa.jpg. -->
+```{=html}
+<img class="portrait" src="alejandro-hinojosa.jpg" alt="Alejandro Hinojosa" width="738" height="1064">
+```
+
 I'm **Alejandro Hinojosa**, a senior in the Department of Psychology at **Baylor University**. This website was built with the intent of documenting my intellectual interests. These include **Computational Psychiatry**, **Philosophy of Mind**, **Systems Theory**, **Classic Literature**, **History**, **Architectural Styles**, **Horology**, and more.
 
 I'm interested in the algorithms people use for learning. This encompasses how people learn from what happens to them, and how mathematical models of that learning can help explain differences in decision-making, including in psychiatric conditions.
