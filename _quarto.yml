@@ -9,16 +9,17 @@ project:
     - apple-touch-icon.png
     - og-image.png
     - robots.txt
+    - CNAME
     - holidays.js
     - igt.js
     - alejandro-hinojosa.jpg
 
 website:
   title: "Alejandro Hinojosa"
-  site-url: https://alejandrohinojosa2005.github.io
+  site-url: https://alejandrohinojosa.com
   description: "Computational models of decision-making, essays, and The Young Man's Game (Philosophical Fiction)."
   # Link previews (texts, social media): the picture and summary shown when the link is shared
-  image: https://alejandrohinojosa2005.github.io/og-image.png
+  image: https://alejandrohinojosa.com/og-image.png
   image-alt: "Alejandro Hinojosa, A Website: a curious mind in search of truth"
   open-graph: true
   twitter-card:
