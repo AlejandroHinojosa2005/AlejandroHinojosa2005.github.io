@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+Your email signature. Open this file in your browser (double-click it), click "Copy signature",
+and paste it into your email's signature settings. The steps are on the page.
+The two images live on your website (alejandrohinojosa.com/signature/), so they show up in other people's inboxes.
+To change a line, edit the text inside the box marked SIGNATURE below, save, and copy again.
+The underscore at the start of the name keeps this file off the website.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email signature</title>
+<style>
+  :root { --paper: #EFEDE8; --ink: #33312E; --text: #57534E; --muted: #9E9A93; --rule: #DAD6CE; --lavender: #8B83BF; }
+  body { margin: 0; background: var(--paper); color: var(--text); font: 15px/1.6 Menlo, Consolas, "Liberation Mono", monospace; }
+  main { max-width: 640px; margin: 0 auto; padding: 48px 16px 64px; }
+  h1 { font: 700 26px/1.2 Helvetica, Arial, sans-serif; color: var(--ink); margin: 0 0 6px; }
+  h2 { font: 700 17px/1.3 Helvetica, Arial, sans-serif; color: var(--ink); margin: 32px 0 8px; }
+  p.lede { margin: 0 0 24px; color: var(--muted); }
+  .box { background: #fff; border-radius: 14px; padding: 28px; box-shadow: 0 1px 2px rgba(51,49,46,.05), 0 10px 28px rgba(51,49,46,.07); color: #202124; font: 14px/1.5 Arial, Helvetica, sans-serif; }
+  button { margin-top: 16px; font: 700 14px Helvetica, Arial, sans-serif; color: #fff; background: var(--ink); border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; }
+  button:hover { background: #4a4743; }
+  .done { margin-left: 10px; color: var(--muted); font-size: 13px; }
+  ol { padding-left: 1.3em; margin: 0; }
+  li { margin: 0 0 6px; }
+  b { color: var(--ink); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Email signature</h1>
+  <p class="lede">Click the button, then paste into your email settings.</p>
+
+  <div class="box">
+<!-- SIGNATURE: everything inside this div is what gets copied -->
+<div id="sig">
+<div>Best,</div>
+<img src="https://alejandrohinojosa.com/signature/shapes.png" width="75" height="14" alt="" style="display:block;margin:14px 0 8px;border:0;">
+<div style="font-family:Arimo,Helvetica,Arial,sans-serif;font-weight:700;font-size:15px;line-height:20px;white-space:nowrap;">Alejandro Hinojosa</div>
+<div style="font-family:Cousine,Menlo,Consolas,'Liberation Mono','Courier New',monospace;font-size:12px;line-height:18px;white-space:nowrap;">Psychology · Baylor University</div>
+<div style="font-family:Cousine,Menlo,Consolas,'Liberation Mono','Courier New',monospace;font-size:12px;line-height:18px;white-space:nowrap;"><a href="https://alejandrohinojosa.com" style="color:#5F7C91;">alejandrohinojosa.com</a></div>
+<img src="https://alejandrohinojosa.com/signature/line.png" width="240" height="1" alt="" style="display:block;margin-top:10px;border:0;">
+</div>
+<!-- end of SIGNATURE -->
+  </div>
+  <button type="button" id="copy">Copy signature</button><span class="done" id="done"></span>
+
+  <h2>Gmail</h2>
+  <ol>
+    <li>Click the gear, then <b>See all settings</b>. Stay on the <b>General</b> tab.</li>
+    <li>Scroll to <b>Signature</b>, click <b>Create new</b>, and name it.</li>
+    <li>Click in the box and paste (<b>Cmd+V</b>).</li>
+    <li>Under <b>Signature defaults</b>, choose it for new emails and for replies.</li>
+    <li>Tick <b>Insert signature before quoted text in replies and remove the "--" line</b>.</li>
+    <li>Scroll to the bottom and click <b>Save Changes</b>.</li>
+  </ol>
+
+  <h2>Outlook</h2>
+  <ol>
+    <li>On the web: gear, then <b>Account</b>, then <b>Signatures</b>. In the Mac app: <b>Outlook</b> menu, <b>Settings</b>, <b>Signatures</b>.</li>
+    <li>Make a new signature, name it, and paste (<b>Cmd+V</b>).</li>
+    <li>Choose it as the default for new messages and for replies, then save.</li>
+  </ol>
+
+  <h2>Using it</h2>
+  <p>The signature already says "Best," so end your email with your last sentence and let it take over.
+  To use a different goodbye now and then, make a second signature with "Cordially," and switch to it in that email.</p>
+</main>
+<script>
+// Copies the signature exactly as written above, so "Best," takes on your email's own font.
+// If the browser won't allow that, it falls back to selecting the box and copying, like Cmd+C.
+document.getElementById("copy").onclick = function () {
+  var sig = document.getElementById("sig"), done = document.getElementById("done");
+  function said(ok) { done.textContent = ok ? "Copied. Now paste it into your settings." : "Select the signature in the box and press Cmd+C."; }
+  function fallback() {
+    function put(e) { e.clipboardData.setData("text/html", sig.innerHTML); e.clipboardData.setData("text/plain", sig.innerText); e.preventDefault(); }
+    document.addEventListener("copy", put);
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.removeEventListener("copy", put); said(ok);
+  }
+  try {
+    var item = new ClipboardItem({
+      "text/html": new Blob([sig.innerHTML], { type: "text/html" }),
+      "text/plain": new Blob([sig.innerText], { type: "text/plain" })
+    });
+    navigator.clipboard.write([item]).then(function () { said(true); }, fallback);
+  } catch (e) { fallback(); }
+};
+</script>
+</body>
+</html>

@@ -13,6 +13,7 @@ project:
     - holidays.js
     - igt.js
     - alejandro-hinojosa.jpg
+    - signature/
 
 website:
   title: "Alejandro Hinojosa"
