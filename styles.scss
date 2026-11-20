@@ -145,10 +145,27 @@ a:hover, a:focus-visible { color: var(--accent); text-decoration-color: var(--ac
 }
 .navbar .menu-text { letter-spacing: 0.02em; }
 
+// Name in the menu bar (_brand.html): "Alejandro Hinojosa" folds into "AH" once the page scrolls. The rest of each name
+// shrinks to nothing behind its initial, so the name seems to slide away from its end. The menu bar stays pinned.
+// (clip-path rather than overflow: hidden does the clipping, so the letters keep the same baseline as the initials)
+.navbar-title.split .f {
+  display: inline-block; white-space: pre; width: var(--w, auto); clip-path: inset(-0.3em 0 -0.4em 0);
+  transition: width 0.55s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.45s ease 0.1s;
+}
+.brand-short .navbar-title.split .f { width: 0; opacity: 0; transition: width 0.55s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s ease; }
+// Pointing at "AH" brings the full name back
+@media (hover: hover) { .brand-short .navbar-brand:hover .navbar-title.split .f { width: var(--w, auto); opacity: 1; } }
+// Once the page has scrolled, a hairline separates the menu bar from the page sliding under it
+.brand-short #quarto-header .navbar { box-shadow: 0 1px 0 rgba($ink, 0.07) !important; }
+#quarto-header .navbar { transition: box-shadow 0.3s ease; }
+@media (prefers-reduced-motion: reduce) { .navbar-title.split .f { transition: none !important; } }
+
 // On phones the navbar shows initials so the three links fit on one line
 @media (max-width: 575.98px) {
-  .navbar-title { font-size: 0; }
-  .navbar-title::before {
+  // Phones show only the initials: folded for good, with no motion (or, if the script can't run, "AH" in its place)
+  .navbar-title.split .f { width: 0 !important; opacity: 0 !important; transition: none !important; }
+  .navbar-title:not(.split) { font-size: 0; }
+  .navbar-title:not(.split)::before {
     content: "AH";
     font-size: 1.05rem;
   }

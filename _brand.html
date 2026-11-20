@@ -1,0 +1,40 @@
+<!--
+The name in the menu bar. At the top of a page it reads "Alejandro Hinojosa"; once you scroll, the rest of each name
+slides away behind its initial and it reads "AH". The menu bar stays at the top of the screen (pinned: true in
+_quarto.yml), so the way home is always one click away. Pointing at "AH" brings the full name back for a moment.
+Phones always show "AH", so the menu fits on one line. The styles are under "Name in the menu bar" in styles.scss.
+-->
+<script>
+(function () {
+  var title = document.querySelector(".navbar-title");
+  if (!title) return;
+  var name = title.textContent.trim(), words = name.split(/\s+/);
+  if (words.length < 2) return;
+
+  // Each initial stays; the rest of each word (and the space after the first) can fold away
+  title.innerHTML = words.map(function (w, i) {
+    return '<span class="i">' + w.charAt(0) + '</span><span class="f">' + w.slice(1) + (i < words.length - 1 ? " " : "") + "</span>";
+  }).join("");
+  title.classList.add("split");
+  var link = title.closest("a");
+  if (link) link.setAttribute("aria-label", name + ", home");
+
+  // Each folding part needs its exact width, so it can shrink smoothly from that width to nothing
+  var parts = title.querySelectorAll(".f");
+  function measure() {
+    parts.forEach(function (p) { p.style.setProperty("--w", "auto"); p.style.setProperty("--w", p.scrollWidth + "px"); });
+  }
+  measure();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+  // Fold once the page has scrolled a little; unfold back near the top (two thresholds, so it doesn't flicker)
+  var short = false, waiting = false;
+  function update() {
+    waiting = false;
+    var y = window.scrollY, s = short ? y > 24 : y > 64;
+    if (s !== short) { short = s; document.body.classList.toggle("brand-short", s); }
+  }
+  window.addEventListener("scroll", function () { if (!waiting) { waiting = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();
+</script>

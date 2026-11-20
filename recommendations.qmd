@@ -2,7 +2,7 @@
 include-in-header: _head-recs.html
 body-classes: page-recs
 title: "Recommendations"
-description: "Books, movies and places I think are worth your time."
+description: "Books, movies, podcasts and places I think are worth your time."
 ---
 
 <!--
@@ -42,11 +42,31 @@ first picks coming soon
 first picks coming soon
 :::
 
+### Philosophy
+
+::: status
+first picks coming soon
+:::
+
 ## Movies
 
 ::: status
 first picks coming soon
 :::
+
+## Podcasts
+
+- ***632nm*** · Misha Shalaginov, Michael Dubrovsky and Xinghui Yin
+- ***Dwarkesh Podcast*** · Dwarkesh Patel
+- ***Moonshots*** · Peter Diamandis
+- ***The Ezra Klein Show*** · Ezra Klein
+- ***The Drive*** · Peter Attia
+- ***Morning Brew Daily*** · Morning Brew
+- ***All-In*** · Chamath Palihapitiya, Jason Calacanis, David Sacks and David Friedberg
+- ***Fall of Civilizations*** · Paul Cooper
+- ***Doom Debates*** · Liron Shapira
+- ***The 3b1b Podcast*** · Grant Sanderson
+- ***The AI Daily Brief*** · Nathaniel Whittemore
 
 ## Travel
 

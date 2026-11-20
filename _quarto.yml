@@ -30,6 +30,8 @@ website:
   search: false
   navbar:
     title: "Alejandro Hinojosa"
+    # The menu bar stays at the top of the screen when you scroll (the name folds into "AH": _brand.html)
+    pinned: true
     collapse: false
     right:
       - href: research.qmd
@@ -54,4 +56,6 @@ format:
     anchor-sections: false
     link-external-newwindow: true
     html-math-method: plain
-    include-after-body: _peek.html
+    include-after-body:
+      - _peek.html
+      - _brand.html
