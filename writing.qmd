@@ -18,6 +18,8 @@ listing:
 
 Essays, and the introduction and first chapter of my book, ***The Young Man's Game***.
 
+{{< include _search-box.qmd >}}
+
 <!--
 THE BOOK: the block below links to the book's own page (book/index.qmd), where its description and chapters live.
 Its chapter list fills itself in: a page in the book folder shows up there once its  draft: true  line is deleted.

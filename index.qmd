@@ -65,6 +65,8 @@ I also write essays on **philosophy** and **literature**, and I wrote a book of 
 - [**Testing**, with a preregistered plan, whether people switch between learning strategies partway through the task.]{.acc-research}
 - [**Writing** essays, and posting the introduction and first chapter of ***The Young Man's Game***. [Read →](writing.qmd)]{.acc-writing}
 
+{{< include _search-box.qmd >}}
+
 ::: closing
 That's all for now.
 :::

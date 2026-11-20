@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4dcde7aeaa0fcc7cc32482bec75adff5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c2073c082089a2cd91b1cc5cf68726af.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c6793f129eea9bc49f464bd8877f496f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -185,6 +185,21 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Essays, and the introduction and first chapter of my book, <strong><em>The Young Man’s Game</em></strong>.</p>
+<!--
+THE SEARCH BOX, shown on the Writing page and at the bottom of the home page (search.js does the searching).
+Its gray text before you type: data-long on wider screens, data-short on phones. Change the words between the quotes.
+The places it suggests, and extra words that lead to each place, are at the top of search.js.
+-->
+<div class="site-search" role="search">
+  <div class="field">
+    <span class="lens" aria-hidden="true"><svg viewbox="0 0 24 24"><line x1="10" y1="10" x2="20.6" y2="20.6" stroke="#33312E" stroke-width="3" stroke-linecap="round"></line><circle cx="10" cy="10" r="6.3" fill="#FFFFFF" stroke="#33312E" stroke-width="2.4"></circle></svg></span>
+    <label class="visually-hidden" for="site-search">Search the site</label>
+    <input id="site-search" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="site-search-results" autocomplete="off" spellcheck="false" data-long="Search · this will become useful with time 😅" data-short="Search · useful in time 😅" placeholder="Search · this will become useful with time 😅">
+    <kbd aria-hidden="true">/</kbd>
+  </div>
+  <div class="results" id="site-search-results" role="listbox" aria-label="Search results" hidden=""></div>
+</div>
+<script src="search.js" defer=""></script>
 <!--
 THE BOOK: the block below links to the book's own page (book/index.qmd), where its description and chapters live.
 Its chapter list fills itself in: a page in the book folder shows up there once its  draft: true  line is deleted.

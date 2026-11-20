@@ -449,6 +449,52 @@ nav.topics .dot, .essay-index .dot { display: inline-block; width: 0.6em; height
   .essay-index .row .d { grid-column: 2; }
 }
 
+// Site search (search.js): a white box with the book cover's rounded corners; results drop below it in a card
+// like the link previews. Each result shows its section's shape and color, the page and section, and the matching lines.
+.site-search { position: relative; margin: 1.4rem 0 2.4rem; }
+.site-search .field {
+  display: flex; align-items: center; gap: 0.65rem; background: #FFFFFF; border: 1px solid $rule; border-radius: 14px;
+  padding: 0.6rem 0.95rem; box-shadow: 0 1px 2px rgba($ink, 0.04); transition: border-color 0.2s, box-shadow 0.2s;
+}
+.site-search .field:focus-within { border-color: rgba($clay, 0.55); box-shadow: 0 0 0 3px rgba($clay, 0.13), 0 10px 28px rgba($ink, 0.07); }
+.site-search input {
+  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; padding: 0.1rem 0;
+  font-family: $font-family-monospace; font-size: 0.92rem; color: $ink;
+}
+.site-search input::placeholder { color: $muted; opacity: 1; }
+.site-search input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.site-search .lens { flex: none; width: 20px; height: 20px; display: block; }
+.site-search .lens svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.site-search kbd {
+  flex: none; font-family: $font-family-monospace; font-size: 0.72rem; color: $muted; background: none;
+  border: 1px solid $rule; border-radius: 5px; padding: 0.05rem 0.4rem; box-shadow: none;
+}
+.site-search .field:focus-within kbd { visibility: hidden; }
+@media (hover: none) { .site-search kbd { display: none; } }
+.site-search .results {
+  position: absolute; left: 0; right: 0; top: calc(100% + 8px); z-index: 30; background: #FFFFFF; border-radius: 14px;
+  padding: 0.4rem; max-height: min(70vh, 34rem); overflow-y: auto;
+  box-shadow: 0 1px 2px rgba($ink, 0.05), 0 12px 32px rgba($ink, 0.11);
+}
+.site-search .results[hidden] { display: none; }
+.site-search .hit { display: flex; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 10px; color: $text; text-decoration: none; }
+.site-search .hit:hover, .site-search .hit.on { background: rgba($ink, 0.045); }
+.site-search .hit .glyph { flex: none; padding-top: 0.32rem; line-height: 0; }
+.site-search .hit .body { min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
+.site-search .hit .kicker { color: $muted; font-size: 0.72rem; letter-spacing: 0.06em; }
+.site-search .hit .ttl { font-family: $headings-font-family; font-weight: 700; color: $ink; font-size: 1rem; line-height: 1.3; }
+.site-search .hit .ttl .sec { font-weight: 400; color: $text; }
+.site-search .hit .snip { font-size: 0.82rem; line-height: 1.5; color: $text; overflow-wrap: anywhere; }
+.site-search mark { background: rgba($clay, 0.2); color: $ink; padding: 0 0.1em; border-radius: 2px; }
+.site-search .none { padding: 0.75rem 0.8rem; color: $muted; font-size: 0.88rem; }
+.site-search .note { padding: 0.5rem 0.75rem 0.15rem; color: $muted; font-size: 0.72rem; letter-spacing: 0.06em; }
+// Phones zoom in on any text box smaller than 16px, so the box keeps 16px there
+@media (max-width: 575.98px) {
+  .site-search input { font-size: 16px; }
+  .site-search input::placeholder { font-size: 14.5px; }
+  .site-search kbd { display: none; }
+}
+
 // Writing listing: date above title, one entry per row
 .quarto-listing { margin-top: 1rem; }
 div.quarto-post, div.quarto-post.image-right { display: flex !important; flex-direction: column !important; gap: 0.15rem; }

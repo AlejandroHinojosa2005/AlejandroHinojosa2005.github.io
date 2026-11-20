@@ -14,6 +14,8 @@ project:
     - igt.js
     - alejandro-hinojosa.jpg
     - signature/
+    - search.js
+    - minisearch.js
 
 website:
   title: "Alejandro Hinojosa"
