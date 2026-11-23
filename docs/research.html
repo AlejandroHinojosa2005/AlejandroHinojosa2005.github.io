@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4dcde7aeaa0fcc7cc32482bec75adff5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b03df84dd1fe3d1dbbe088669a5c96ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e65b315be920e7b653b6bedf045ae9a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -62,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-olive-32.png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <script src="igt.js" defer=""></script>
+<script src="predict.js" defer=""></script>
 
 
 <link rel="stylesheet" href="fonts.css">
@@ -189,6 +190,22 @@ ul.task-list li input[type="checkbox"] {
 <figcaption class="fig-note">Weight each model gets in the shared mix (the weights add up to 1). "Split" means separate perseverance after wins and after losses. VSE-split gets the most weight despite one of the worst scores on its own: it gets right the choices the other models miss. ORL itself gets almost none once its extensions are in the mix.</figcaption>
 </figure>
 <p>People also differ in their mix. Giving each person their own weights, pulled 70% of the way toward the shared mix, predicted better still (<em>z</em> = 4.3). The differences are real, but 100 choices are too few to pin down anyone’s mix exactly.</p>
+<figure class="wp figure" aria-label="Play the Iowa Gambling Task while eight models guess each choice">
+  <div class="igt-head">Play the task: <span class="m">eight models guess your next card</span> <span class="live">live</span></div>
+  <p class="wp-lede">Pick a deck. Before each choice, every model gives each deck a chance. The farther right a model runs, the more chance it gave the cards you actually took.</p>
+  <div class="wp-game">
+    <div class="wp-decks"></div>
+    <div class="wp-result" aria-live="polite"><span class="wp-out">Choose a deck to start.</span><span class="wp-bank">bank <b>$2,000</b></span></div>
+    <div class="wp-grid" aria-hidden="true"></div>
+    <div class="wp-controls"><button type="button" class="wp-watch">Watch a simulated player</button><button type="button" class="wp-reset">Start over</button></div>
+  </div>
+  <div class="wp-board">
+    <div class="wp-board-head"><span class="t">Who predicts you best?</span><span class="wp-count">no choices yet</span></div>
+    <p class="wp-sub">Average chance each model gave the choices you made. The line marks guessing (25%).</p>
+    <div class="wp-race"></div>
+  </div>
+  <figcaption class="fig-note">Each model plays with the median settings fitted to the 162 participants; the mix combines all eight with the weights fitted to 440 people in the preregistered replication. Guessing at random scores 25%. The decks pay as in the original task (Bechara et al., 1994). Nothing you click leaves your browser.</figcaption>
+</figure>
 </section>
 <section id="switching-between-strategies" class="level2">
 <h2 data-anchor-id="switching-between-strategies">Switching between strategies</h2>
@@ -200,6 +217,19 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="next" class="level2">
 <h2 data-anchor-id="next">Next</h2>
+<section id="two-models-one-curve" class="level3">
+<h3 data-anchor-id="two-models-one-curve">Two models, one curve</h3>
+<div class="status">
+<p>in progress</p>
+</div>
+<p>VSE says people are drawn back to decks they haven’t chosen in a while. ORL says they keep away from decks they just chose. Drag VSE’s recovery rate: when it matches ORL’s decay, the two curves are the same curve.</p>
+<figure class="wp-curve figure">
+  <div class="wp-key" aria-hidden="true"><span><i class="orl"></i>ORL: perseverance below 0</span><span><i class="vse"></i>VSE: exploration bonus</span></div>
+  <svg viewbox="0 0 640 250" role="img" aria-label="ORL's perseverance and VSE's exploration bonus plotted against trials since a deck was last chosen"></svg>
+  <div class="wp-ctl"><label for="wp-eta">VSE recovery rate</label><input type="range" id="wp-eta" min="0.05" max="0.95" step="0.01" value="0.2"><span class="wp-read"></span><span class="wp-same">Same curve</span></div>
+  <figcaption class="fig-note wp-curve-note"></figcaption>
+</figure>
+</section>
 <section id="tiny-recurrent-neural-networks" class="level3">
 <h3 data-anchor-id="tiny-recurrent-neural-networks">Tiny recurrent neural networks</h3>
 <div class="status">

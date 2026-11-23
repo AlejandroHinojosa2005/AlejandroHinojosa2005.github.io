@@ -42,6 +42,26 @@ One shared mix predicted held-out choices better than the best single model, ORL
 
 People also differ in their mix. Giving each person their own weights, pulled 70% of the way toward the shared mix, predicted better still (*z* = 4.3). The differences are real, but 100 choices are too few to pin down anyone's mix exactly.
 
+
+```{=html}
+<figure class="wp" aria-label="Play the Iowa Gambling Task while eight models guess each choice">
+  <div class="igt-head">Play the task: <span class="m">eight models guess your next card</span> <span class="live">live</span></div>
+  <p class="wp-lede">Pick a deck. Before each choice, every model gives each deck a chance. The farther right a model runs, the more chance it gave the cards you actually took.</p>
+  <div class="wp-game">
+    <div class="wp-decks"></div>
+    <div class="wp-result" aria-live="polite"><span class="wp-out">Choose a deck to start.</span><span class="wp-bank">bank <b>$2,000</b></span></div>
+    <div class="wp-grid" aria-hidden="true"></div>
+    <div class="wp-controls"><button type="button" class="wp-watch">Watch a simulated player</button><button type="button" class="wp-reset">Start over</button></div>
+  </div>
+  <div class="wp-board">
+    <div class="wp-board-head"><span class="t">Who predicts you best?</span><span class="wp-count">no choices yet</span></div>
+    <p class="wp-sub">Average chance each model gave the choices you made. The line marks guessing (25%).</p>
+    <div class="wp-race"></div>
+  </div>
+  <figcaption class="fig-note">Each model plays with the median settings fitted to the 162 participants; the mix combines all eight with the weights fitted to 440 people in the preregistered replication. Guessing at random scores 25%. The decks pay as in the original task (Bechara et al., 1994). Nothing you click leaves your browser.</figcaption>
+</figure>
+```
+
 ## Switching between strategies
 
 ::: status
@@ -53,6 +73,23 @@ A fixed mix assumes a person's blend stays the same all session. A **switching**
 Whether people really switch is the open question. I'm now testing it, with a preregistered plan, in **440 new participants** from the same data pool, and on data simulated with no switching at all, to see whether the method finds "switching" where there is none.
 
 ## Next
+
+### Two models, one curve
+
+::: status
+in progress
+:::
+
+VSE says people are drawn back to decks they haven't chosen in a while. ORL says they keep away from decks they just chose. Drag VSE's recovery rate: when it matches ORL's decay, the two curves are the same curve.
+
+```{=html}
+<figure class="wp-curve">
+  <div class="wp-key" aria-hidden="true"><span><i class="orl"></i>ORL: perseverance below 0</span><span><i class="vse"></i>VSE: exploration bonus</span></div>
+  <svg viewBox="0 0 640 250" role="img" aria-label="ORL's perseverance and VSE's exploration bonus plotted against trials since a deck was last chosen"></svg>
+  <div class="wp-ctl"><label for="wp-eta">VSE recovery rate</label><input type="range" id="wp-eta" min="0.05" max="0.95" step="0.01" value="0.2"><span class="wp-read"></span><span class="wp-same">Same curve</span></div>
+  <figcaption class="fig-note wp-curve-note"></figcaption>
+</figure>
+```
 
 ### Tiny recurrent neural networks
 

@@ -12,6 +12,7 @@ project:
     - CNAME
     - holidays.js
     - igt.js
+    - predict.js
     - alejandro-hinojosa.jpg
     - signature/
     - search.js

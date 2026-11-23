@@ -638,6 +638,80 @@ ol.chapters .soon { color: $muted; font-size: 0.85rem; }
 .igt-tally .again:hover { color: var(--accent); }
 @media (max-width: 575.98px) { .igt-grid { gap: 4px; } .igt-tally .bank { margin-left: 0; } }
 
+// Research page: play the task while the eight models and their mix guess each card (predict.js). Each model runs in
+// its own lane: the farther right, the more probability it gave the cards actually chosen. Then "Two models, one curve".
+.wp { margin: 2.4rem 0 2.6rem; }
+.wp .igt-head { margin-bottom: 0.3rem; }
+.wp-lede { font-size: 0.86rem; margin-bottom: 1.2rem; }
+.wp-game { max-width: 520px; }
+.wp-decks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+.wp-deck { position: relative; aspect-ratio: 3 / 4; padding: 0; border: 1px solid $rule; border-radius: 10px; background: lighten($paper, 3%); cursor: pointer; display: grid; place-items: center; transition: transform 0.15s ease, border-color 0.15s ease; }
+.wp-deck:hover { transform: translateY(-2px); border-color: $ink; }
+.wp-deck:active, .wp-deck:disabled { transform: none; }
+.wp-deck:disabled { cursor: default; opacity: 0.6; }
+.wp-deck .s { display: block; width: 42%; aspect-ratio: 1; }
+.wp-letter { position: absolute; left: 0.5rem; top: 0.3rem; font-family: $headings-font-family; font-weight: 700; font-size: 0.82rem; line-height: 1.4; color: $ink; }
+.wp .s.k0 { background: $brick; } .wp .s.k1 { background: $ochre; } .wp .s.k2 { background: $olive; } .wp .s.k3 { background: $slate; }
+.wp .s.rect { clip-path: inset(0 22%); }
+.wp .s.circ { border-radius: 50%; clip-path: inset(6% round 50%); }
+.wp .s.tri { clip-path: polygon(50% 4%, 100% 92%, 0 92%); }
+.wp .s.diam { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.wp-result { display: flex; justify-content: space-between; align-items: baseline; gap: 0.8rem; margin: 0.8rem 0 0.6rem; font-size: 0.84rem; min-height: 1.6em; }
+.wp-out b { font-family: $headings-font-family; }
+.wp-gain { color: darken($olive, 6%); } .wp-loss { color: $brick; }
+.wp-bank { color: $muted; white-space: nowrap; }
+.wp-bank b { font-variant-numeric: tabular-nums; }
+.wp-grid { display: grid; grid-template-columns: repeat(20, 1fr); gap: 4px; }
+.wp-grid .c { position: relative; aspect-ratio: 1; }
+.wp-grid .c::before { content: ""; position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; margin: -1.5px 0 0 -1.5px; border-radius: 50%; background: $rule; }
+.wp-grid .c:has(.s)::before { display: none; }
+.wp-grid .s { position: absolute; inset: 0; animation: igt-in 0.35s ease; }
+.wp-controls { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; margin-top: 0.9rem; font-size: 0.8rem; }
+.wp-controls button { background: none; border: 0; padding: 0; font: inherit; color: $ink; text-decoration: underline; text-decoration-color: var(--accent-soft); text-underline-offset: 0.22em; cursor: pointer; }
+.wp-controls button:hover { color: var(--accent); }
+.wp-board { margin-top: 1.8rem; }
+.wp-board-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; margin-bottom: 0.2rem; }
+.wp-board-head .t { font-family: $headings-font-family; font-weight: 700; color: $ink; font-size: 0.95rem; }
+.wp-count { font-size: 0.74rem; color: $muted; white-space: nowrap; }
+.wp-sub { font-size: 0.74rem; color: $muted; line-height: 1.5; margin: 0 0 0.7rem; }
+.wp-race { display: grid; gap: 0.15rem; }
+.wp-lane, .wp-axis { display: grid; grid-template-columns: minmax(0, 9.6rem) minmax(0, 1fr); column-gap: 0.7rem; }
+.wp-lane { align-items: center; height: 30px; font-size: 0.82rem; }
+.wp-name { color: $ink; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wp-lane.mix .wp-name { font-family: $headings-font-family; font-weight: 700; }
+.wp-track { position: relative; height: 100%; border-bottom: 1px dotted $rule; }
+.wp-chance { position: absolute; top: 0; bottom: 0; left: 25%; width: 1px; background: $muted; opacity: 0.6; }
+.wp-dot { position: absolute; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: $ink; color: $paper; font-family: $headings-font-family; font-weight: 700; font-size: 0.7rem; line-height: 1; font-variant-numeric: tabular-nums; transition: left 0.55s cubic-bezier(0.25, 1, 0.5, 1); }
+.wp-lane.mix .wp-dot { background: $lavender; }
+.wp-lane.top:not(.mix) .wp-dot { background: var(--accent); }
+.wp-axis { font-size: 0.7rem; color: $muted; }
+.wp-ticks { position: relative; height: 1.4em; }
+.wp-ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.wp-ticks span:first-child { transform: none; }
+.wp-ticks span:last-child { transform: translateX(-100%); }
+.wp .fig-note { margin-top: 1.4rem; }
+// Phones: each name sits above its lane, so the lanes use the full width
+@media (max-width: 575.98px) {
+  .wp-race { gap: 0.35rem; }
+  .wp-lane, .wp-axis { grid-template-columns: minmax(0, 1fr); }
+  .wp-lane { height: auto; font-size: 0.76rem; line-height: 1.3; }
+  .wp-track { height: 26px; }
+  .wp-axis > span:first-child { display: none; }
+}
+// Two models, one curve: ORL's perseverance and VSE's exploration bonus, with a slider for VSE's recovery rate
+.wp-curve { margin: 1rem 0 2.4rem; }
+.wp-curve svg { display: block; width: 100%; max-width: 640px; height: auto; }
+.wp-key { display: flex; flex-wrap: wrap; gap: 0.2rem 1.4rem; font-family: $headings-font-family; font-weight: 700; font-size: 0.8rem; color: $ink; margin-bottom: 0.3rem; }
+.wp-key span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.wp-key .orl { display: inline-block; width: 16px; height: 5px; border-radius: 2px; background: $olive; }
+.wp-key .vse { display: inline-block; width: 16px; border-top: 2px dashed $lavender; }
+.wp-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; font-size: 0.82rem; margin: 0.4rem 0 0.2rem; }
+.wp-ctl input[type=range] { width: min(320px, 100%); accent-color: $lavender; }
+.wp-read { font-variant-numeric: tabular-nums; color: $ink; }
+.wp-same { font-family: $headings-font-family; font-weight: 700; font-size: 0.74rem; padding: 0.1rem 0.6rem; border-radius: 999px; background: var(--accent); color: $paper; opacity: 0; transition: opacity 0.25s ease; }
+.wp-same.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .wp-dot, .wp-deck, .wp-same { transition: none; } .wp-grid .s { animation: none; } }
+
 // Holiday art on the home page (holidays.js): it takes the place of the shapes for a few days a year
 .compo.holiday { width: 300px; height: 170px; max-width: 100%; }
 .compo.holiday svg { display: block; width: 100%; height: 100%; overflow: visible; }
