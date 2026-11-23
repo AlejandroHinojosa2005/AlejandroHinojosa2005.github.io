@@ -31,7 +31,7 @@ No single model described everyone well, though. Different people were predicted
 ## Mixing models: stacking
 
 ::: status
-exploratory · first sample of 162 · confirmatory test in progress
+found in 162 · confirmed in a preregistered replication of 440
 :::
 
 Picking one winning model throws away what the others get right. **Stacking** ([Yao et al., 2018](https://doi.org/10.1214/17-BA1091)) keeps all of them: each choice gets a probability from a weighted average of the eight models' predictions, with the weights chosen to predict held-out choices as well as possible. When one model is badly wrong about a choice, the others catch it.
@@ -41,6 +41,8 @@ One shared mix predicted held-out choices better than the best single model, ORL
 {{< include _weights_fig.qmd >}}
 
 People also differ in their mix. Giving each person their own weights, pulled 70% of the way toward the shared mix, predicted better still (*z* = 4.3). The differences are real, but 100 choices are too few to pin down anyone's mix exactly.
+
+In a **preregistered replication** with **440 new participants** ([registration](https://doi.org/10.17605/OSF.IO/U86SY)), all ten predictions were met. The shared mix beat ORL + α for **328 of 440** people (*z* = 12.5), and personal weights pulled toward it predicted better still (*z* = 7.3). I call the whole procedure **Seldon**: predictions scored on held-out choices, the mix, the pull toward the group, and the tests of switching below.
 
 
 ```{=html}
@@ -65,22 +67,20 @@ People also differ in their mix. Giving each person their own weights, pulled 70
 ## Switching between strategies
 
 ::: status
-exploratory · confirmatory test in progress
+found in 162 · confirmed in a preregistered replication of 440
 :::
 
 A fixed mix assumes a person's blend stays the same all session. A **switching** model lets one strategy be "in charge" of a run of choices before another takes over. It beat the fixed mix (*z* = 5.3), and it lost that edge when each person's choices were shuffled, so the gain depends on the order of the choices. The best fit redrew the strategy in charge about once every **19 trials**.
 
-Whether people really switch is the open question. I'm now testing it, with a preregistered plan, in **440 new participants** from the same data pool, and on data simulated with no switching at all, to see whether the method finds "switching" where there is none.
+In the replication, switching again beat the fixed mix (*z* = 6.6) and again needed the choices in their real order (*z* = 6.4). On simulated players who never switch, the method found no switching, so the gain is not an artifact of the method. Two cautions from exploratory follow-ups: part of the gain comes from runs of near-random choice, lapses rather than changes of strategy, and with 100 choices the method cannot say exactly when a switch happens.
 
-## Next
-
-### Two models, one curve
+## One model from two: NOVA
 
 ::: status
-in progress
+exploratory · predictions written in advance and met in the replication of 440
 :::
 
-VSE says people are drawn back to decks they haven't chosen in a while. ORL says they keep away from decks they just chose. Drag VSE's recovery rate: when it matches ORL's decay, the two curves are the same curve.
+VSE says people are drawn back to decks they haven't chosen in a while. ORL says they keep away from decks they just chose. These are the same term: VSE's exploration bonus is mathematically identical to ORL's perseverance with a negative weight. Drag VSE's recovery rate: when it matches ORL's decay, the two curves are the same curve.
 
 ```{=html}
 <figure class="wp-curve">
@@ -91,13 +91,17 @@ VSE says people are drawn back to decks they haven't chosen in a while. ORL says
 </figure>
 ```
 
+So a model that combines them needs that term only once. **NOVA** (Novelty, Outcome curvature, Value decay, Alternation) adds to ORL + α the two parts it lacked: optimism about decks not yet tried, and decay of the values of decks left alone. On its own, NOVA predicts no better than ORL + α. In the mix it is the most useful model: adding it improved the mix's predictions (*z* = 5.4), and five models with NOVA beat all eight (*z* = 3.9), as predicted before the analysis was run.
+
+## Next
+
 ### Tiny recurrent neural networks
 
 ::: status
 planned
 :::
 
-Every model here builds in a learning rule. **Tiny recurrent neural networks**, with only a few units and no rule built in, can learn people's choices directly, and they often predict those choices better than classic models do ([Ji-An, Benna & Mattar, 2025](https://doi.org/10.1038/s41586-025-09142-4)). Trained and tested on the same held-out choices as the models, they will show how much predictable structure ORL + α and the stacked mix still miss, and the strategies the networks learn can point to what is missing.
+Every model here builds in a learning rule. **Tiny recurrent neural networks**, with only a few units and no rule built in, can learn people's choices directly, and they often predict those choices better than classic models do ([Ji-An, Benna & Mattar, 2025](https://doi.org/10.1038/s41586-025-09142-4)). Trained and tested on the same held-out choices as the models, they will show how much predictable structure ORL + α and the stacked mix still miss, and the strategies the networks learn can point to what is missing. A second benchmark is Centaur, a language model fine-tuned on choices from 160 experiments ([Binz et al., 2025](https://doi.org/10.1038/s41586-025-09215-4)), scored only on participants it never saw.
 
 ### EEG: whose prediction errors does the brain track?
 
