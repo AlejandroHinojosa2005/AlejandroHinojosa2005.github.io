@@ -42,7 +42,7 @@ One shared mix predicted held-out choices better than the best single model, ORL
 
 People also differ in their mix. Giving each person their own weights, pulled 70% of the way toward the shared mix, predicted better still (*z* = 4.3). The differences are real, but 100 choices are too few to pin down anyone's mix exactly.
 
-In a **preregistered replication** with **440 new participants** ([registration](https://doi.org/10.17605/OSF.IO/U86SY)), all ten predictions were met. The shared mix beat ORL + α for **328 of 440** people (*z* = 12.5), and personal weights pulled toward it predicted better still (*z* = 7.3). I call the whole procedure **Seldon**: predictions scored on held-out choices, the mix, the pull toward the group, and the tests of switching below.
+In a **preregistered replication** with **440 participants** from the other studies in the data pool ([registration](https://doi.org/10.17605/OSF.IO/U86SY)), all ten predictions were met. The shared mix beat ORL + α for **328 of 440** people (*z* = 12.5), and personal weights pulled toward it predicted better still (*z* = 7.3). I call the whole procedure **Seldon**: predictions scored on held-out choices, the mix, the pull toward the group, and the tests of switching below.
 
 
 ```{=html}
@@ -91,7 +91,7 @@ VSE says people are drawn back to decks they haven't chosen in a while. ORL says
 </figure>
 ```
 
-So a model that combines them needs that term only once. **NOVA** (Novelty, Outcome curvature, Value decay, Alternation) adds to ORL + α the two parts it lacked: optimism about decks not yet tried, and decay of the values of decks left alone. On its own, NOVA predicts no better than ORL + α. In the mix it is the most useful model: adding it improved the mix's predictions (*z* = 5.4), and five models with NOVA beat all eight (*z* = 3.9), as predicted before the analysis was run.
+So a model that combines them needs that term only once. **NOVA** (Novelty, Outcome curvature, Value decay, Alternation) adds to ORL + α the two parts it lacked: optimism about decks not yet tried, and decay of the values of decks left alone. Fit one person at a time, NOVA predicts no better than ORL + α: with eight parameters and 100 choices, its fits fall apart for some people. Fit with the group's help, so each person's settings are pulled toward the group's, it beats ORL + α fit the same way (*z* = 6.4 in the replication of 440, predicted in advance). In the mix it is the most useful model: adding it improved the mix's predictions (*z* = 5.4), and five models with NOVA beat all eight (*z* = 3.9), as predicted before the analysis was run. Even so, NOVA alone falls well short of the mix (*z* = −8.3), so one better model does not replace several.
 
 ## Next
 

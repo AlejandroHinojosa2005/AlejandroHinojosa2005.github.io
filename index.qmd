@@ -62,7 +62,7 @@ I also write essays on **philosophy** and **literature**, and I wrote a book of 
 ## Now
 
 - [**Finishing** a paper that introduces ORL + α, a reinforcement-learning model of the Iowa Gambling Task. [More on the research →](research.qmd)]{.acc-research}
-- [**Testing**, with a preregistered plan, whether people switch between learning strategies partway through the task.]{.acc-research}
+- [**Drafting** a companion paper: people mix learning strategies and switch between them partway through the task, confirmed in a preregistered replication.]{.acc-research}
 - [**Writing** essays, and posting the introduction and first chapter of ***The Young Man's Game***. [Read →](writing.qmd)]{.acc-writing}
 
 {{< include _search-box.qmd >}}
