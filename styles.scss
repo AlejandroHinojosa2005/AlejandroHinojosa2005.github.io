@@ -773,10 +773,13 @@ body.holiday-christmas .hero { margin-top: 8rem; }
 .page-recs .fold-count { color: $muted; font-size: 0.8rem; letter-spacing: 0.02em; white-space: nowrap; }
 .page-recs details.fold > details, .page-recs details.fold > section.level3 { margin-left: 0; }
 
-// Recommendations: the top five films, posters in a row (three across on a phone). Until a poster file is in
+// Recommendations: the top five films, posters in a row (three across on a phone, then two centered). Until a poster file is in
 // films/, its box shows the rank.
 .top-films { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.1rem; margin: 0.4rem 0 0.8rem; }
-@media (max-width: 575.98px) { .top-films { grid-template-columns: repeat(3, 1fr); gap: 0.9rem 0.8rem; } }
+@media (max-width: 575.98px) {               // three across on a phone, the last row centered
+  .top-films { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem 0.8rem; }
+  .top-films .film { width: calc((100% - 1.6rem) / 3); }
+}
 .top-films .film { margin: 0; }
 .top-films .poster {
   position: relative; aspect-ratio: 2 / 3; overflow: hidden;
