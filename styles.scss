@@ -789,6 +789,21 @@ body.holiday-christmas .hero { margin-top: 8rem; }
 .top-films figcaption .n { color: var(--accent); font-weight: 700; margin-right: 0.45em; }
 .top-films figcaption .by { display: block; color: $muted; }
 
+// CV: each entry's dates sit in a narrow column on the left (above the entry on a phone). The PDF does the same
+// through cv.lua.
+.page-cv .cv-pdf { margin: -0.6rem 0 0.4rem; font-size: 0.86rem; }
+.page-cv .cv-pdf a { color: var(--accent); }
+.page-cv h2 { margin-top: 2.6rem; margin-bottom: 1rem; }
+.page-cv .entry { display: grid; grid-template-columns: 10.5rem 1fr; column-gap: 1.4rem; margin-bottom: 1.3rem; }
+.page-cv .entry > * { grid-column: 2; margin-bottom: 0.35rem; }
+.page-cv .entry > p:first-child { grid-column: 1; color: $muted; font-size: 0.84rem; letter-spacing: 0.02em; margin: 0.1rem 0 0; }
+.page-cv .entry > p:nth-child(2) { color: $ink; }
+.page-cv .entry > p:nth-child(n+3) { font-size: 0.92rem; }
+@media (max-width: 575.98px) {
+  .page-cv .entry { display: block; }
+  .page-cv .entry > p:first-child { margin-bottom: 0.15rem; }
+}
+
 // Footer
 .nav-footer { border-top: 0 !important; color: $muted; font-size: 0.8rem; letter-spacing: 0.03em; }
 .nav-footer a { color: $muted; }

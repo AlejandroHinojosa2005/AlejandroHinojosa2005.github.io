@@ -1,0 +1,195 @@
+---
+body-classes: page-about page-cv
+title: "CV"
+description: "Alejandro Hinojosa · Psychology, Baylor University"
+format-links: false
+filters:
+  - baylor.lua
+  - cv.lua
+format:
+  html:
+    include-in-header: _head-about.html
+  typst:
+    title: "Alejandro Hinojosa"
+    subtitle: "Curriculum Vitae · alejandrohinojosa.com"
+    output-file: hinojosa-cv.pdf
+    papersize: us-letter
+    margin:
+      x: 0.85in
+      y: 0.7in
+    fontsize: 10pt
+    include-in-header:
+      text: |
+        #show link: set text(fill: rgb("#6F66A8"))
+---
+
+<!--
+HOW TO EDIT THE CV (open in Source mode)
+Each entry is a block like this; the first line is the date, the rest is the entry:
+
+::: entry
+Jan. 2026
+
+**Role** · Place, City, ST
+
+A paragraph describing it (optional).
+:::
+
+quarto render builds the page and the PDF (hinojosa-cv.pdf) from this one file.
+-->
+
+::: {.content-visible when-format="html"}
+::: cv-pdf
+[Download as PDF](hinojosa-cv.pdf)
+:::
+:::
+
+## Education
+
+::: entry
+May 2027
+
+**Bachelor of Arts in Psychology** · Baylor University, Waco, TX
+:::
+
+## Research Experience
+
+::: entry
+Sep. 2026 – Present
+
+**Independent project: reinforcement-learning models of the Iowa Gambling Task**
+
+I taught myself R and Stan, implemented eight reinforcement-learning models of the Iowa Gambling Task from their published equations, and compared them on held-out choices from open data. A curvature extension of ORL that I introduced (ORL + α) predicted best, and on a new sample of 70 people it met all five predictions I wrote in advance. In a preregistered replication (N = 440), all ten predictions were met: a stacked mix of the models outpredicted the best single model (z = 12.5). I then showed that two published models share a mathematically identical term and combined them into a new model, NOVA. The mix weights NOVA most heavily, and that result replicated against predictions committed in advance. Latest results: [alejandrohinojosa.com/research](https://alejandrohinojosa.com/research.html) and [github.com/AlejandroHinojosa2005/IGT-Modeling](https://github.com/AlejandroHinojosa2005/IGT-Modeling).
+:::
+
+::: entry
+Aug. 2026 – Present
+
+**Nonprofit project** · Together For Good, Waco, TX
+
+For a Behavioral Medicine course taught by Dr. Annie T. Ginty, I worked on a four-person team supporting Together For Good, a nonprofit that prevents child abuse and neglect by connecting families in crisis with volunteer caregivers who temporarily care for their children. I built and managed the team's outreach database, researching and organizing contact information for 100 local businesses and tracking every response. I reached out to all 100 businesses, generating 14 responses, including 2 donation commitments and 12 businesses interested in future partnership. I also helped research and compile 70 grant opportunities into a shared spreadsheet for the organization's future funding efforts.
+:::
+
+::: entry
+July 2026 – Present
+
+**Research Assistant** · Social-Personality Research Laboratory, Baylor University, Waco, TX
+
+I worked with Dr. Wade Rowatt on a study using Wave 1 of the Global Flourishing Study (N = 202,898) across 22 countries. I looked at whether a country's dominant K–12 pedagogical tradition predicts two things schooling is often said to shape: adults' sense of personal mastery and their approval of their nation's government. I built a nine-category classification of countries from the comparative-education literature because none existed, preregistered three hypotheses on OSF, and ran every analysis in R, including a wild cluster bootstrap I implemented from the methods literature when no package supported our version of R. [Preregistration](https://doi.org/10.17605/OSF.IO/J9T4F)
+:::
+
+::: entry
+Jan. 2026
+
+**Research Assistant** · Joshua Cabrera, MD, College Station, TX
+
+I worked with Dr. Joshua Cabrera, MD, a psychiatrist in College Station. We looked at his deceased patient population with schizophrenia. The goal was to find links between medications taken by patients and exacerbation of certain conditions such as hypertension and diabetes which may lead to premature death. This research was used internally to gauge whether taking a certain medication is worth the risks given certain biomarkers.
+:::
+
+## Work Experience
+
+::: entry
+Jan. 2023 – Present
+
+**Administrative Assistant** · Arbor Psychological, PLLC, College Station, TX
+
+I schedule and coordinate meetings, collate and distribute mail, do data entry, scan and upload material into patient charts, run work-related errands, and set up the testing room in preparation for psychological evaluations.
+:::
+
+## Volunteer Experience
+
+::: entry
+Aug. 2025 – Present
+
+**Hospice Volunteer** · Alamo Hospice, Waco, TX
+
+I build rapport and meet with hospice patients for an hour biweekly. I listen to the patients, allowing them to share their concerns, regrets, and/or areas of thankfulness. I encourage the patients to share their life story or share what is on their mind.
+:::
+
+::: entry
+Sep. 2024 – Present
+
+**Hotline Volunteer** · Advocacy Center for Crime Victims and Children, Waco, TX
+
+15-hour on-call shifts, every two weeks. I answer incoming crisis calls, provide information, and assist victims of violent crime and child abuse.
+:::
+
+::: entry
+Sep. 2024 – Present
+
+**Mentor** · Baylor Buddies, Baylor University, Waco, TX
+
+I connect weekly with at-risk elementary school students in Waco, TX. I provide encouragement and am a positive role model to help students stay engaged in their education and personal growth.
+:::
+
+## Works in Progress
+
+::: entry
+Summer 2026
+
+***The Young Man's Game*** · a novel (unpublished)
+
+This is a novel about meaning, where it comes from, why we need it, and the not so obvious implications of one's belief. I finished the manuscript during summer 2026 and am currently looking to get it published. [The introduction and first chapter](https://alejandrohinojosa.com/book/)
+:::
+
+## Clinical Observation
+
+::: entry
+June 2026
+
+**Kristina B. Newport, MD** · Chief of Palliative Care, Penn State Department of Medicine, and Chief Medical Officer, American Academy of Hospice & Palliative Medicine
+
+I was able to immerse myself in palliative care research and shadow doctors working with end-of-life patients at Penn State Health Milton S. Hershey Medical Center.
+:::
+
+::: entry
+Jan. 2026
+
+**Madhavi Reddy, MD** · New Horizon Health Center, Brownsville, TX
+
+I was able to use my study on anatomy to help better understand patients and their symptoms. I followed doctors in a high paced setting while still providing quality care.
+:::
+
+## Trainings and Certifications
+
+::: entry
+Jan. 2026
+
+National Society of Leadership and Success Training Program
+:::
+
+::: entry
+Nov. 2025
+
+Adult and Pediatric First Aid/CPR/AED Certification
+:::
+
+::: entry
+Sep. 2025
+
+Office of the Attorney General (OAG) Certified Sexual Assault Training Program
+:::
+
+## Professional Affiliations
+
+::: entry
+Feb. 2026 – Present
+
+Writers' League of Texas
+:::
+
+::: entry
+Jan. 2026 – Present
+
+American Psychological Association (APA)
+:::
+
+::: entry
+Jan. 2026 – Present
+
+National Society of Leadership and Success
+:::
+
+## Languages
+
+English (fluent) and Spanish (fluent)

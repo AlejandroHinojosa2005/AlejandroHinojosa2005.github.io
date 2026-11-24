@@ -30,5 +30,5 @@ This website will grow over time as I develop a sense for how I want to express 
 - Email: [alejandro_hinojosa1@baylor.edu](mailto:alejandro_hinojosa1@baylor.edu) or [hello@alejandrohinojosa.com](mailto:hello@alejandrohinojosa.com)
 - GitHub: [AlejandroHinojosa2005](https://github.com/AlejandroHinojosa2005)
 - ORCID: [0009-0001-1919-8294](https://orcid.org/0009-0001-1919-8294)
-- CV: coming soon
+- CV: [on this site](cv.qmd), or [as a PDF](hinojosa-cv.pdf)
 - Pre-Print: coming soon
