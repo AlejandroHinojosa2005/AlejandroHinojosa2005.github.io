@@ -16,6 +16,9 @@ For a place:
 - **Kyoto, Japan**. A sentence on what to see, or why it stayed with you.
 
 The *** around a title make it bold italic, the way book and film titles appear elsewhere on the site.
+
+The top five films' posters are in the films/ folder (seventh-seal.jpg, 2001.jpg, days-of-heaven.jpg,
+le-samourai.jpg, la-dolce-vita.jpg). To change a poster, replace its file; until a file is there, the box shows the rank.
 -->
 
 ## Books
@@ -50,9 +53,95 @@ first picks coming soon
 
 ## Movies
 
+### My top five
+
 ::: status
-first picks coming soon
+ranked
 :::
+
+```{=html}
+<div class="top-films">
+  <figure class="film">
+    <div class="poster"><span class="rank">1</span><img src="films/seventh-seal.jpg" alt="Poster for The Seventh Seal" loading="lazy" onerror="this.remove()"></div>
+    <figcaption><span class="n">1</span><b><i>The Seventh Seal</i></b><span class="by">Ingmar Bergman, 1957</span></figcaption>
+  </figure>
+  <figure class="film">
+    <div class="poster"><span class="rank">2</span><img src="films/2001.jpg" alt="Poster for 2001: A Space Odyssey" loading="lazy" onerror="this.remove()"></div>
+    <figcaption><span class="n">2</span><b><i>2001: A Space Odyssey</i></b><span class="by">Stanley Kubrick, 1968</span></figcaption>
+  </figure>
+  <figure class="film">
+    <div class="poster"><span class="rank">3</span><img src="films/days-of-heaven.jpg" alt="Poster for Days of Heaven" loading="lazy" onerror="this.remove()"></div>
+    <figcaption><span class="n">3</span><b><i>Days of Heaven</i></b><span class="by">Terrence Malick, 1978</span></figcaption>
+  </figure>
+  <figure class="film">
+    <div class="poster"><span class="rank">4</span><img src="films/le-samourai.jpg" alt="Poster for Le Samouraï" loading="lazy" onerror="this.remove()"></div>
+    <figcaption><span class="n">4</span><b><i>Le Samouraï</i></b><span class="by">Jean-Pierre Melville, 1967</span></figcaption>
+  </figure>
+  <figure class="film">
+    <div class="poster"><span class="rank">5</span><img src="films/la-dolce-vita.jpg" alt="Poster for La Dolce Vita" loading="lazy" onerror="this.remove()"></div>
+    <figcaption><span class="n">5</span><b><i>La Dolce Vita</i></b><span class="by">Federico Fellini, 1960</span></figcaption>
+  </figure>
+</div>
+```
+
+### Science fiction
+
+- ***Metropolis*** · Fritz Lang, 1927
+- ***Stalker*** · Andrei Tarkovsky, 1979
+- ***Blade Runner*** · Ridley Scott, 1982
+- ***Gattaca*** · Andrew Niccol, 1997
+- ***Donnie Darko*** · Richard Kelly, 2001
+- ***Under the Skin*** · Jonathan Glazer, 2013
+- ***Interstellar*** · Christopher Nolan, 2014
+- ***Arrival*** · Denis Villeneuve, 2016
+- ***Tenet*** · Christopher Nolan, 2020
+- ***Dune: Part One*** and ***Part Two*** · Denis Villeneuve, 2021 and 2024
+
+### Suspense
+
+- ***Rope*** · Alfred Hitchcock, 1948
+- ***Vertigo*** · Alfred Hitchcock, 1958
+- ***Psycho*** · Alfred Hitchcock, 1960
+- ***Purple Noon*** · René Clément, 1960
+- ***La Piscine*** · Jacques Deray, 1969
+- ***Memento*** · Christopher Nolan, 2000
+- ***Prisoners*** · Denis Villeneuve, 2013
+
+### Crime and noir
+
+- ***Sunset Boulevard*** · Billy Wilder, 1950
+- ***Le Cercle Rouge*** · Jean-Pierre Melville, 1970
+- ***Chinatown*** · Roman Polanski, 1974
+- ***Reservoir Dogs*** · Quentin Tarantino, 1992
+- ***Pulp Fiction*** · Quentin Tarantino, 1994
+- ***The Usual Suspects*** · Bryan Singer, 1995
+
+### Dreams and puzzles
+
+- ***Last Year at Marienbad*** · Alain Resnais, 1961
+- ***Eyes Wide Shut*** · Stanley Kubrick, 1999
+- ***Mulholland Drive*** · David Lynch, 2001
+- ***Synecdoche, New York*** · Charlie Kaufman, 2008
+
+### Drama
+
+- ***The Magnificent Ambersons*** · Orson Welles, 1942
+- ***One Flew Over the Cuckoo's Nest*** · Miloš Forman, 1975
+- ***American Beauty*** · Sam Mendes, 1999
+- ***Requiem for a Dream*** · Darren Aronofsky, 2000
+- ***The Tree of Life*** · Terrence Malick, 2011
+- ***Whiplash*** · Damien Chazelle, 2014
+- ***Oppenheimer*** · Christopher Nolan, 2023
+
+### Romance
+
+- ***Casablanca*** · Michael Curtiz, 1942
+- ***In the Mood for Love*** · Wong Kar-wai, 2000
+
+### War and westerns
+
+- ***The Good, the Bad and the Ugly*** · Sergio Leone, 1966
+- ***Apocalypse Now*** · Francis Ford Coppola, 1979
 
 ## Podcasts
 

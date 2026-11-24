@@ -751,6 +751,22 @@ body.holiday-christmas .hero { margin-top: 8rem; }
 @keyframes teeter { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
 @media (prefers-reduced-motion: reduce) { .fallen .teeter { animation: none; } }
 
+// Recommendations: the top five films, posters in a row (three across on a phone). Until a poster file is in
+// films/, its box shows the rank.
+.top-films { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.1rem; margin: 0.4rem 0 0.8rem; }
+@media (max-width: 575.98px) { .top-films { grid-template-columns: repeat(3, 1fr); gap: 0.9rem 0.8rem; } }
+.top-films .film { margin: 0; }
+.top-films .poster {
+  position: relative; aspect-ratio: 2 / 3; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba($slate, 0.1); border: 1px solid $rule; border-radius: 8px;
+}
+.top-films .poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.top-films .rank { font-family: $headings-font-family; font-weight: 700; font-size: 2rem; color: var(--accent); }
+.top-films figcaption { margin-top: 0.55rem; font-size: 0.78rem; line-height: 1.45; }
+.top-films figcaption .n { color: var(--accent); font-weight: 700; margin-right: 0.45em; }
+.top-films figcaption .by { display: block; color: $muted; }
+
 // Footer
 .nav-footer { border-top: 0 !important; color: $muted; font-size: 0.8rem; letter-spacing: 0.03em; }
 .nav-footer a { color: $muted; }

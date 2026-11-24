@@ -14,6 +14,7 @@ project:
     - igt.js
     - predict.js
     - alejandro-hinojosa.jpg
+    - films/
     - signature/
     - search.js
     - minisearch.js
