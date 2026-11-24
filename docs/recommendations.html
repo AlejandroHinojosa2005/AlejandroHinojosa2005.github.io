@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4dcde7aeaa0fcc7cc32482bec75adff5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8bb7a7cf39fd172288770d3cb6f1fa74.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ef1fe4eb00e153e12edac96bb7c1c519.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -61,6 +61,35 @@ ul.task-list li input[type="checkbox"] {
 <link rel="icon" type="image/svg+xml" href="./favicon-slate.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-slate-32.png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<script>
+// Recommendations: every section folds under its heading. Sections start closed; a subsection marked {.open} starts
+// open. Each closed-by-default heading shows how many picks are inside. Without JavaScript the page simply shows everything.
+document.addEventListener('DOMContentLoaded', function () {
+  var main = document.querySelector('main'); if (!main) return;
+  var noun = { books: ['book', 'books'], movies: ['film', 'films'], podcasts: ['podcast', 'podcasts'], travel: ['place', 'places'] };
+  var secs = Array.prototype.slice.call(main.querySelectorAll('section.level2, section.level3'));
+  secs.forEach(function (sec) {
+    var h = sec.querySelector(':scope > h2, :scope > h3'); if (!h) return;
+    var top = sec.classList.contains('level2') ? sec : sec.closest('section.level2');
+    var n = sec.querySelectorAll('li').length + sec.querySelectorAll('figure.film').length;
+    var w = noun[top && top.id] || ['pick', 'picks'];
+    var d = document.createElement('details'); d.className = 'fold';
+    if (sec.classList.contains('open')) d.open = true;
+    var s = document.createElement('summary');
+    var c = document.createElement('span'); c.className = 'fold-count';
+    c.textContent = d.open ? '' : n ? n + ' ' + w[n === 1 ? 0 : 1] : 'coming soon';   // no count on subsections that start open
+    while (sec.firstChild) { var x = sec.firstChild; sec.removeChild(x); if (x === h) { s.appendChild(h); s.appendChild(c); } else d.appendChild(x); }
+    d.insertBefore(s, d.firstChild); sec.appendChild(d);
+  });
+  // a link to a heading inside a closed section opens it
+  function reveal() {
+    var t = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1))); if (!t) return;
+    for (var e = t; e; e = e.parentElement) if (e.tagName === 'DETAILS') e.open = true;
+    t.scrollIntoView();
+  }
+  window.addEventListener('hashchange', reveal); reveal();
+});
+</script>
 
 
 <link rel="stylesheet" href="fonts.css">
@@ -158,14 +187,17 @@ The *** around a title make it bold italic, the way book and film titles appear 
 
 The top five films' posters are in the films/ folder (seventh-seal.jpg, 2001.jpg, days-of-heaven.jpg,
 le-samourai.jpg, la-dolce-vita.jpg). To change a poster, replace its file; until a file is there, the box shows the rank.
+
+Every section and subsection starts closed, and its heading opens it (the script in _head-recs.html does this).
+A subsection with {.open} after its heading starts open when its section is opened.
 -->
 <section id="books" class="level2">
 <h2 data-anchor-id="books">Books</h2>
 <div class="status">
 <p>in no particular order</p>
 </div>
-<section id="drop-everything-and-read" class="level3">
-<h3 data-anchor-id="drop-everything-and-read">Drop everything and read</h3>
+<section id="drop-everything-and-read" class="level3 open">
+<h3 class="open" data-anchor-id="drop-everything-and-read">Drop everything and read</h3>
 <ul>
 <li><strong><em>The Society of Mind</em></strong> · Marvin Minsky, 1986</li>
 <li><strong><em>I Am a Strange Loop</em></strong> · Douglas Hofstadter, 2007</li>
@@ -193,8 +225,8 @@ le-samourai.jpg, la-dolce-vita.jpg). To change a poster, replace its file; until
 </section>
 <section id="movies" class="level2">
 <h2 data-anchor-id="movies">Movies</h2>
-<section id="my-top-five" class="level3">
-<h3 data-anchor-id="my-top-five">My top five</h3>
+<section id="my-top-five" class="level3 open">
+<h3 class="open" data-anchor-id="my-top-five">My top five</h3>
 <div class="status">
 <p>ranked</p>
 </div>

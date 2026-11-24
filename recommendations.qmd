@@ -19,6 +19,9 @@ The *** around a title make it bold italic, the way book and film titles appear 
 
 The top five films' posters are in the films/ folder (seventh-seal.jpg, 2001.jpg, days-of-heaven.jpg,
 le-samourai.jpg, la-dolce-vita.jpg). To change a poster, replace its file; until a file is there, the box shows the rank.
+
+Every section and subsection starts closed, and its heading opens it (the script in _head-recs.html does this).
+A subsection with {.open} after its heading starts open when its section is opened.
 -->
 
 ## Books
@@ -27,7 +30,7 @@ le-samourai.jpg, la-dolce-vita.jpg). To change a poster, replace its file; until
 in no particular order
 :::
 
-### Drop everything and read
+### Drop everything and read {.open}
 
 - ***The Society of Mind*** · Marvin Minsky, 1986
 - ***I Am a Strange Loop*** · Douglas Hofstadter, 2007
@@ -53,7 +56,7 @@ first picks coming soon
 
 ## Movies
 
-### My top five
+### My top five {.open}
 
 ::: status
 ranked

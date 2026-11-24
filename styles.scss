@@ -751,6 +751,28 @@ body.holiday-christmas .hero { margin-top: 8rem; }
 @keyframes teeter { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
 @media (prefers-reduced-motion: reduce) { .fallen .teeter { animation: none; } }
 
+// Recommendations: each section folds under its heading (the script is in _head-recs.html). Closed, the heading's
+// diamond is grey; open, it takes the section's color. The count of picks sits beside the heading.
+.page-recs details.fold > summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: baseline; gap: 0.6rem;
+}
+.page-recs details.fold > summary::-webkit-details-marker { display: none; }
+.page-recs details.fold > summary::before {
+  content: ""; flex: none; width: 0.55em; height: 0.55em; align-self: center;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: $muted; transition: background 0.2s, transform 0.2s;
+}
+.page-recs details.fold[open] > summary::before { background: var(--accent); transform: scale(1.25); }
+.page-recs details.fold > summary > h2, .page-recs details.fold > summary > h3 { margin: 0; transition: color 0.2s; }
+.page-recs details.fold > summary:hover > h2, .page-recs details.fold > summary:hover > h3 { color: var(--accent); }
+.page-recs details.fold > summary:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 4px; }
+.page-recs section.level2 > details.fold > summary { margin-top: 2.2rem; }
+.page-recs section.level3 > details.fold > summary { margin-top: 1.1rem; }
+.page-recs details.fold[open] > summary { margin-bottom: 0.8rem; }
+.page-recs .fold-count { color: $muted; font-size: 0.8rem; letter-spacing: 0.02em; white-space: nowrap; }
+.page-recs details.fold > details, .page-recs details.fold > section.level3 { margin-left: 0; }
+
 // Recommendations: the top five films, posters in a row (three across on a phone). Until a poster file is in
 // films/, its box shows the rank.
 .top-films { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.1rem; margin: 0.4rem 0 0.8rem; }

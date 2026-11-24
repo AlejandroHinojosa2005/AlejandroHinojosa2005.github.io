@@ -1,3 +1,32 @@
 <link rel="icon" type="image/svg+xml" href="/favicon-slate.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-slate-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>
+// Recommendations: every section folds under its heading. Sections start closed; a subsection marked {.open} starts
+// open. Each closed-by-default heading shows how many picks are inside. Without JavaScript the page simply shows everything.
+document.addEventListener('DOMContentLoaded', function () {
+  var main = document.querySelector('main'); if (!main) return;
+  var noun = { books: ['book', 'books'], movies: ['film', 'films'], podcasts: ['podcast', 'podcasts'], travel: ['place', 'places'] };
+  var secs = Array.prototype.slice.call(main.querySelectorAll('section.level2, section.level3'));
+  secs.forEach(function (sec) {
+    var h = sec.querySelector(':scope > h2, :scope > h3'); if (!h) return;
+    var top = sec.classList.contains('level2') ? sec : sec.closest('section.level2');
+    var n = sec.querySelectorAll('li').length + sec.querySelectorAll('figure.film').length;
+    var w = noun[top && top.id] || ['pick', 'picks'];
+    var d = document.createElement('details'); d.className = 'fold';
+    if (sec.classList.contains('open')) d.open = true;
+    var s = document.createElement('summary');
+    var c = document.createElement('span'); c.className = 'fold-count';
+    c.textContent = d.open ? '' : n ? n + ' ' + w[n === 1 ? 0 : 1] : 'coming soon';   // no count on subsections that start open
+    while (sec.firstChild) { var x = sec.firstChild; sec.removeChild(x); if (x === h) { s.appendChild(h); s.appendChild(c); } else d.appendChild(x); }
+    d.insertBefore(s, d.firstChild); sec.appendChild(d);
+  });
+  // a link to a heading inside a closed section opens it
+  function reveal() {
+    var t = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1))); if (!t) return;
+    for (var e = t; e; e = e.parentElement) if (e.tagName === 'DETAILS') e.open = true;
+    t.scrollIntoView();
+  }
+  window.addEventListener('hashchange', reveal); reveal();
+});
+</script>
