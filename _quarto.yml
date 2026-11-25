@@ -13,6 +13,7 @@ project:
     - holidays.js
     - igt.js
     - predict.js
+    - realplayers.json
     - alejandro-hinojosa.jpg
     - films/
     - signature/

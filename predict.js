@@ -4,6 +4,9 @@
 // the same equations as scripts/43b_prereg_models.R in the IGT-Modeling repository, with the median settings fitted
 // to the 162 participants; the mix uses the stacking weights fitted to the 440 participants of the preregistered
 // replication. The decks pay as in the original task (Bechara et al., 1994). Nothing is sent anywhere.
+// "Watch a real player" replays one of the 40 people of Maia & McClelland (2004), a study Centaur never saw, with the
+// probabilities scored in the paper (realplayers.json, from scripts/59_website_replay.R): each model refit after every
+// choice, the mix, and Centaur (Binz et al., 2025), whose lane is revealed only when the replay ends.
 (function () {
   // ---------- the task: [win, loss] of each card, ten cards per deck ----------
   var DECKS = [
@@ -86,7 +89,8 @@
   ];
   var wsum = MODELS.reduce(function (a, d) { return a + d.w; }, 0);
   MODELS.forEach(function (d) { d.w /= wsum; });
-  var ENTRIES = MODELS.map(function (d) { return { id: d.id, name: d.name, mix: false }; }).concat([{ id: "mix", name: "Mix of all eight", mix: true }]);
+  var ENTRIES = MODELS.map(function (d) { return { id: d.id, name: d.name, mix: false }; })
+    .concat([{ id: "mix", name: "Mix of all eight", mix: true }, { id: "centaur", name: "Centaur", centaur: true }]);
 
   var box = document.querySelector(".wp");
   if (box) play(box);
@@ -97,19 +101,21 @@
   function play(box) {
     var decksEl = box.querySelector(".wp-decks"), grid = box.querySelector(".wp-grid"), out = box.querySelector(".wp-out"),
         bankEl = box.querySelector(".wp-bank b"), race = box.querySelector(".wp-race"), countEl = box.querySelector(".wp-count"),
-        watchBtn = box.querySelector(".wp-watch"), resetBtn = box.querySelector(".wp-reset");
-    var st, timer = null, lanes = {};
+        watchBtn = box.querySelector(".wp-watch"), resetBtn = box.querySelector(".wp-reset"),
+        realBtn = box.querySelector(".wp-real"), revealEl = box.querySelector(".wp-reveal"), subEl = box.querySelector(".wp-sub");
+    var SUB = subEl ? subEl.textContent : "";
+    var st, timer = null, lanes = {}, REAL = null;
 
     LETTERS.forEach(function (L, k) {
       var b = document.createElement("button");
       b.type = "button"; b.className = "wp-deck"; b.setAttribute("aria-label", "Deck " + L);
       b.innerHTML = '<span class="wp-letter">' + L + '</span><i class="s ' + SHAPES[k] + " k" + k + '"></i>';
-      b.onclick = function () { if (timer) stopWatch(); choose(k); };
+      b.onclick = function () { if (timer) stopWatch(); if (st.replay) reset(); choose(k); };
       decksEl.appendChild(b);
     });
     for (var i = 0; i < MAXT; i++) grid.insertAdjacentHTML("beforeend", '<span class="c"></span>');
     ENTRIES.forEach(function (e) {
-      var lane = document.createElement("div"); lane.className = "wp-lane" + (e.mix ? " mix" : "");
+      var lane = document.createElement("div"); lane.className = "wp-lane" + (e.mix ? " mix" : "") + (e.centaur ? " centaur" : "");
       lane.innerHTML = '<span class="wp-name">' + e.name + '</span><span class="wp-track"><span class="wp-chance"></span><span class="wp-dot">–</span></span>';
       race.appendChild(lane); lanes[e.id] = lane;
     });
@@ -118,17 +124,20 @@
     function money(v) { return "$" + Math.abs(v).toLocaleString("en-US"); }
     function pct(x) { return Math.round(x * 100) + "%"; }
     function forecast() { st.pred = st.states.map(function (s, i) { return MODELS[i].m.probs(s); }); }
-    function score(id) { return st.t ? Math.exp(st.logp[id] / st.t) : 0.25; }
+    function score(id) { return st.n ? Math.exp(st.logp[id] / st.n) : 0.25; }
+    function shown(e) { return !e.centaur || st.revealed; }
 
     function reset() {
       stopWatch();
-      st = { t: 0, bank: 2000, states: MODELS.map(function (d) { return d.m.start(); }), logp: {} };
+      st = { t: 0, n: 0, bank: 2000, states: MODELS.map(function (d) { return d.m.start(); }), logp: {}, replay: null, revealed: false };
       ENTRIES.forEach(function (e) { st.logp[e.id] = 0; });
       forecast();
       grid.querySelectorAll(".c").forEach(function (c) { c.innerHTML = ""; });
       out.textContent = "Choose a deck to start.";
       bankEl.textContent = money(st.bank);
       decksEl.querySelectorAll("button").forEach(function (b) { b.disabled = false; });
+      lanes.centaur.classList.remove("shown");
+      if (revealEl) revealEl.hidden = true;
       render();
     }
     function choose(j) {
@@ -137,7 +146,7 @@
       MODELS.forEach(function (d, i) { var pj = Math.max(st.pred[i][j], 1e-9); st.logp[d.id] += Math.log(pj); pmix += d.w * pj; });
       st.logp.mix += Math.log(pmix);
       st.states = st.states.map(function (s, i) { return MODELS[i].m.update(s, j, win, loss); });
-      st.t++; st.bank += win + loss;
+      st.t++; st.n++; st.bank += win + loss;
       forecast();
       grid.children[st.t - 1].innerHTML = '<i class="s ' + SHAPES[j] + " k" + j + '"></i>';
       out.innerHTML = "<b>" + LETTERS[j] + '</b> &nbsp;<span class="wp-gain">+' + money(win) + "</span>" + (loss ? ' &nbsp;<span class="wp-loss">−' + money(-loss) + "</span>" : "");
@@ -147,17 +156,76 @@
       return card;
     }
     function render() {
-      countEl.textContent = st.t ? "after " + st.t + (st.t === 1 ? " choice" : " choices") : "no choices yet";
-      ENTRIES.map(function (e) { return { e: e, s: score(e.id) }; })
-        .sort(function (a, b) { return st.t ? b.s - a.s : ENTRIES.indexOf(a.e) - ENTRIES.indexOf(b.e); })
+      if (subEl) subEl.textContent = st.replay ? SUB.replace("the choices you made", "the choices this player made") : SUB;
+      countEl.textContent = (st.t ? "after " + st.t + (st.t === 1 ? " choice" : " choices") : "no choices yet") +
+        (st.replay ? " · a real player" : "");
+      ENTRIES.filter(shown).map(function (e) { return { e: e, s: score(e.id) }; })
+        .sort(function (a, b) { return st.n ? b.s - a.s : ENTRIES.indexOf(a.e) - ENTRIES.indexOf(b.e); })
         .forEach(function (x, rank) {
           var lane = lanes[x.e.id], dot = lane.querySelector(".wp-dot");
-          dot.style.left = (st.t ? x.s * 100 : 25) + "%";
-          dot.textContent = st.t ? rank + 1 : "–";
-          dot.title = x.e.name + ": " + (st.t ? pct(x.s) : "no choices yet");
-          lane.classList.toggle("top", st.t > 0 && rank === 0);
+          dot.style.left = (st.n ? x.s * 100 : 25) + "%";
+          dot.textContent = st.n ? rank + 1 : "–";
+          dot.title = x.e.name + ": " + (st.n ? pct(x.s) : "no choices yet");
+          lane.classList.toggle("top", st.n > 0 && rank === 0);
         });
     }
+
+    // A real player: one of the 40 people of Maia & McClelland (2004), replayed with the probabilities from the paper
+    function realStep(fast) {
+      var pl = st.replay, t = st.t;
+      if (t >= MAXT) { finishReal(); return; }
+      var j = +pl.c.charAt(t) - 1, win = pl.w[t], loss = pl.l[t];
+      if (t >= 1) {                                        // trial 1 is not scored, as in the paper
+        ENTRIES.forEach(function (e) { st.logp[e.id] += Math.log(Math.max(pl.p[e.id][t - 1], 1) / 1000); });
+        st.n++;
+      }
+      st.t++; st.bank += win + loss;
+      grid.children[t].innerHTML = '<i class="s ' + SHAPES[j] + " k" + j + '"></i>';
+      out.innerHTML = "<b>" + LETTERS[j] + '</b> &nbsp;<span class="wp-gain">+' + money(win) + "</span>" + (loss ? ' &nbsp;<span class="wp-loss">−' + money(-loss) + "</span>" : "");
+      bankEl.textContent = (st.bank < 0 ? "−" : "") + money(st.bank);
+      render();
+      if (st.t >= MAXT) finishReal();
+      else if (!fast) timer = setTimeout(function () { realStep(false); }, 180);
+    }
+    function finishReal() {
+      clearTimeout(timer); timer = null; realBtn.textContent = "Watch a real player";
+      st.revealed = true;
+      lanes.centaur.classList.add("shown");
+      out.innerHTML += " &nbsp;· done";
+      render();
+      if (revealEl) {
+        var c = score("centaur"), m = score("mix");
+        revealEl.innerHTML = "<b>One more contestant: Centaur.</b> A language model with 70 billion parameters, trained on ten million human " +
+          'choices from 160 experiments (<a href="https://doi.org/10.1038/s41586-025-09215-4">Binz et al., 2025</a>). This person’s study was ' +
+          "never in its training data. For this player it gave the choices made " + pct(c) + " on average, against " + pct(m) + " for the mix; " +
+          "across all 104 people it never saw, 41% against 37%, and it beat the mix for 96 of them. " +
+          "<b>So why not just use it?</b> Each model’s handful of parameters means something you can name and measure in a person, like how " +
+          "fast they learn from losses or how strongly they stick with a deck. Centaur’s 70 billion do not: no one can yet read how it reaches " +
+          "a prediction, the problem mechanistic interpretability works on. It can tell you what a person will do, not why.";
+        revealEl.hidden = false;
+      }
+    }
+    function startReal() {
+      stopWatch();
+      out.textContent = "Loading a real player…";
+      var go = function () {
+        reset();
+        st.replay = REAL[Math.floor(Math.random() * REAL.length)];
+        decksEl.querySelectorAll("button").forEach(function (b) { b.disabled = false; });
+        out.textContent = "A real player (Maia & McClelland, 2004).";
+        realBtn.textContent = "Stop";
+        if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { while (st.t < MAXT) realStep(true); }
+        else realStep(false);
+      };
+      if (REAL) return go();
+      fetch("realplayers.json").then(function (r) { return r.json(); })
+        .then(function (j) { REAL = j.players; go(); })
+        .catch(function () { out.textContent = "Could not load the real players."; });
+    }
+    if (realBtn) realBtn.onclick = function () {
+      if (timer && st.replay) { clearTimeout(timer); timer = null; realBtn.textContent = "Watch a real player"; }
+      else startReal();
+    };
 
     // A simulated player: ORL + alpha with settings from the middle half of the fits (as in igt.js)
     var RANGE = { Arew: [0.103, 0.989], Apun: [0.052, 0.423], Kp: [0.080, 1.202], bF: [0.824, 3.592], bP: [-7.034, 5.533], alpha: [0.010, 0.802] };
@@ -178,8 +246,11 @@
       if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { while (st.t < MAXT) step(true); stopWatch(); }
       else step(false);
     }
-    function stopWatch() { clearTimeout(timer); timer = null; watchBtn.textContent = "Watch a simulated player"; }
-    watchBtn.onclick = function () { if (timer) stopWatch(); else startWatch(); };
+    function stopWatch() {
+      clearTimeout(timer); timer = null; watchBtn.textContent = "Watch a simulated player";
+      if (realBtn) realBtn.textContent = "Watch a real player";
+    }
+    watchBtn.onclick = function () { if (timer && !st.replay) stopWatch(); else startWatch(); };
     resetBtn.onclick = reset;
     reset();
   }

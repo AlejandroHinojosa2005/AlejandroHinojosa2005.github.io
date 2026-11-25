@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4dcde7aeaa0fcc7cc32482bec75adff5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3a2eba0a00f0e853af5d9cd44d22c810.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2696b0df83212c14ab5ef369311d4475.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -198,14 +198,15 @@ ul.task-list li input[type="checkbox"] {
     <div class="wp-decks"></div>
     <div class="wp-result" aria-live="polite"><span class="wp-out">Choose a deck to start.</span><span class="wp-bank">bank <b>$2,000</b></span></div>
     <div class="wp-grid" aria-hidden="true"></div>
-    <div class="wp-controls"><button type="button" class="wp-watch">Watch a simulated player</button><button type="button" class="wp-reset">Start over</button></div>
+    <div class="wp-controls"><button type="button" class="wp-watch">Watch a simulated player</button><button type="button" class="wp-real">Watch a real player</button><button type="button" class="wp-reset">Start over</button></div>
   </div>
   <div class="wp-board">
     <div class="wp-board-head"><span class="t">Who predicts you best?</span><span class="wp-count">no choices yet</span></div>
     <p class="wp-sub">Average chance each model gave the choices you made. The line marks guessing (25%).</p>
     <div class="wp-race"></div>
+    <p class="wp-reveal" hidden=""></p>
   </div>
-  <figcaption class="fig-note">Each model plays with the median settings fitted to the 162 participants; the mix combines all eight with the weights fitted to 440 people in the preregistered replication. Guessing at random scores 25%. The decks pay as in the original task (Bechara et al., 1994). Nothing you click leaves your browser.</figcaption>
+  <figcaption class="fig-note">Each model plays with the median settings fitted to the 162 participants; the mix combines all eight with the weights fitted to 440 people in the preregistered replication. Guessing at random scores 25%. The decks pay as in the original task (Bechara et al., 1994). Nothing you click leaves your browser. <em>Watch a real player</em> replays one of 40 people from a study Centaur never saw (<a href="https://doi.org/10.1073/pnas.0406666101">Maia &amp; McClelland, 2004</a>), with each model's predictions from the paper, refit after every choice; when the replay ends, one more contestant is revealed.</figcaption>
 </figure>
 </section>
 <section id="switching-between-strategies" class="level2">
@@ -237,7 +238,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="status">
 <p>planned</p>
 </div>
-<p>Every model here builds in a learning rule. <strong>Tiny recurrent neural networks</strong>, with only a few units and no rule built in, can learn people’s choices directly, and they often predict those choices better than classic models do (<a href="https://doi.org/10.1038/s41586-025-09142-4">Ji-An, Benna &amp; Mattar, 2025</a>). Trained and tested on the same held-out choices as the models, they will show how much predictable structure ORL + α and the stacked mix still miss, and the strategies the networks learn can point to what is missing. A second benchmark is Centaur, a language model fine-tuned on choices from 160 experiments (<a href="https://doi.org/10.1038/s41586-025-09215-4">Binz et al., 2025</a>), scored only on participants it never saw.</p>
+<p>Every model here builds in a learning rule. <strong>Tiny recurrent neural networks</strong>, with only a few units and no rule built in, can learn people’s choices directly, and they often predict those choices better than classic models do (<a href="https://doi.org/10.1038/s41586-025-09142-4">Ji-An, Benna &amp; Mattar, 2025</a>). Trained and tested on the same held-out choices as the models, they will show how much predictable structure ORL + α and the stacked mix still miss, and the strategies the networks learn can point to what is missing. A second benchmark is Centaur, a language model with 70 billion parameters, fine-tuned on choices from 160 experiments (<a href="https://doi.org/10.1038/s41586-025-09215-4">Binz et al., 2025</a>). On the 104 participants it never saw, predicting each choice only from the ones before it, it gave the choice people made 41% on average, against 37% for the mix of all eight models, and it beat the mix for 96 of them. Its edge over NOVA is largest after losses and when people stay with a deck.</p>
+<p>So why not just use Centaur? A model’s parameters are worth something only if they mean something: a learning rate or a pull toward the last deck can be measured in a person and compared between groups. Centaur’s 70 billion parameters can’t be read that way. How it reaches a prediction is still a black box, the problem mechanistic interpretability works on, so it can say what a person will do but not why. The gap between it and the models measures what the models still miss, and tiny networks are a way to find it.</p>
 </section>
 <section id="eeg-whose-prediction-errors-does-the-brain-track" class="level3">
 <h3 data-anchor-id="eeg-whose-prediction-errors-does-the-brain-track">EEG: whose prediction errors does the brain track?</h3>

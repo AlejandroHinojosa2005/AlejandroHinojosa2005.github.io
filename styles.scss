@@ -699,6 +699,15 @@ ol.chapters .soon { color: $muted; font-size: 0.85rem; }
   .wp-axis > span:first-child { display: none; }
 }
 // Two models, one curve: ORL's perseverance and VSE's exploration bonus, with a slider for VSE's recovery rate
+// The race's last contestant: Centaur, shown only when a real player's replay ends
+.wp-lane.centaur { display: none; }
+.wp-lane.centaur.shown { display: grid; animation: wp-reveal 0.8s ease; }
+.wp-lane.centaur .wp-name { font-family: $headings-font-family; font-weight: 700; color: $brick; }
+.wp-lane.centaur .wp-dot, .wp-lane.centaur.top .wp-dot { background: $brick; }
+.wp-reveal { margin: 0.9rem 0 0; padding: 0.7rem 0.9rem; border-left: 3px solid $brick; background: rgba($brick, 0.06); font-size: 0.8rem; line-height: 1.6; }
+.wp-reveal b { color: $brick; }
+@keyframes wp-reveal { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .wp-lane.centaur.shown { animation: none; } }
 .wp-curve { margin: 1rem 0 2.4rem; }
 .wp-curve svg { display: block; width: 100%; max-width: 640px; height: auto; }
 .wp-key { display: flex; flex-wrap: wrap; gap: 0.2rem 1.4rem; font-family: $headings-font-family; font-weight: 700; font-size: 0.8rem; color: $ink; margin-bottom: 0.3rem; }
