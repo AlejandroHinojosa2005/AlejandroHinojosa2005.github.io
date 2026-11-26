@@ -6,12 +6,12 @@
 // open. Each closed-by-default heading shows how many picks are inside. Without JavaScript the page simply shows everything.
 document.addEventListener('DOMContentLoaded', function () {
   var main = document.querySelector('main'); if (!main) return;
-  var noun = { books: ['book', 'books'], movies: ['film', 'films'], podcasts: ['podcast', 'podcasts'], travel: ['place', 'places'] };
+  var noun = { books: ['book', 'books'], movies: ['film', 'films'], art: ['artist', 'artists'], podcasts: ['podcast', 'podcasts'], travel: ['place', 'places'] };
   var secs = Array.prototype.slice.call(main.querySelectorAll('section.level2, section.level3'));
   secs.forEach(function (sec) {
     var h = sec.querySelector(':scope > h2, :scope > h3'); if (!h) return;
     var top = sec.classList.contains('level2') ? sec : sec.closest('section.level2');
-    var n = sec.querySelectorAll('li').length + sec.querySelectorAll('figure.film').length;
+    var n = sec.querySelectorAll('li').length + sec.querySelectorAll('figure.film, figure.art').length;
     var w = noun[top && top.id] || ['pick', 'picks'];
     var d = document.createElement('details'); d.className = 'fold';
     if (sec.classList.contains('open')) d.open = true;
