@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4dcde7aeaa0fcc7cc32482bec75adff5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b0990243b771c0e346a078f2b1962b62.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-be56705eac0cc4f0c22776d107980be2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -187,14 +187,16 @@ The *** around a title make it bold italic, the way book and film titles appear 
 
 The top five films' posters are in the films/ folder (seventh-seal.jpg, 2001.jpg, days-of-heaven.jpg,
 le-samourai.jpg, la-dolce-vita.jpg). To change a poster, replace its file; until a file is there, the box shows the rank.
+Each poster links to the film's page on Letterboxd (https://letterboxd.com/film/SLUG/).
 
 Every section and subsection starts closed, and its heading opens it (the script in _head-recs.html does this).
 A subsection with {.open} after its heading starts open when its section is opened.
 
 ART: each artist is one <figure class="art"> block in the Art section; copy one and change its links, title and
 dates. The image is a public-domain file on Wikimedia Commons, loaded by its file name
-(https://commons.wikimedia.org/wiki/Special:FilePath/FILE_NAME?width=960). For a work still under copyright,
-leave out the <img> and the frame shows the title, linking to where the work can be seen.
+(https://commons.wikimedia.org/wiki/Special:FilePath/FILE_NAME?width=1280). For a work still under copyright,
+leave out the <img> and the frame shows the title. Either way the frame links to where the work can be seen,
+usually its museum's page.
 -->
 <section id="books" class="level2">
 <h2 data-anchor-id="books">Books</h2>
@@ -237,23 +239,23 @@ leave out the <img> and the frame shows the title, linking to where the work can
 </div>
 <div class="top-films">
   <figure class="film figure">
-    <div class="poster"><span class="rank">1</span><img src="films/seventh-seal.jpg" alt="Poster for The Seventh Seal" loading="lazy" onerror="this.remove()" class="figure-img"></div>
+    <a class="poster" href="https://letterboxd.com/film/the-seventh-seal/"><span class="rank">1</span><img src="films/seventh-seal.jpg" alt="Poster for The Seventh Seal" loading="lazy" onerror="this.remove()" class="figure-img"></a>
     <figcaption><span class="n">1</span><b><i>The Seventh Seal</i></b><span class="by">Ingmar Bergman, 1957</span></figcaption>
   </figure>
   <figure class="film figure">
-    <div class="poster"><span class="rank">2</span><img src="films/2001.jpg" alt="Poster for 2001: A Space Odyssey" loading="lazy" onerror="this.remove()" class="figure-img"></div>
+    <a class="poster" href="https://letterboxd.com/film/2001-a-space-odyssey/"><span class="rank">2</span><img src="films/2001.jpg" alt="Poster for 2001: A Space Odyssey" loading="lazy" onerror="this.remove()" class="figure-img"></a>
     <figcaption><span class="n">2</span><b><i>2001: A Space Odyssey</i></b><span class="by">Stanley Kubrick, 1968</span></figcaption>
   </figure>
   <figure class="film figure">
-    <div class="poster"><span class="rank">3</span><img src="films/days-of-heaven.jpg" alt="Poster for Days of Heaven" loading="lazy" onerror="this.remove()" class="figure-img"></div>
+    <a class="poster" href="https://letterboxd.com/film/days-of-heaven/"><span class="rank">3</span><img src="films/days-of-heaven.jpg" alt="Poster for Days of Heaven" loading="lazy" onerror="this.remove()" class="figure-img"></a>
     <figcaption><span class="n">3</span><b><i>Days of Heaven</i></b><span class="by">Terrence Malick, 1978</span></figcaption>
   </figure>
   <figure class="film figure">
-    <div class="poster"><span class="rank">4</span><img src="films/le-samourai.jpg" alt="Poster for Le Samouraï" loading="lazy" onerror="this.remove()" class="figure-img"></div>
+    <a class="poster" href="https://letterboxd.com/film/le-samourai/"><span class="rank">4</span><img src="films/le-samourai.jpg" alt="Poster for Le Samouraï" loading="lazy" onerror="this.remove()" class="figure-img"></a>
     <figcaption><span class="n">4</span><b><i>Le Samouraï</i></b><span class="by">Jean-Pierre Melville, 1967</span></figcaption>
   </figure>
   <figure class="film figure">
-    <div class="poster"><span class="rank">5</span><img src="films/la-dolce-vita.jpg" alt="Poster for La Dolce Vita" loading="lazy" onerror="this.remove()" class="figure-img"></div>
+    <a class="poster" href="https://letterboxd.com/film/la-dolce-vita/"><span class="rank">5</span><img src="films/la-dolce-vita.jpg" alt="Poster for La Dolce Vita" loading="lazy" onerror="this.remove()" class="figure-img"></a>
     <figcaption><span class="n">5</span><b><i>La Dolce Vita</i></b><span class="by">Federico Fellini, 1960</span></figcaption>
   </figure>
 </div>
@@ -339,32 +341,36 @@ leave out the <img> and the frame shows the title, linking to where the work can
 </div>
 <div class="art-grid">
   <figure class="art figure">
-    <a class="frame" href="https://commons.wikimedia.org/wiki/Category:C%C3%A9notaphe_%C3%A0_Newton"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/%C3%89tienne-Louis_Boull%C3%A9e,_C%C3%A9notaphe_de_Newton_-_04_-_Coupe,_repr%C3%A9sentation_de_jour_avec_effet_int%C3%A9rieur_de_nuit.jpg?width=960" alt="Étienne-Louis Boullée, Cenotaph for Newton, 1784: a section through the sphere" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>Cenotaph for Newton</i><small>1784</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/%C3%89tienne-Louis_Boull%C3%A9e"><b>Étienne-Louis Boullée</b></a> <span class="dates">1728–1799</span><span class="work"><i>Cenotaph for Newton</i>, 1784</span></figcaption>
+    <a class="frame" href="https://www.nga.gov/artworks/73870-perspective-view-interior-metropolitan-church"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Etienne-Louis_Boull%C3%A9e,_Perspective_View_of_the_Interior_of_a_Metropolitan_Church,_1780-1781,_NGA_73870.jpg?width=1280" alt="Étienne-Louis Boullée, Perspective View of the Interior of a Metropolitan Church, 1780–81" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>Interior of a Metropolitan Church</i><small>1780–81</small></span></a>
+    <figcaption><a href="https://en.wikipedia.org/wiki/%C3%89tienne-Louis_Boull%C3%A9e"><b>Étienne-Louis Boullée</b></a> <span class="dates">1728–1799</span><span class="work"><i>Interior of a Metropolitan Church</i>, 1780–81</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://en.wikipedia.org/wiki/Carnation,_Lily,_Lily,_Rose"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/John_Singer_Sargent_-_Carnation,_Lily,_Lily,_Rose_-_Google_Art_Project.jpg?width=960" alt="John Singer Sargent, Carnation, Lily, Lily, Rose, 1885–86" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>Carnation, Lily, Lily, Rose</i><small>1885–86</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/John_Singer_Sargent"><b>John Singer Sargent</b></a> <span class="dates">1856–1925</span><span class="work"><i>Carnation, Lily, Lily, Rose</i>, 1885–86</span></figcaption>
+    <a class="frame" href="https://www.gardnermuseum.org/experience/collection/13259"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/EL_JALEO-SINGER.jpg?width=1280" alt="John Singer Sargent, El Jaleo, 1882" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>El Jaleo</i><small>1882</small></span></a>
+    <figcaption><a href="https://en.wikipedia.org/wiki/John_Singer_Sargent"><b>John Singer Sargent</b></a> <span class="dates">1856–1925</span><span class="work"><i>El Jaleo</i>, 1882</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://en.wikipedia.org/wiki/Dance_(Matisse)"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Henri_Matisse,_1909,_La_danse_(I),_Museum_of_Modern_Art.jpg?width=960" alt="Henri Matisse, Dance (I), 1909" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>Dance (I)</i><small>1909</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Henri_Matisse"><b>Henri Matisse</b></a> <span class="dates">1869–1954</span><span class="work"><i>Dance (I)</i>, 1909</span></figcaption>
+    <a class="frame" href="https://www.moma.org/collection/works/28451"><span class="stand-in"><i>Les Codomas</i><small>from <i>Jazz</i>, 1947</small></span></a>
+    <figcaption><a href="https://en.wikipedia.org/wiki/Henri_Matisse"><b>Henri Matisse</b></a> <span class="dates">1869–1954</span><span class="work"><i>Les Codomas</i>, from <i>Jazz</i>, 1947</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://collection.cooperhewitt.org/objects/18468717"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Drawing,_Study_for_Maximum_Mass_Permitted_by_the_1916_New_York_Zoning_Law,_Stage_4,_1922_(CH_18468717).jpg?width=960" alt="Hugh Ferriss, Study for Maximum Mass Permitted by the 1916 New York Zoning Law, Stage 4, 1922" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>Study for Maximum Mass, Stage 4</i><small>1922</small></span></a>
+    <a class="frame" href="https://collection.cooperhewitt.org/objects/18468717"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Drawing,_Study_for_Maximum_Mass_Permitted_by_the_1916_New_York_Zoning_Law,_Stage_4,_1922_(CH_18468717).jpg?width=1280" alt="Hugh Ferriss, Study for Maximum Mass Permitted by the 1916 New York Zoning Law, Stage 4, 1922" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>Study for Maximum Mass, Stage 4</i><small>1922</small></span></a>
     <figcaption><a href="https://en.wikipedia.org/wiki/Hugh_Ferriss"><b>Hugh Ferriss</b></a> <span class="dates">1889–1962</span><span class="work"><i>Study for Maximum Mass, Stage 4</i>, 1922</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://en.wikipedia.org/wiki/The_Son_of_Man"><span class="stand-in"><i>The Son of Man</i><small>1964</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Ren%C3%A9_Magritte"><b>René Magritte</b></a> <span class="dates">1898–1967</span><span class="work"><i>The Son of Man</i>, 1964</span></figcaption>
+    <a class="frame" href="https://www.nga.gov/artworks/47956-print-gallery"><span class="stand-in"><i>Print Gallery</i><small>1956</small></span></a>
+    <figcaption><a href="https://en.wikipedia.org/wiki/M._C._Escher"><b>M. C. Escher</b></a> <span class="dates">1898–1972</span><span class="work"><i>Print Gallery</i>, 1956</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://en.wikipedia.org/wiki/Rothko_Chapel"><span class="stand-in"><i>Rothko Chapel</i><small>Houston, 1971</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Mark_Rothko"><b>Mark Rothko</b></a> <span class="dates">1903–1970</span><span class="work"><i>Rothko Chapel</i>, Houston, 1971</span></figcaption>
+    <a class="frame" href="https://www.menil.org/collection/objects/4901-golconda-golconde"><span class="stand-in"><i>Golconda</i><small>1953</small></span></a>
+    <figcaption><a href="https://en.wikipedia.org/wiki/Ren%C3%A9_Magritte"><b>René Magritte</b></a> <span class="dates">1898–1967</span><span class="work"><i>Golconda</i>, 1953</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://en.wikipedia.org/wiki/Slim_Aarons"><span class="stand-in"><i>Poolside Gossip</i><small>Palm Springs, 1970</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Slim_Aarons"><b>Slim Aarons</b></a> <span class="dates">1916–2006</span><span class="work"><i>Poolside Gossip</i>, 1970</span></figcaption>
+    <a class="frame" href="https://www.tate.org.uk/visit/tate-modern/display/in-the-studio/mark-rothko-seagram-murals"><span class="stand-in"><i>Seagram Murals</i><small>1958–59</small></span></a>
+    <figcaption><a href="https://en.wikipedia.org/wiki/Mark_Rothko"><b>Mark Rothko</b></a> <span class="dates">1903–1970</span><span class="work"><i>Seagram Murals</i>, 1958–59</span></figcaption>
+  </figure>
+  <figure class="art figure">
+    <a class="frame" href="https://en.wikipedia.org/wiki/Slim_Aarons"><span class="stand-in"><i>Civilised Snooze</i><small>Athens, 1955</small></span></a>
+    <figcaption><a href="https://en.wikipedia.org/wiki/Slim_Aarons"><b>Slim Aarons</b></a> <span class="dates">1916–2006</span><span class="work"><i>Civilised Snooze</i>, Athens, 1955</span></figcaption>
   </figure>
 </div>
 </section>
