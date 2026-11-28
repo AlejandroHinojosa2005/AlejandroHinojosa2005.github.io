@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-4dcde7aeaa0fcc7cc32482bec75adff5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-be56705eac0cc4f0c22776d107980be2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-384905316371859660e0907ac065c4f5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -61,6 +61,10 @@ ul.task-list li input[type="checkbox"] {
 <link rel="icon" type="image/svg+xml" href="./favicon-slate.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-slate-32.png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<!-- Fonts for the art section's title frames, one per artist (styles.scss) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&amp;family=Playwrite+BE+WAL&amp;family=Rubik+Iso&amp;family=Rubik+Spray+Paint&amp;family=Yellowtail&amp;display=swap">
 <script>
 // Recommendations: every section folds under its heading. Sections start closed; a subsection marked {.open} starts
 // open. Each closed-by-default heading shows how many picks are inside. Without JavaScript the page simply shows everything.
@@ -90,21 +94,119 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('hashchange', reveal); reveal();
 });
 </script>
+<script>
+// Art section: the Escher title frame becomes its own small piece. PRINT and GALLERY are drawn on square frames
+// nested inside one another, then bent by the map behind Escher's Print Gallery (de Smit and Lenstra, 2003): one
+// turn around the center scales the picture by R, so the words wind inward forever. Smooth (bilinear) sampling keeps
+// the bent words readable. It moves only while on screen, and holds still for people who ask for reduced motion.
+document.addEventListener('DOMContentLoaded', function () {
+  var title = document.querySelector('.art-grid .stand-in.escher');
+  if (!title) return;
+  var frame = title.closest('.frame');
+  var cv = document.createElement('canvas');
+  var ctx = cv.getContext && cv.getContext('2d');
+  if (!frame || !ctx) return;                              // no canvas: the plain title stays
+  cv.className = 'droste';
+  cv.setAttribute('aria-hidden', 'true');
+
+  var N = 480, R = 4, L = Math.log(R), K = L / (2 * Math.PI);   // tile size, scale per turn
+  var PERIOD = 14000;                                     // ms for one step inward
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tile = null, size = 0, lut = null, img = null, out = null, running = false, visible = false;
+
+  function drawTile(font) {
+    var c = document.createElement('canvas'); c.width = c.height = N;
+    var t = c.getContext('2d');
+    var band = N / 2 * (1 - 1 / R), inner = N / R, o = (N - inner) / 2;
+    t.fillStyle = '#F8F6F1'; t.fillRect(0, 0, N, N);
+    t.strokeStyle = '#DAD6CE'; t.lineWidth = 2;           // a grid, so the bending shows
+    for (var g = 0; g <= N; g += N / 16) { t.beginPath(); t.moveTo(g, 0); t.lineTo(g, N); t.moveTo(0, g); t.lineTo(N, g); t.stroke(); }
+    t.strokeStyle = '#5F7C91'; t.lineWidth = 8;
+    t.strokeRect(4, 4, N - 8, N - 8); t.strokeRect(o, o, inner, inner);
+    t.textAlign = 'center'; t.textBaseline = 'middle';
+    t.font = 'bold 64px ' + font;
+    for (var k = 0; k < 4; k++) {                          // PRINT, GALLERY, PRINT, GALLERY around the frame
+      t.save(); t.translate(N / 2, N / 2); t.rotate(k * Math.PI / 2);
+      t.fillStyle = k % 2 ? '#8B83BF' : '#5F7C91';           // slate and lavender
+      t.fillText(k % 2 ? 'GALLERY' : 'PRINT', 0, -N / 2 + Math.min(band, N / 4) / 2 + 6); t.restore();
+    }
+    return t.getImageData(0, 0, N, N).data;
+  }
+
+  function layout() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var s = Math.round(frame.clientWidth * dpr);
+    if (!s || s === size) return;
+    size = cv.width = cv.height = s;
+    img = ctx.createImageData(s, s); out = img.data;
+    lut = { re: new Float32Array(s * s), c: new Float32Array(s * s), sn: new Float32Array(s * s) };
+    var h = s / 2;
+    for (var j = 0; j < s; j++) for (var i = 0; i < s; i++) {
+      var x = (i + 0.5 - h) / h, y = (j + 0.5 - h) / h, p = j * s + i;
+      var lr = Math.log(Math.hypot(x, y) || 1e-9), th = Math.atan2(y, x);
+      lut.re[p] = lr + K * th;                             // (log z)(1 - iK): a turn of 2π now also scales by R
+      var im = th - K * lr;
+      lut.c[p] = Math.cos(im); lut.sn[p] = Math.sin(im);
+    }
+  }
+
+  function render(now) {
+    if (!lut || !tile) return;
+    var shift = still ? 0 : (now % PERIOD) / PERIOD * L, n = size * size, half = N / 2;
+    for (var p = 0; p < n; p++) {
+      var m = lut.re[p] + shift;
+      m = ((m % L) + L) % L - L;                           // into one step of the spiral, |z| in [1/R, 1)
+      var e = Math.exp(m), x = e * lut.c[p], y = e * lut.sn[p];
+      if (Math.max(Math.abs(x), Math.abs(y)) < 1 / R) { x *= R; y *= R; }   // inside the inner frame: the next copy out
+      var fx = (x + 1) * half - 0.5, fy = (y + 1) * half - 0.5;   // bilinear sample of the tile
+      fx = fx < 0 ? 0 : fx > N - 1.001 ? N - 1.001 : fx; fy = fy < 0 ? 0 : fy > N - 1.001 ? N - 1.001 : fy;
+      var x1 = fx | 0, y1 = fy | 0, ax = fx - x1, ay = fy - y1, q = (y1 * N + x1) * 4, q2 = q + N * 4, o4 = p * 4;
+      for (var ch = 0; ch < 3; ch++) {
+        var top = tile[q + ch] + (tile[q + 4 + ch] - tile[q + ch]) * ax, bot = tile[q2 + ch] + (tile[q2 + 4 + ch] - tile[q2 + ch]) * ax;
+        out[o4 + ch] = top + (bot - top) * ay;
+      }
+      out[o4 + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  var last = 0;
+  function loop(now) {
+    if (!running) return;
+    if (now - last > 33) { render(now); last = now; }      // about 30 frames a second is plenty
+    if (still) { running = false; return; }
+    requestAnimationFrame(loop);
+  }
+  function go() { if (!running && visible && tile) { running = true; requestAnimationFrame(loop); } }
+
+  var face = getComputedStyle(document.querySelector('h1, h2') || document.body).fontFamily || 'sans-serif';   // the site's heading font
+  var ready = document.fonts && document.fonts.load ? document.fonts.load('bold 64px ' + face) : Promise.resolve();
+  ready.catch(function () {}).then(function () {
+    tile = drawTile(face);
+    frame.appendChild(cv);
+    frame.classList.add('live');
+    layout(); go();
+  });
+  new IntersectionObserver(function (es) {
+    visible = es[0].isIntersecting;
+    if (visible) { layout(); go(); } else running = false;
+  }).observe(frame);
+  window.addEventListener('resize', function () { layout(); if (still) render(0); });
+});
+</script>
 
 
 <link rel="stylesheet" href="fonts.css">
 <meta property="og:title" content="Recommendations – Alejandro Hinojosa">
 <meta property="og:description" content="Books, movies, art, podcasts and places I think are worth your time.">
-<meta property="og:image" content="https://alejandrohinojosa.com/films/seventh-seal.jpg">
+<meta property="og:image" content="https://covers.openlibrary.org/b/id/9962442-L.jpg">
 <meta property="og:site_name" content="Alejandro Hinojosa">
-<meta property="og:image:alt" content="Poster for The Seventh Seal">
-<meta property="og:image:height" content="900">
-<meta property="og:image:width" content="600">
+<meta property="og:image:alt" content="Cover of The Society of Mind">
 <meta name="twitter:title" content="Recommendations – Alejandro Hinojosa">
 <meta name="twitter:description" content="Books, movies, art, podcasts and places I think are worth your time.">
-<meta name="twitter:image" content="https://alejandrohinojosa.com/films/seventh-seal.jpg">
+<meta name="twitter:image" content="https://covers.openlibrary.org/b/id/9962442-L.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image:alt" content="Poster for The Seventh Seal">
+<meta name="twitter:image:alt" content="Cover of The Society of Mind">
 </head>
 
 <body class="nav-fixed page-recs fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
@@ -188,6 +290,8 @@ The *** around a title make it bold italic, the way book and film titles appear 
 The top five films' posters are in the films/ folder (seventh-seal.jpg, 2001.jpg, days-of-heaven.jpg,
 le-samourai.jpg, la-dolce-vita.jpg). To change a poster, replace its file; until a file is there, the box shows the rank.
 Each poster links to the film's page on Letterboxd (https://letterboxd.com/film/SLUG/).
+The three books under "Drop everything and read" use the same row: covers from Open Library
+(https://covers.openlibrary.org/b/id/COVER_ID-L.jpg), each linking back to the book's page there, as Open Library asks.
 
 Every section and subsection starts closed, and its heading opens it (the script in _head-recs.html does this).
 A subsection with {.open} after its heading starts open when its section is opened.
@@ -195,8 +299,9 @@ A subsection with {.open} after its heading starts open when its section is open
 ART: each artist is one <figure class="art"> block in the Art section; copy one and change its links, title and
 dates. The image is a public-domain file on Wikimedia Commons, loaded by its file name
 (https://commons.wikimedia.org/wiki/Special:FilePath/FILE_NAME?width=1280). For a work still under copyright,
-leave out the <img> and the frame shows the title. Either way the frame links to where the work can be seen,
-usually its museum's page.
+leave out the <img> and the frame shows the title, in a font chosen for the artist (a class on the stand-in span,
+styled in styles.scss; the fonts load in _head-recs.html). The frame and the name link to the artist's page on
+The Art Story (https://www.theartstory.org/artist/...); artists it doesn't cover keep Wikipedia or a museum page.
 -->
 <section id="books" class="level2">
 <h2 data-anchor-id="books">Books</h2>
@@ -205,11 +310,20 @@ usually its museum's page.
 </div>
 <section id="drop-everything-and-read" class="level3 open">
 <h3 class="open" data-anchor-id="drop-everything-and-read">Drop everything and read</h3>
-<ul>
-<li><strong><em>The Society of Mind</em></strong> · Marvin Minsky, 1986</li>
-<li><strong><em>I Am a Strange Loop</em></strong> · Douglas Hofstadter, 2007</li>
-<li><strong><em>The Beginning of Infinity</em></strong> · David Deutsch, 2011</li>
-</ul>
+<div class="top-films shelf">
+  <figure class="film figure">
+    <a class="poster" href="https://openlibrary.org/works/OL4981641W"><img src="https://covers.openlibrary.org/b/id/9962442-L.jpg" alt="Cover of The Society of Mind" loading="lazy" onerror="this.remove()" class="figure-img"></a>
+    <figcaption><b><i>The Society of Mind</i></b><span class="by">Marvin Minsky, 1986</span></figcaption>
+  </figure>
+  <figure class="film figure">
+    <a class="poster" href="https://openlibrary.org/works/OL8067922W"><img src="https://covers.openlibrary.org/b/id/298651-L.jpg" alt="Cover of I Am a Strange Loop" loading="lazy" onerror="this.remove()" class="figure-img"></a>
+    <figcaption><b><i>I Am a Strange Loop</i></b><span class="by">Douglas Hofstadter, 2007</span></figcaption>
+  </figure>
+  <figure class="film figure">
+    <a class="poster" href="https://openlibrary.org/works/OL4325174W"><img src="https://covers.openlibrary.org/b/id/10870600-L.jpg" alt="Cover of The Beginning of Infinity" loading="lazy" onerror="this.remove()" class="figure-img"></a>
+    <figcaption><b><i>The Beginning of Infinity</i></b><span class="by">David Deutsch, 2011</span></figcaption>
+  </figure>
+</div>
 </section>
 <section id="fiction" class="level3">
 <h3 data-anchor-id="fiction">Fiction</h3>
@@ -345,31 +459,31 @@ usually its museum's page.
     <figcaption><a href="https://en.wikipedia.org/wiki/%C3%89tienne-Louis_Boull%C3%A9e"><b>Étienne-Louis Boullée</b></a> <span class="dates">1728–1799</span><span class="work"><i>Interior of a Metropolitan Church</i>, 1780–81</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://www.gardnermuseum.org/experience/collection/13259"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/EL_JALEO-SINGER.jpg?width=1280" alt="John Singer Sargent, El Jaleo, 1882" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>El Jaleo</i><small>1882</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/John_Singer_Sargent"><b>John Singer Sargent</b></a> <span class="dates">1856–1925</span><span class="work"><i>El Jaleo</i>, 1882</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/sargent-john-singer/"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/EL_JALEO-SINGER.jpg?width=1280" alt="John Singer Sargent, El Jaleo, 1882" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>El Jaleo</i><small>1882</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/sargent-john-singer/"><b>John Singer Sargent</b></a> <span class="dates">1856–1925</span><span class="work"><i>El Jaleo</i>, 1882</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://www.moma.org/collection/works/28451"><span class="stand-in"><i>Les Codomas</i><small>from <i>Jazz</i>, 1947</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Henri_Matisse"><b>Henri Matisse</b></a> <span class="dates">1869–1954</span><span class="work"><i>Les Codomas</i>, from <i>Jazz</i>, 1947</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/matisse-henri/"><span class="stand-in matisse"><i aria-label="Les Codomas"><span class="w"><span class="c1">L</span><span class="c2">e</span><span class="c3">s</span></span> <span class="w"><span class="c4">C</span><span class="c5">o</span><span class="c6">d</span><span class="c1">o</span><span class="c2">m</span><span class="c3">a</span><span class="c4">s</span></span></i><small>from <i>Jazz</i>, 1947</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/matisse-henri/"><b>Henri Matisse</b></a> <span class="dates">1869–1954</span><span class="work"><i>Les Codomas</i>, from <i>Jazz</i>, 1947</span></figcaption>
   </figure>
   <figure class="art figure">
     <a class="frame" href="https://collection.cooperhewitt.org/objects/18468717"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Drawing,_Study_for_Maximum_Mass_Permitted_by_the_1916_New_York_Zoning_Law,_Stage_4,_1922_(CH_18468717).jpg?width=1280" alt="Hugh Ferriss, Study for Maximum Mass Permitted by the 1916 New York Zoning Law, Stage 4, 1922" loading="lazy" onerror="this.remove()" class="figure-img"><span class="stand-in"><i>Study for Maximum Mass, Stage 4</i><small>1922</small></span></a>
     <figcaption><a href="https://en.wikipedia.org/wiki/Hugh_Ferriss"><b>Hugh Ferriss</b></a> <span class="dates">1889–1962</span><span class="work"><i>Study for Maximum Mass, Stage 4</i>, 1922</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://www.nga.gov/artworks/47956-print-gallery"><span class="stand-in"><i>Print Gallery</i><small>1956</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/M._C._Escher"><b>M. C. Escher</b></a> <span class="dates">1898–1972</span><span class="work"><i>Print Gallery</i>, 1956</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/escher-mc/"><span class="stand-in escher"><i>Print Gallery</i><small>1956</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/escher-mc/"><b>M. C. Escher</b></a> <span class="dates">1898–1972</span><span class="work"><i>Print Gallery</i>, 1956</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://www.menil.org/collection/objects/4901-golconda-golconde"><span class="stand-in"><i>Golconda</i><small>1953</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Ren%C3%A9_Magritte"><b>René Magritte</b></a> <span class="dates">1898–1967</span><span class="work"><i>Golconda</i>, 1953</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/magritte-rene/"><span class="stand-in magritte"><i>Golconda</i><small>1953</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/magritte-rene/"><b>René Magritte</b></a> <span class="dates">1898–1967</span><span class="work"><i>Golconda</i>, 1953</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://www.tate.org.uk/visit/tate-modern/display/in-the-studio/mark-rothko-seagram-murals"><span class="stand-in"><i>Seagram Murals</i><small>1958–59</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Mark_Rothko"><b>Mark Rothko</b></a> <span class="dates">1903–1970</span><span class="work"><i>Seagram Murals</i>, 1958–59</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/rothko-mark/"><span class="stand-in rothko"><i><span class="red">Red</span> <span class="on">on</span> <span class="maroon">Maroon</span></i><small>1959</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/rothko-mark/"><b>Mark Rothko</b></a> <span class="dates">1903–1970</span><span class="work"><i>Red on Maroon</i>, 1959</span></figcaption>
   </figure>
   <figure class="art figure">
-    <a class="frame" href="https://en.wikipedia.org/wiki/Slim_Aarons"><span class="stand-in"><i>Civilised Snooze</i><small>Athens, 1955</small></span></a>
+    <a class="frame" href="https://en.wikipedia.org/wiki/Slim_Aarons"><span class="stand-in aarons"><i>Civilised Snooze</i><small>Athens, 1955</small></span></a>
     <figcaption><a href="https://en.wikipedia.org/wiki/Slim_Aarons"><b>Slim Aarons</b></a> <span class="dates">1916–2006</span><span class="work"><i>Civilised Snooze</i>, Athens, 1955</span></figcaption>
   </figure>
 </div>

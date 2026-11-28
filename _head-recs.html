@@ -1,6 +1,10 @@
 <link rel="icon" type="image/svg+xml" href="/favicon-slate.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-slate-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- Fonts for the art section's title frames, one per artist (styles.scss) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&family=Playwrite+BE+WAL&family=Rubik+Iso&family=Rubik+Spray+Paint&family=Yellowtail&display=swap">
 <script>
 // Recommendations: every section folds under its heading. Sections start closed; a subsection marked {.open} starts
 // open. Each closed-by-default heading shows how many picks are inside. Without JavaScript the page simply shows everything.
@@ -28,5 +32,105 @@ document.addEventListener('DOMContentLoaded', function () {
     t.scrollIntoView();
   }
   window.addEventListener('hashchange', reveal); reveal();
+});
+</script>
+<script>
+// Art section: the Escher title frame becomes its own small piece. PRINT and GALLERY are drawn on square frames
+// nested inside one another, then bent by the map behind Escher's Print Gallery (de Smit and Lenstra, 2003): one
+// turn around the center scales the picture by R, so the words wind inward forever. Smooth (bilinear) sampling keeps
+// the bent words readable. It moves only while on screen, and holds still for people who ask for reduced motion.
+document.addEventListener('DOMContentLoaded', function () {
+  var title = document.querySelector('.art-grid .stand-in.escher');
+  if (!title) return;
+  var frame = title.closest('.frame');
+  var cv = document.createElement('canvas');
+  var ctx = cv.getContext && cv.getContext('2d');
+  if (!frame || !ctx) return;                              // no canvas: the plain title stays
+  cv.className = 'droste';
+  cv.setAttribute('aria-hidden', 'true');
+
+  var N = 480, R = 4, L = Math.log(R), K = L / (2 * Math.PI);   // tile size, scale per turn
+  var PERIOD = 14000;                                     // ms for one step inward
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tile = null, size = 0, lut = null, img = null, out = null, running = false, visible = false;
+
+  function drawTile(font) {
+    var c = document.createElement('canvas'); c.width = c.height = N;
+    var t = c.getContext('2d');
+    var band = N / 2 * (1 - 1 / R), inner = N / R, o = (N - inner) / 2;
+    t.fillStyle = '#F8F6F1'; t.fillRect(0, 0, N, N);
+    t.strokeStyle = '#DAD6CE'; t.lineWidth = 2;           // a grid, so the bending shows
+    for (var g = 0; g <= N; g += N / 16) { t.beginPath(); t.moveTo(g, 0); t.lineTo(g, N); t.moveTo(0, g); t.lineTo(N, g); t.stroke(); }
+    t.strokeStyle = '#5F7C91'; t.lineWidth = 8;
+    t.strokeRect(4, 4, N - 8, N - 8); t.strokeRect(o, o, inner, inner);
+    t.textAlign = 'center'; t.textBaseline = 'middle';
+    t.font = 'bold 64px ' + font;
+    for (var k = 0; k < 4; k++) {                          // PRINT, GALLERY, PRINT, GALLERY around the frame
+      t.save(); t.translate(N / 2, N / 2); t.rotate(k * Math.PI / 2);
+      t.fillStyle = k % 2 ? '#8B83BF' : '#5F7C91';           // slate and lavender
+      t.fillText(k % 2 ? 'GALLERY' : 'PRINT', 0, -N / 2 + Math.min(band, N / 4) / 2 + 6); t.restore();
+    }
+    return t.getImageData(0, 0, N, N).data;
+  }
+
+  function layout() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var s = Math.round(frame.clientWidth * dpr);
+    if (!s || s === size) return;
+    size = cv.width = cv.height = s;
+    img = ctx.createImageData(s, s); out = img.data;
+    lut = { re: new Float32Array(s * s), c: new Float32Array(s * s), sn: new Float32Array(s * s) };
+    var h = s / 2;
+    for (var j = 0; j < s; j++) for (var i = 0; i < s; i++) {
+      var x = (i + 0.5 - h) / h, y = (j + 0.5 - h) / h, p = j * s + i;
+      var lr = Math.log(Math.hypot(x, y) || 1e-9), th = Math.atan2(y, x);
+      lut.re[p] = lr + K * th;                             // (log z)(1 - iK): a turn of 2π now also scales by R
+      var im = th - K * lr;
+      lut.c[p] = Math.cos(im); lut.sn[p] = Math.sin(im);
+    }
+  }
+
+  function render(now) {
+    if (!lut || !tile) return;
+    var shift = still ? 0 : (now % PERIOD) / PERIOD * L, n = size * size, half = N / 2;
+    for (var p = 0; p < n; p++) {
+      var m = lut.re[p] + shift;
+      m = ((m % L) + L) % L - L;                           // into one step of the spiral, |z| in [1/R, 1)
+      var e = Math.exp(m), x = e * lut.c[p], y = e * lut.sn[p];
+      if (Math.max(Math.abs(x), Math.abs(y)) < 1 / R) { x *= R; y *= R; }   // inside the inner frame: the next copy out
+      var fx = (x + 1) * half - 0.5, fy = (y + 1) * half - 0.5;   // bilinear sample of the tile
+      fx = fx < 0 ? 0 : fx > N - 1.001 ? N - 1.001 : fx; fy = fy < 0 ? 0 : fy > N - 1.001 ? N - 1.001 : fy;
+      var x1 = fx | 0, y1 = fy | 0, ax = fx - x1, ay = fy - y1, q = (y1 * N + x1) * 4, q2 = q + N * 4, o4 = p * 4;
+      for (var ch = 0; ch < 3; ch++) {
+        var top = tile[q + ch] + (tile[q + 4 + ch] - tile[q + ch]) * ax, bot = tile[q2 + ch] + (tile[q2 + 4 + ch] - tile[q2 + ch]) * ax;
+        out[o4 + ch] = top + (bot - top) * ay;
+      }
+      out[o4 + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  var last = 0;
+  function loop(now) {
+    if (!running) return;
+    if (now - last > 33) { render(now); last = now; }      // about 30 frames a second is plenty
+    if (still) { running = false; return; }
+    requestAnimationFrame(loop);
+  }
+  function go() { if (!running && visible && tile) { running = true; requestAnimationFrame(loop); } }
+
+  var face = getComputedStyle(document.querySelector('h1, h2') || document.body).fontFamily || 'sans-serif';   // the site's heading font
+  var ready = document.fonts && document.fonts.load ? document.fonts.load('bold 64px ' + face) : Promise.resolve();
+  ready.catch(function () {}).then(function () {
+    tile = drawTile(face);
+    frame.appendChild(cv);
+    frame.classList.add('live');
+    layout(); go();
+  });
+  new IntersectionObserver(function (es) {
+    visible = es[0].isIntersecting;
+    if (visible) { layout(); go(); } else running = false;
+  }).observe(frame);
+  window.addEventListener('resize', function () { layout(); if (still) render(0); });
 });
 </script>

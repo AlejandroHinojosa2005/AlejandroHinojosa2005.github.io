@@ -798,6 +798,10 @@ body.holiday-christmas .hero { margin-top: 8rem; }
 .top-films .poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .top-films a.poster { text-decoration: none; transition: border-color 0.2s; }   // each poster links to the film on Letterboxd
 .top-films a.poster:hover { border-color: var(--accent); }
+// The book picks use the same row; each cover keeps its own shape, the covers resting on their captions
+.top-films.shelf { align-items: flex-end; }
+.top-films.shelf .poster:has(img) { aspect-ratio: auto; display: block; }
+.top-films.shelf .poster img { position: static; display: block; width: 100%; height: auto; }
 .top-films .rank { font-family: $headings-font-family; font-weight: 700; font-size: 2rem; color: var(--accent); }
 .top-films figcaption { margin-top: 0.55rem; font-size: 0.78rem; line-height: 1.45; }
 .top-films figcaption .n { color: var(--accent); font-weight: 700; margin-right: 0.45em; }
@@ -824,6 +828,29 @@ body.holiday-christmas .hero { margin-top: 8rem; }
 .art-grid .frame:has(img) .stand-in { display: none; }
 .art-grid .stand-in { padding: 0 0.8rem; text-align: center; font-family: $headings-font-family; font-size: 0.95rem; line-height: 1.35; color: var(--accent); }
 .art-grid .stand-in small { display: block; margin-top: 0.3rem; font-style: normal; font-size: 0.72rem; color: $muted; }
+// A title frame's title in a font for its artist (Google Fonts, loaded in _head-recs.html)
+.art-grid .stand-in:is(.matisse, .escher, .magritte, .rothko, .aarons) > i { display: block; font-style: normal; line-height: 1.15; }
+.art-grid .stand-in.matisse > i { font-family: 'Gluten', $headings-font-family; font-weight: 600; font-size: 1.55rem; color: $ochre; }   // cut paper
+.art-grid .stand-in.escher > i { font-family: 'Rubik Iso', $headings-font-family; font-size: 1.45rem; color: $slate; }   // isometric
+.art-grid .stand-in.magritte > i { font-family: 'Playwrite BE WAL', $headings-font-family; font-size: 1.05rem; line-height: 1.6; color: $ink; }   // Belgian school hand
+.art-grid .stand-in.rothko > i { font-family: 'Rubik Spray Paint', $headings-font-family; font-size: 1.5rem; color: $brick; }   // soft edges
+.art-grid .stand-in.aarons > i { font-family: 'Yellowtail', $headings-font-family; font-size: 1.75rem; color: $olive; }   // 1950s magazine script
+// Matisse: each letter its own cut-paper color, set a little askew; a word never breaks across lines
+.art-grid .stand-in.matisse > i .w { white-space: nowrap; }
+.art-grid .stand-in.matisse > i .w span { display: inline-block; }
+.art-grid .stand-in.matisse .c1 { color: #E1572A; transform: rotate(-6deg); }
+.art-grid .stand-in.matisse .c2 { color: #2C4FA3; transform: rotate(4deg); }
+.art-grid .stand-in.matisse .c3 { color: #D9A21B; transform: rotate(-3deg); }
+.art-grid .stand-in.matisse .c4 { color: #C2185B; transform: rotate(5deg); }
+.art-grid .stand-in.matisse .c5 { color: #2E7D4F; transform: rotate(-4deg); }
+.art-grid .stand-in.matisse .c6 { color: #1F1F1F; transform: rotate(3deg); }
+// Rothko: red, then the near-black of the painting's darkest part, then maroon
+.art-grid .stand-in.rothko .red { color: #8E2626; }
+.art-grid .stand-in.rothko .on { color: #2A1216; }
+.art-grid .stand-in.rothko .maroon { color: #4E1A21; }
+// Escher: the title frame is replaced by its own Droste spiral, drawn by the script in _head-recs.html
+.art-grid .frame canvas.droste { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 7px; }
+.art-grid .frame.live .stand-in { visibility: hidden; }
 .art-grid figcaption { margin-top: 0.55rem; font-size: 0.78rem; line-height: 1.45; }
 .art-grid figcaption .dates { color: $muted; white-space: nowrap; }
 .art-grid figcaption .work { display: block; }

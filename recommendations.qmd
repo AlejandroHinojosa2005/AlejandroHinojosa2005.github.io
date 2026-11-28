@@ -20,6 +20,8 @@ The *** around a title make it bold italic, the way book and film titles appear 
 The top five films' posters are in the films/ folder (seventh-seal.jpg, 2001.jpg, days-of-heaven.jpg,
 le-samourai.jpg, la-dolce-vita.jpg). To change a poster, replace its file; until a file is there, the box shows the rank.
 Each poster links to the film's page on Letterboxd (https://letterboxd.com/film/SLUG/).
+The three books under "Drop everything and read" use the same row: covers from Open Library
+(https://covers.openlibrary.org/b/id/COVER_ID-L.jpg), each linking back to the book's page there, as Open Library asks.
 
 Every section and subsection starts closed, and its heading opens it (the script in _head-recs.html does this).
 A subsection with {.open} after its heading starts open when its section is opened.
@@ -27,8 +29,9 @@ A subsection with {.open} after its heading starts open when its section is open
 ART: each artist is one <figure class="art"> block in the Art section; copy one and change its links, title and
 dates. The image is a public-domain file on Wikimedia Commons, loaded by its file name
 (https://commons.wikimedia.org/wiki/Special:FilePath/FILE_NAME?width=1280). For a work still under copyright,
-leave out the <img> and the frame shows the title. Either way the frame links to where the work can be seen,
-usually its museum's page.
+leave out the <img> and the frame shows the title, in a font chosen for the artist (a class on the stand-in span,
+styled in styles.scss; the fonts load in _head-recs.html). The frame and the name link to the artist's page on
+The Art Story (https://www.theartstory.org/artist/...); artists it doesn't cover keep Wikipedia or a museum page.
 -->
 
 ## Books
@@ -39,9 +42,22 @@ in no particular order
 
 ### Drop everything and read {.open}
 
-- ***The Society of Mind*** · Marvin Minsky, 1986
-- ***I Am a Strange Loop*** · Douglas Hofstadter, 2007
-- ***The Beginning of Infinity*** · David Deutsch, 2011
+```{=html}
+<div class="top-films shelf">
+  <figure class="film">
+    <a class="poster" href="https://openlibrary.org/works/OL4981641W"><img src="https://covers.openlibrary.org/b/id/9962442-L.jpg" alt="Cover of The Society of Mind" loading="lazy" onerror="this.remove()"></a>
+    <figcaption><b><i>The Society of Mind</i></b><span class="by">Marvin Minsky, 1986</span></figcaption>
+  </figure>
+  <figure class="film">
+    <a class="poster" href="https://openlibrary.org/works/OL8067922W"><img src="https://covers.openlibrary.org/b/id/298651-L.jpg" alt="Cover of I Am a Strange Loop" loading="lazy" onerror="this.remove()"></a>
+    <figcaption><b><i>I Am a Strange Loop</i></b><span class="by">Douglas Hofstadter, 2007</span></figcaption>
+  </figure>
+  <figure class="film">
+    <a class="poster" href="https://openlibrary.org/works/OL4325174W"><img src="https://covers.openlibrary.org/b/id/10870600-L.jpg" alt="Cover of The Beginning of Infinity" loading="lazy" onerror="this.remove()"></a>
+    <figcaption><b><i>The Beginning of Infinity</i></b><span class="by">David Deutsch, 2011</span></figcaption>
+  </figure>
+</div>
+```
 
 ### Fiction
 
@@ -166,31 +182,31 @@ by the artist's birth year
     <figcaption><a href="https://en.wikipedia.org/wiki/%C3%89tienne-Louis_Boull%C3%A9e"><b>Étienne-Louis Boullée</b></a> <span class="dates">1728–1799</span><span class="work"><i>Interior of a Metropolitan Church</i>, 1780–81</span></figcaption>
   </figure>
   <figure class="art">
-    <a class="frame" href="https://www.gardnermuseum.org/experience/collection/13259"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/EL_JALEO-SINGER.jpg?width=1280" alt="John Singer Sargent, El Jaleo, 1882" loading="lazy" onerror="this.remove()"><span class="stand-in"><i>El Jaleo</i><small>1882</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/John_Singer_Sargent"><b>John Singer Sargent</b></a> <span class="dates">1856–1925</span><span class="work"><i>El Jaleo</i>, 1882</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/sargent-john-singer/"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/EL_JALEO-SINGER.jpg?width=1280" alt="John Singer Sargent, El Jaleo, 1882" loading="lazy" onerror="this.remove()"><span class="stand-in"><i>El Jaleo</i><small>1882</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/sargent-john-singer/"><b>John Singer Sargent</b></a> <span class="dates">1856–1925</span><span class="work"><i>El Jaleo</i>, 1882</span></figcaption>
   </figure>
   <figure class="art">
-    <a class="frame" href="https://www.moma.org/collection/works/28451"><span class="stand-in"><i>Les Codomas</i><small>from <i>Jazz</i>, 1947</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Henri_Matisse"><b>Henri Matisse</b></a> <span class="dates">1869–1954</span><span class="work"><i>Les Codomas</i>, from <i>Jazz</i>, 1947</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/matisse-henri/"><span class="stand-in matisse"><i aria-label="Les Codomas"><span class="w"><span class="c1">L</span><span class="c2">e</span><span class="c3">s</span></span> <span class="w"><span class="c4">C</span><span class="c5">o</span><span class="c6">d</span><span class="c1">o</span><span class="c2">m</span><span class="c3">a</span><span class="c4">s</span></span></i><small>from <i>Jazz</i>, 1947</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/matisse-henri/"><b>Henri Matisse</b></a> <span class="dates">1869–1954</span><span class="work"><i>Les Codomas</i>, from <i>Jazz</i>, 1947</span></figcaption>
   </figure>
   <figure class="art">
     <a class="frame" href="https://collection.cooperhewitt.org/objects/18468717"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Drawing,_Study_for_Maximum_Mass_Permitted_by_the_1916_New_York_Zoning_Law,_Stage_4,_1922_(CH_18468717).jpg?width=1280" alt="Hugh Ferriss, Study for Maximum Mass Permitted by the 1916 New York Zoning Law, Stage 4, 1922" loading="lazy" onerror="this.remove()"><span class="stand-in"><i>Study for Maximum Mass, Stage 4</i><small>1922</small></span></a>
     <figcaption><a href="https://en.wikipedia.org/wiki/Hugh_Ferriss"><b>Hugh Ferriss</b></a> <span class="dates">1889–1962</span><span class="work"><i>Study for Maximum Mass, Stage 4</i>, 1922</span></figcaption>
   </figure>
   <figure class="art">
-    <a class="frame" href="https://www.nga.gov/artworks/47956-print-gallery"><span class="stand-in"><i>Print Gallery</i><small>1956</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/M._C._Escher"><b>M. C. Escher</b></a> <span class="dates">1898–1972</span><span class="work"><i>Print Gallery</i>, 1956</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/escher-mc/"><span class="stand-in escher"><i>Print Gallery</i><small>1956</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/escher-mc/"><b>M. C. Escher</b></a> <span class="dates">1898–1972</span><span class="work"><i>Print Gallery</i>, 1956</span></figcaption>
   </figure>
   <figure class="art">
-    <a class="frame" href="https://www.menil.org/collection/objects/4901-golconda-golconde"><span class="stand-in"><i>Golconda</i><small>1953</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Ren%C3%A9_Magritte"><b>René Magritte</b></a> <span class="dates">1898–1967</span><span class="work"><i>Golconda</i>, 1953</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/magritte-rene/"><span class="stand-in magritte"><i>Golconda</i><small>1953</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/magritte-rene/"><b>René Magritte</b></a> <span class="dates">1898–1967</span><span class="work"><i>Golconda</i>, 1953</span></figcaption>
   </figure>
   <figure class="art">
-    <a class="frame" href="https://www.tate.org.uk/visit/tate-modern/display/in-the-studio/mark-rothko-seagram-murals"><span class="stand-in"><i>Seagram Murals</i><small>1958–59</small></span></a>
-    <figcaption><a href="https://en.wikipedia.org/wiki/Mark_Rothko"><b>Mark Rothko</b></a> <span class="dates">1903–1970</span><span class="work"><i>Seagram Murals</i>, 1958–59</span></figcaption>
+    <a class="frame" href="https://www.theartstory.org/artist/rothko-mark/"><span class="stand-in rothko"><i><span class="red">Red</span> <span class="on">on</span> <span class="maroon">Maroon</span></i><small>1959</small></span></a>
+    <figcaption><a href="https://www.theartstory.org/artist/rothko-mark/"><b>Mark Rothko</b></a> <span class="dates">1903–1970</span><span class="work"><i>Red on Maroon</i>, 1959</span></figcaption>
   </figure>
   <figure class="art">
-    <a class="frame" href="https://en.wikipedia.org/wiki/Slim_Aarons"><span class="stand-in"><i>Civilised Snooze</i><small>Athens, 1955</small></span></a>
+    <a class="frame" href="https://en.wikipedia.org/wiki/Slim_Aarons"><span class="stand-in aarons"><i>Civilised Snooze</i><small>Athens, 1955</small></span></a>
     <figcaption><a href="https://en.wikipedia.org/wiki/Slim_Aarons"><b>Slim Aarons</b></a> <span class="dates">1916–2006</span><span class="work"><i>Civilised Snooze</i>, Athens, 1955</span></figcaption>
   </figure>
 </div>
